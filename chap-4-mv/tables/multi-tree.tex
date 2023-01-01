@@ -1,0 +1,14 @@
+\begin{tabular}{l|cc||cc||cc||cc||cc}
+\toprule
+ & \multicolumn{2}{r}{Algorithm 4.1} & \multicolumn{2}{r}{Algorithm 4.2} & \multicolumn{2}{r}{Algorithm 4.3} & \multicolumn{2}{r}{\algomasegosa} & \multicolumn{2}{r}{\algogermain} \\
+ & $\Risk_{\dT}(\MVQ)$ & Bound & $\Risk_{\dT}(\MVQ)$ & Bound & $\Risk_{\dT}(\MVQ)$ & Bound & $\Risk_{\dT}(\MVQ)$ & Bound & $\Risk_{\dT}(\MVQ)$ & Bound \\
+\midrule
+MNIST & \textbf{.034 $\pm$ .002} & \textbf{.387 $\pm$ .003} & \underline{.034 $\pm$ .002} & \underline{.371 $\pm$ .003} & \textit{.034 $\pm$ .002} & \textit{.340 $\pm$ .004} & .095 $\pm$ .037 & .451 $\pm$ .062 & .180 $\pm$ .005 & .382 $\pm$ .003 \\
+FashionMNIST & \textbf{.121 $\pm$ .004} & \textbf{.554 $\pm$ .003} & .121 $\pm$ .004 & .544 $\pm$ .003 & \underline{.121 $\pm$ .004} & \underline{.523 $\pm$ .003} & .195 $\pm$ .022 & .672 $\pm$ .070 & \textit{.231 $\pm$ .004} & \textit{.479 $\pm$ .002} \\
+Pendigits & .015 $\pm$ .007 & .283 $\pm$ .007 & .015 $\pm$ .007 & .197 $\pm$ .009 & \textbf{\textit{.015 $\pm$ .007}} & \textbf{\textit{.137 $\pm$ .009}} & .027 $\pm$ .017 & .168 $\pm$ .030 & \underline{.064 $\pm$ .022} & \underline{.163 $\pm$ .010} \\
+Protein & \textit{.467 $\pm$ .060} & \textit{1.000 $\pm$ .000} & \textit{.462 $\pm$ .057} & \textit{1.000 $\pm$ .000} & \textbf{\textit{.419 $\pm$ .038}} & \textbf{\textit{1.000 $\pm$ .000}} & .460 $\pm$ .025 & 1.503 $\pm$ .047 & \underline{.529 $\pm$ .003} & \underline{1.098 $\pm$ .006} \\
+Shuttle & .000 $\pm$ .000 & .061 $\pm$ .001 & .000 $\pm$ .000 & .006 $\pm$ .001 & \textbf{.000 $\pm$ .000} & \textbf{.005 $\pm$ .000} & \underline{.000 $\pm$ .000} & \underline{.005 $\pm$ .001} & \textit{.001 $\pm$ .000} & \textit{.003 $\pm$ .001} \\
+Sensorless & .002 $\pm$ .001 & .097 $\pm$ .001 & .002 $\pm$ .000 & .040 $\pm$ .001 & \textbf{\textit{.001 $\pm$ .000}} & \textbf{\textit{.022 $\pm$ .001}} & \underline{.002 $\pm$ .001} & \underline{.025 $\pm$ .001} & .015 $\pm$ .001 & .040 $\pm$ .002 \\
+Glass & \underline{.328 $\pm$ .058} & \underline{1.000 $\pm$ .000} & \underline{.327 $\pm$ .058} & \underline{1.000 $\pm$ .000} & \textit{.328 $\pm$ .060} & \textit{1.000 $\pm$ .000} & \textbf{.324 $\pm$ .056} & \textbf{1.978 $\pm$ .140} & .327 $\pm$ .058 & 1.263 $\pm$ .081 \\
+\bottomrule
+\end{tabular}

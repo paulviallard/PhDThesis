@@ -1,0 +1,15 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+
+\begin{tikzpicture}
+\node[] at (0,0) {
+    $\displaystyle\text{{\bf true risk}(model)} \le \text{{\bf empirical risk}(model)} + \text{{\bf complexity}}(\text{model, number of examples})$};
+
+\draw [draw=black, line width=0.05cm] (6.5,0.5) rectangle (0.2,-0.5);
+\draw[line width=0.05cm] (3.45, -0.5) -- (3.45, -1.0);
+\draw[line width=0.05cm] (3.45, -1.0) -- (-6.0, -1.0);
+\draw[->, line width=0.05cm] (-6.0, -1.0) -- (-6, -1.4);
+\end{tikzpicture}
+\end{document}

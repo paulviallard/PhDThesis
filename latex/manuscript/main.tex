@@ -1,0 +1,115 @@
+\documentclass{thesis}
+\input{header}
+
+\begin{document}
+
+% ----------------------------------------------------------------------------------------------- %
+\pagestyle{plain}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\includepdf{main/begin.pdf}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\include{main/acknowledgements}
+\include{main/quotes}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\dominitoc
+
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listofalgorithms
+\newpage
+\listoftheorems
+
+\include{main/notations}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\let\proof\newproof
+\let\endproof\endnewproof
+ 
+% ----------------------------------------------------------------------------------------------- %
+\counterwithout{figure}{section}
+\input{introduction/introduction}
+\counterwithin{figure}{chapter}
+
+\newrefcontext[sorting=ydnt]
+\chapter*{List of Publications}\addcontentsline{toc}{chapter}{List of Publications}
+\begin{refsection}[publications.bib]
+\nocite{*}
+\printbibliography[heading={subbibliography}, keyword={conference}, title={International Conference}]
+\printbibliography[heading={subbibliography}, keyword={workshop}, title={International Workshop}]
+\printbibliography[heading={subbibliography}, keyword={nat-conference}, title={National Conference}]
+\printbibliography[heading={subbibliography}, keyword={report}, title={Research Report}]
+\end{refsection}
+
+\adjustmtc[4]
+
+% ----------------------------------------------------------------------------------------------- %
+\pagestyle{headings}
+
+\part{Background}
+\label{part:background}
+
+\include{chapter_1/chapter_1}
+\include{chapter_2/chapter_2}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\part[PAC-Bayesian Majority Vote:\\ Theory and Self-bounding Algorithms]{PAC-Bayesian Majority Vote:\\ {\LARGE Theory and Self-bounding Algorithms}}
+\label{part:contrib-pac-bayes}
+
+\include{chapter_3/chapter_3}
+\include{chapter_4/chapter_4}
+\include{chapter_5/chapter_5}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\part[Beyond PAC-Bayesian Bounds:\\ From Disintegration to Novel Bounds]{Beyond PAC-Bayesian Bounds:\\ {\LARGE From Disintegration to Novel Bounds}
+}
+\label{part:contrib-disintegrated}
+
+\include{chapter_6/chapter_6}
+\include{chapter_7/chapter_7}
+
+
+\part{Conclusion and Perspectives}
+\label{part:conclusion}
+
+\include{perspectives/perspectives}
+
+% ----------------------------------------------------------------------------------------------- %
+
+\appendix
+\part{Appendix}
+
+\include{appendix/tools}
+
+\include{chapter_2/appendix}
+\include{chapter_3/appendix}
+\include{chapter_4/appendix}
+\include{chapter_5/appendix}
+\include{chapter_6/appendix}
+\include{chapter_7/appendix}
+
+\newrefcontext[sorting=nyt]
+\printbibliography[filter={references}, title={References}]
+
+% ----------------------------------------------------------------------------------------------- %
+
+\newgeometry{left=3cm,right=3cm,bottom=3cm,top=3cm}
+\newpage
+\pagestyle{empty}
+\strictpagecheck
+\checkoddpage
+\ifoddpage
+~\newpage
+\fi
+\input{main/end}
+\end{document}

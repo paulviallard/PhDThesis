@@ -1,0 +1,52 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+    \node[fill=red, inner sep=0.1cm] at (0,0) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    \node[fill=red, inner sep=0.1cm] at (1.3,1) {\includegraphics[scale=0.05]{supervised_cat_2.png}};
+    \node[fill=red, inner sep=0.1cm] at (1.1,-0.2) {\includegraphics[scale=0.05]{supervised_cat_3.png}};
+    \node[fill=red, inner sep=0.1cm] at (0.3,1.2) {\includegraphics[scale=0.05]{supervised_cat_4.png}};
+    
+    \node[fill=blue, inner sep=0.1cm] at (3.5,0) {\includegraphics[scale=0.05]{supervised_horse_1.png}};
+    \node[fill=blue, inner sep=0.1cm] at (2.6,1.5) {\includegraphics[scale=0.05]{supervised_horse_2.png}};
+    \node[fill=blue, inner sep=0.1cm] at (4.0,-0.6) {\includegraphics[scale=0.05]{supervised_horse_3.png}};
+    \node[fill=blue, inner sep=0.1cm] at (2.8,-1.5) {\includegraphics[scale=0.05]{supervised_horse_4.png}};
+    
+    \draw[draw=black, line width=0.05cm] (4.7,2.1) rectangle (-0.6,-2.1);
+
+    \node[] at (2.0,-2.5) {{\bf Learning sample}};
+    
+    \draw[->, line width=0.05cm] (5.5, 0) -- (7.5, 0);
+    \node[inner sep=0pt] at (6.5, 0.4) {Learning};
+    
+    \begin{scope}[xshift=9cm]
+    
+    \clip (4.73,2.13) rectangle (-0.63,-2.13);
+
+    \draw[fill=blue,opacity=0.4] (1.95, 2.2) -- (1.95, -2.2) -- (4.7,-2.2) -- (4.7,2.2) -- cycle;
+
+    \draw[fill=red,opacity=0.4] (-0.7, 2.2) -- (-0.7, -2.2) -- (2.0,-2.2) -- (2.0,2.2) -- cycle;
+
+    \node[fill=red, inner sep=0.1cm] at (0,0) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    \node[fill=red, inner sep=0.1cm] at (1.3,1) {\includegraphics[scale=0.05]{supervised_cat_2.png}};
+    \node[fill=red, inner sep=0.1cm] at (1.1,-0.2) {\includegraphics[scale=0.05]{supervised_cat_3.png}};
+    \node[fill=red, inner sep=0.1cm] at (0.3,1.2) {\includegraphics[scale=0.05]{supervised_cat_4.png}};
+    
+    \node[fill=blue, inner sep=0.1cm] at (3.5,0) {\includegraphics[scale=0.05]{supervised_horse_1.png}};
+    \node[fill=blue, inner sep=0.1cm] at (2.6,1.5) {\includegraphics[scale=0.05]{supervised_horse_2.png}};
+    \node[fill=blue, inner sep=0.1cm] at (4.0,-0.6) {\includegraphics[scale=0.05]{supervised_horse_3.png}};
+    \node[fill=blue, inner sep=0.1cm] at (2.8,-1.5) {\includegraphics[scale=0.05]{supervised_horse_4.png}};
+    
+    \draw[line width=0.1cm, draw=black] (1.95, 2.2) -- (1.95, -2.2);
+    \draw[draw=black, line width=0.05cm] (4.7,2.1) rectangle (-0.6,-2.1);
+        
+    \end{scope}
+
+    \node[inner sep=0pt] at (11.0, -2.5) {{\bf Model}};
+    
+\end{tikzpicture}
+\end{document}

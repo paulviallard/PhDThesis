@@ -1,0 +1,65 @@
+\begin{table*}
+\caption{Test risks and bounds for 2 tasks of MNIST with $n{=}100$ perturbations for all pairs (Defense,Attack) with the two voters' set $\H$ and $\Hsigned$. 
+The results in \textbf{bold} correspond to the best values between results for $\H$ and $\Hsigned$.
+To quantify the gap between our risks and the classical definition we put in \textit{italic} the risk of our models against the classical attacks: we replace \PGDU and \IFGSMU~by \PGD or \IFGSM~(\ie, we did {\it not} sample from the uniform distribution). 
+Since \cref{chap:mv-robustness:eq:max-mcallester} upperbounds \cref{chap:mv-robustness:eq:max-mcallester-0} thanks to the TV term, we compute the two bound values of \Cref{chap:mv-robustness:theorem:bound-average-max}.
+}
+\begin{subtable}{1.0\linewidth}
+\resizebox{\textwidth}{!}{
+\newcommand{\sep}{ & }
+\begin{tabular}{ll||c|c||c|c|c|c||c|c||c|c|c|c|c|c}
+\toprule
+\multicolumn{2}{c||}{$\ell_2$-norm} &  \multicolumn{6}{c||}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:seeger-chromatic}}} & \multicolumn{8}{c}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:max-mcallester}}}\\
+\multicolumn{2}{c||}{$b=1$} & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &   \multicolumn{4}{c||}{ } & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &\multicolumn{6}{c}{ }  \\
+& & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} &  \multicolumn{2}{c|}{$\Risk_{\Tpert}(\MVQ)$} & \multicolumn{2}{c||}{\cref{chap:mv-robustness:theorem:chromatic}} & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} & \multicolumn{2}{c|}{$\RiskM_{\Tpert}(\MVQ)$} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester}} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester-0}}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$\\
+\midrule
+--- & ---         & \it .015 \sep \it.015               & .015     \sep .015     & \bf 0.060 \sep .067     & \textit{.015}    \sep \textit{.015}     & .015     \sep .015     & \bf 0.129  \sep  0.135 & \bf 0.129 \sep .135 \\
+--- & \PGDU       & \it .632 \sep \bf\textit{.628}      & \bf .520 \sep .526     & 1.059    \sep \bf .847 & \textit{.672}    \sep \bf\textit{.641}  & \bf .683 \sep .684     & \bf 1.718 \sep 2.405 & 1.392 \sep \bf .962 \\
+--- & \IFGSMU     & \it .447 \sep \bf\textit{.443}      & \bf .157 \sep .166     & \bf 0.387 \sep .572     & \textit{.461}    \sep \bf\textit{.451}  & \bf .337 \sep .345     & \bf 1.137 \sep 2.090 &  0.776 \sep \bf .669 \\
+\U  & ---         & \it .024 \sep \it.024               & .024     \sep .024     & \bf 0.073 \sep .083     & \textit{.024}    \sep \textit{.024}     & .024     \sep .024     & \bf 0.140  \sep  0.148 & \bf 0.140 \sep .148 \\
+\U  & \PGDU       & \it .646 \sep \bf\textit{.619}      & \bf .486 \sep .500     & 1.016    \sep \bf .809 & \textit{.649}    \sep \bf \textit{.626} & \bf .648 \sep .650     & \bf 1.646 \sep 2.417 & 1.338 \sep \bf .915 \\
+\U  & \IFGSMU     & \it .442 \sep \it.442               & \bf .128 \sep .139     & \bf 0.316 \sep .528     & \textit{.442}    \sep \textit{.442}     & \bf .281 \sep .293     & \bf 0.907  \sep 2.118 &  0.633 \sep \bf .617 \\
+\hdashline
+\PGDU & ---       & \bf\textit{.024} \sep \textit{.025} & \bf .024 \sep .025     & \bf 0.094 \sep .101     & \bf\textit{.024} \sep \textit{.025}     & \bf .024 \sep .025     & \bf 0.158  \sep  0.163 & \bf 0.158 \sep .163 \\
+\PGDU & \PGDU     & \textit{.148} \sep \bf\textit{.135} & .111     \sep \bf .103 & 0.360     \sep \bf .355 & \textit{.146}    \sep \bf\textit{.136}  & .129     \sep \bf .120 & \bf 0.442  \sep 2.062 &  0.414 \sep \bf .403 \\
+\PGDU & \IFGSMU   & \textit{.104} \sep \bf\textit{.103}  & .072     \sep .072     & 0.277     \sep .277     & \textit{.102}    \sep \textit{.102}     & .090     \sep \bf .084 & \bf 0.358  \sep 1.954 &  0.335 \sep \bf .328 \\
+\IFGSMU & ---     & \textit{.027} \sep \bf\textit{.025} & .027     \sep \bf .025 & \bf 0.080 \sep .091     & \textit{.027}    \sep \bf \textit{.025} & .027     \sep \bf .025 & \bf 0.146  \sep  0.154 & \bf 0.146 \sep .154 \\
+\IFGSMU & \PGDU   & \textit{.188} \sep \bf\textit{.178} & \bf .111 \sep .119     & \bf 0.383 \sep .405     & \textit{.190}    \sep \bf \textit{.178} & \bf .126 \sep .134     & \bf 0.501  \sep 2.063 &  0.454 \sep .454 \\
+\IFGSMU & \IFGSMU & \textit{.126} \sep \bf\textit{.115} & .076     \sep \bf .070 & \bf 0.248 \sep .290     & \textit{.127}    \sep \bf \textit{.115} & .091     \sep \bf .085 & \bf 0.371  \sep 1.918 & \bf 0.329 \sep .342 \\
+\bottomrule
+\end{tabular}
+}
+\caption{MNIST 4vs9}
+\end{subtable}
+
+\begin{subtable}{1.0\linewidth}
+\resizebox{\textwidth}{!}{
+\newcommand{\sep}{ & }
+\begin{tabular}{ll||c|c||c|c|c|c||c|c||c|c|c|c|c|c}
+\toprule
+\multicolumn{2}{c||}{$\ell_2$-norm} &  \multicolumn{6}{c||}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:seeger-chromatic}}} & \multicolumn{8}{c}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:max-mcallester}}}\\
+\multicolumn{2}{c||}{$b=1$} & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &   \multicolumn{4}{c||}{ } & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &\multicolumn{6}{c}{ }  \\
+& & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} &  \multicolumn{2}{c|}{$\Risk_{\Tpert}(\MVQ)$} & \multicolumn{2}{c||}{\cref{chap:mv-robustness:theorem:chromatic}} & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} & \multicolumn{2}{c|}{$\RiskM_{\Tpert}(\MVQ)$} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester}} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester-0}}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$\\
+\midrule
+--- & ---         & \textit{.015}    \sep \textit{.015}     &     .015 \sep     .015 & \bf .043 \sep     .045 &    \textit{.015} \sep     \textit{.015} &     .015 \sep     .015 & \bf .117 \sep      0.118 & \bf .117 \sep .118  \\
+--- & \PGDU       & \textit{.279}    \sep \bf \textit{.271} & \bf .232 \sep     .234 &     .600 \sep \bf .453 &    \textit{.284} \sep \bf \textit{.274} &     .284 \sep     .284 & \bf .829 \sep     1.929 & .724 \sep \bf .524  \\
+--- & \IFGSMU     & \textit{.143}    \sep \bf \textit{.137} & \bf .089 \sep     .090 & \bf .204 \sep     .227 &    \textit{.144} \sep \bf \textit{.139} & \bf .125 \sep     .127 & \bf .422 \sep     1.662 & .337 \sep \bf .293  \\
+\U  & ---         & \textit{.017}    \sep \textit{.017}     &     .017 \sep     .017 & \bf .054 \sep     .055 & \textit{.017} \sep \textit{.017} &     .017 \sep     .017 & \bf .124 \sep      0.125 & \bf .124 \sep .125  \\
+\U  & \PGDU       & \textit{.219}    \sep \bf \textit{.201} & \bf .172 \sep     .177 &     .433 \sep \bf .350 &    \textit{.219} \sep \bf \textit{.209} & \bf .217 \sep     .218 & \bf .671 \sep     1.810 & .565 \sep \bf .419  \\
+\U  & \IFGSMU     & \textit{.122} \sep \textit{.122}     & \bf .052 \sep     .055 & \bf .119 \sep     .181 & \bf\textit{.122} \sep     \textit{.123} & \bf .077 \sep     .082 & \bf .307 \sep     1.554 & \bf .242 \sep .248  \\
+\hdashline
+\PGDU & ---       & \bf\textit{.013} \sep \textit{.015}     & \bf .013 \sep     .015 &     .061 \sep     .061 & \bf\textit{.013} \sep     \textit{.015} & \bf .013 \sep     .015 & \bf .131 \sep      0.130 & .131 \sep \bf .130  \\
+\PGDU & \PGDU     & \textit{.057}    \sep \textit{.057}     &     .045 \sep \bf .041 & \bf .157 \sep     .160 &    \textit{.057} \sep \textit{.057} &     .055 \sep \bf .045 & \bf .227 \sep     1.536 & .218 \sep .218  \\
+\PGDU & \IFGSMU   & \textit{.043} \sep \textit{.043}     & \bf .027 \sep     .031 & \bf .114 \sep     .119 & \bf\textit{.042} \sep     \textit{.043} &     .037 \sep \bf .035 & \bf .187 \sep     1.433 & \bf .179 \sep .181  \\
+\IFGSMU & ---     & \textit{.014}    \sep \bf\textit{.012}  &     .014 \sep \bf .012 &     .057 \sep     .057 &    \textit{.014} \sep \bf \textit{.013} &     .014 \sep \bf .013 &     .128 \sep \bf  0.127 & .128 \sep \bf .127  \\
+\IFGSMU & \PGDU   & \textit{.077}    \sep \bf\textit{.072}  &     .054 \sep \bf .043 & \bf .170 \sep     .174 &    \textit{.076} \sep \bf \textit{.075} &     .055 \sep \bf .052 & \bf .252 \sep     1.510 & \bf .233 \sep .236  \\
+\IFGSMU & \IFGSMU & \textit{.055} \sep \bf\textit{.048}     &     .034 \sep \bf .030 & \bf .105 \sep     .121 &    \textit{.052} \sep \bf \textit{.051} &     .039 \sep \bf .032 & \bf .191 \sep     1.379 & \bf .177 \sep .185  \\
+\bottomrule
+\end{tabular}
+}
+\caption{MNIST 5vs6}
+\end{subtable}
+\label{ap:mv-robustness:tab:mnist-l2-details}
+\end{table*}

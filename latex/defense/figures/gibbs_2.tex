@@ -1,0 +1,26 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+\begin{tikzpicture}[]
+
+    \begin{scope}[xshift=0cm]
+    \node[] at (0,-0.1) {\includegraphics[scale=0.4]{gibbs_5.pdf}};    
+    \node[] at (3.5,0.2) {\includegraphics[scale=0.4]{gibbs_10.pdf}};
+    \node[] at (7,-0.1) {\includegraphics[scale=0.4]{gibbs_20.pdf}};
+    \end{scope}
+    
+    
+    \begin{scope}[yshift=-3.3cm]
+    \node[] at (3.5,0.2) {\includegraphics[scale=0.4]{gibbs_mu_10.pdf}};
+    \node[] at (0, -1.6) {$\alpha=5$};
+
+    \node[] at (0,-0.1) {\includegraphics[scale=0.4]{gibbs_mu_5.pdf}};
+    \node[] at (3.5, -1.6) {$\alpha=10$};
+
+    \node[] at (7,-0.1) {\includegraphics[scale=0.4]{gibbs_mu_20.pdf}};
+    \node[] at (7, -1.6) {$\alpha=20$};
+    \end{scope}
+    
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,31 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+
+\begin{tikzpicture}[thick,scale=1.0, every node/.style={scale=1.0}]
+    
+    \draw[->, line width=0.1cm] (0.0, 0.0) -- (10.0, 0.0);
+    
+    \draw[line width=0.05cm] (0.5, 0.3) -- (0.5, -0.3);
+    \draw[line width=0.05cm] (2.5, 0.3) -- (2.5, -0.3);
+    \draw[line width=0.05cm] (8.5, 0.3) -- (8.5, -0.3);
+
+    \draw[draw=black, line width=0.05cm] (5.5, 0.3) -- (5.5, -0.3);
+    \node[inner sep=0pt] at (5.5, -0.6) {Selected Prior $\P_\t$};
+
+    \node[inner sep=0pt] at (0.5, 0.6) {Epoch ${1}$};
+    \node[inner sep=0pt] at (2.5, 0.6) {Epoch ${2}$};
+    \node[inner sep=0pt] at (8.5, 0.6) {Epoch ${T}$};
+    
+    \node[inner sep=0pt] at (0.5, -0.6) {Prior $\P_{1}$};
+    \node[inner sep=0pt] at (2.5, -0.6) {Prior $\P_{2}$};
+    \node[inner sep=0pt] at (8.5, -0.6) {Prior $\P_{\iter}$};
+
+
+    \node[inner sep=0pt] at (5.0, -0.3) {$\cdots$};
+    \node[inner sep=0pt] at (10.0, -0.5) {Epoch};
+    
+\end{tikzpicture}
+
+\end{document}

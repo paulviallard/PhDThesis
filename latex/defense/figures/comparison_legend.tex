@@ -1,0 +1,17 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+\begin{tikzpicture}[]
+
+    \begin{scope}[xshift=0cm]
+    \node[] at (0,0) {\includegraphics[scale=0.4]{comparison_legend_.pdf}};
+    
+    \draw[->, line width=0.05cm] (1.0, -0.05) -- (0.35, -0.05);
+    \node at (2.3, -0.05) {Test risk $\Risk_{\dT}(\h)$};
+    \draw[->, line width=0.05cm] (1.0, 0.9) -- (0.35, 0.9);
+    \node at (2.1, 0.9) {Bound value};
+    \end{scope}
+    
+\end{tikzpicture}
+\end{document}

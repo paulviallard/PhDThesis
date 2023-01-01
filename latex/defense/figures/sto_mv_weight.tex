@@ -1,0 +1,26 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+\begin{tikzpicture}[]
+
+    \begin{scope}[yshift=0cm]
+    \node[] at (0, 0) {\includegraphics[scale=1.0]{sto_mv_1.pdf}};
+    \node[] at (6, 0) {\includegraphics[scale=1.0]{sto_mv_weight_1.pdf}};
+    \draw [draw=black, line width=0.11cm] (-3.0, -2.0) rectangle (4.6, 2.0);
+    \end{scope}
+
+    \begin{scope}[yshift=-4.0cm]
+    \node[] at (0, 0) {\includegraphics[scale=1.0]{sto_mv_2.pdf}};
+    \node[] at (6, 0) {\includegraphics[scale=1.0]{sto_mv_weight_2.pdf}};
+    \draw [draw=black, line width=0.11cm] (-3.0, -2.0) rectangle (4.6, 2.0);
+    \end{scope}
+
+    \begin{scope}[yshift=-8.0cm]
+    \node[] at (0, 0) {\includegraphics[scale=1.0]{sto_mv_3.pdf}};
+    \node[] at (6, 0) {\includegraphics[scale=1.0]{sto_mv_weight_3.pdf}};
+    \draw [draw=black, line width=0.11cm] (-3.0, -2.0) rectangle (4.6, 2.0);
+    \end{scope}
+    
+\end{tikzpicture}
+\end{document}

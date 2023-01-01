@@ -1,0 +1,70 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\begin{tikzpicture}
+    
+    \begin{scope}
+    \clip (4.73,2.13) rectangle (-0.63,-2.13);
+
+    \draw[fill=blue,opacity=0.4] (1.95, 2.2) -- (1.95, -2.2) -- (4.7,-2.2) -- (4.7,2.2) -- cycle;
+    \draw[fill=red,opacity=0.4] (-0.7, 2.2) -- (-0.7, -2.2) -- (2.0,-2.2) -- (2.0,2.2) -- cycle;
+
+    \node[fill=red, inner sep=0.1cm] at (0,0) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    \node[fill=red, inner sep=0.1cm] at (1.3,1) {\includegraphics[scale=0.05]{supervised_cat_2.png}};
+    \node[fill=red, inner sep=0.1cm] at (1.1,-0.2) {\includegraphics[scale=0.05]{supervised_cat_3.png}};
+    \node[fill=red, inner sep=0.1cm] at (0.3,1.2) {\includegraphics[scale=0.05]{supervised_cat_4.png}};
+    
+    \node[fill=blue, inner sep=0.1cm] at (3.5,0) {\includegraphics[scale=0.05]{supervised_horse_1.png}};
+    \node[fill=blue, inner sep=0.1cm] at (2.6,1.5) {\includegraphics[scale=0.05]{supervised_horse_2.png}};
+    \node[fill=blue, inner sep=0.1cm] at (4.0,-0.6) {\includegraphics[scale=0.05]{supervised_horse_3.png}};
+    \node[fill=blue, inner sep=0.1cm] at (2.8,-1.5) {\includegraphics[scale=0.05]{supervised_horse_4.png}};
+    
+    \draw[line width=0.1cm, draw=black] (1.95, 2.2) -- (1.95, -2.2);
+    \draw[draw=black, line width=0.05cm] (4.7,2.1) rectangle (-0.6,-2.1);
+    \end{scope}
+    \node[align=center] at (2.1, -2.7) {{\bf How many errors on the learning sample?}\\ 0 error!};
+
+    
+    \begin{scope}[xshift=9cm]
+    \clip (4.73,2.13) rectangle (-0.63,-2.13);
+
+    \draw[fill=blue,opacity=0.4] (1.95, 2.2) -- (1.95, -2.2) -- (4.7,-2.2) -- (4.7,2.2) -- cycle;
+    \draw[fill=red,opacity=0.4] (-0.7, 2.2) -- (-0.7, -2.2) -- (2.0,-2.2) -- (2.0,2.2) -- cycle;
+
+    \draw[line width=0.1cm, draw=black] (1.95, 2.2) -- (1.95, -2.2);
+
+    \node[inner sep=0.1cm] at (0,0) {\includegraphics[scale=0.04]{new_cat_1.jpeg}};
+    \node[inner sep=0.1cm] at (1.3,0.6) {\includegraphics[scale=0.04]{new_cat_2.jpeg}};
+    \node[inner sep=0.1cm] at (2.8,-1.5) {\includegraphics[scale=0.04]{new_cat_3.jpeg}};
+    \node[inner sep=0.1cm] at (0.3,1.2) {\includegraphics[scale=0.04]{new_cat_4.jpeg}};
+    \node[inner sep=0.1cm] at (-0.1,-1.2) {\includegraphics[scale=0.04]{new_cat_5.jpeg}};
+    \node[inner sep=0.1cm] at (0.6,-1.5) {\includegraphics[scale=0.04]{new_cat_6.jpeg}};
+    \node[inner sep=0.1cm] at (1.3,-1.0) {\includegraphics[scale=0.04]{new_cat_7.jpeg}};
+    \node[inner sep=0.1cm] at (1.5,-1.7) {\includegraphics[scale=0.04]{new_cat_8.jpeg}};
+    \node[inner sep=0.1cm] at (3.9,-1.5) {\includegraphics[scale=0.04]{new_cat_9.jpeg}};
+    \node[inner sep=0.1cm] at (1.2,1.6) {\includegraphics[scale=0.04]{new_cat_10.jpeg}};
+    
+    \node[inner sep=0.1cm] at (3.5,0) {\includegraphics[scale=0.08]{new_horse_1.jpeg}};
+    \node[inner sep=0.1cm] at (2.6,1.5) {\includegraphics[scale=0.08]{new_horse_2.jpeg}};
+    \node[inner sep=0.1cm] at (4.0,-0.6) {\includegraphics[scale=0.08]{new_horse_3.jpeg}};
+    \node[inner sep=0.1cm] at (1.1,-0.2) {\includegraphics[scale=0.08]{new_horse_4.jpeg}};
+    \node[inner sep=0.1cm] at (2.6,-0.5) {\includegraphics[scale=0.08]{new_horse_5.jpeg}};
+    \node[inner sep=0.1cm] at (2.4,0.3) {\includegraphics[scale=0.08]{new_horse_6.jpeg}};
+    \node[inner sep=0.1cm] at (3.0,0.7) {\includegraphics[scale=0.08]{new_horse_7.jpeg}};
+    \node[inner sep=0.1cm] at (4.0,0.7) {\includegraphics[scale=0.08]{new_horse_8.jpeg}};
+    \node[inner sep=0.1cm] at (3.4,1.4) {\includegraphics[scale=0.08]{new_horse_9.jpeg}};
+    \node[inner sep=0.1cm] at (4.0,1.7) {\includegraphics[scale=0.08]{new_horse_10.jpeg}};
+    \draw[draw=black, line width=0.05cm] (4.7,2.1) rectangle (-0.6,-2.1);
+    \end{scope}
+    
+    \draw[draw=red, line width=0.1cm] (11.8,-1.50) circle (0.55cm);
+    \draw[draw=red, line width=0.1cm] (12.9,-1.50) circle (0.55cm);
+    \draw[draw=blue, line width=0.1cm] (10.1, -0.2) circle (0.55cm);
+    
+    \node[align=center] at (11.1, -2.7) {{\bf How many errors on new examples?}\\ 3 errors\dots};
+    
+\end{tikzpicture}
+\end{document}

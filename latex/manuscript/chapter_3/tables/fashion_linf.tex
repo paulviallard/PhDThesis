@@ -1,0 +1,96 @@
+\begin{table*}
+\caption{Test risks and bounds for 3 tasks of Fashion MNIST with $n{=}100$ perturbations for all pairs (Defense,Attack) with the two voters' set $\H$ and $\Hsigned$. 
+The results in \textbf{bold} correspond to the best values between results for $\H$ and $\Hsigned$.
+To quantify the gap between our risks and the classical definition we put in \textit{italic} the risk of our models against the classical attacks: we replace \PGDU and \IFGSMU~by \PGD or \IFGSM~(\ie, we did {\it not} sample from the uniform distribution). 
+Since \cref{chap:mv-robustness:eq:max-mcallester} upperbounds \cref{chap:mv-robustness:eq:max-mcallester-0} thanks to the TV term, we compute the two bound values of \Cref{chap:mv-robustness:theorem:bound-average-max}.
+}
+\begin{subtable}{0.99\linewidth}
+\resizebox{\textwidth}{!}{
+\newcommand{\sep}{ & }
+\begin{tabular}{ll||c|c||c|c|c|c||c|c||c|c|c|c|c|c}
+\toprule
+\multicolumn{2}{c||}{$\ell_\infty$-norm} &  \multicolumn{6}{c||}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:seeger-chromatic}}} & \multicolumn{8}{c}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:max-mcallester}}}\\
+\multicolumn{2}{c||}{$b=0.1$} & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &   \multicolumn{4}{c||}{ } & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &\multicolumn{6}{c}{ }  \\
+& & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} &  \multicolumn{2}{c|}{$\Risk_{\Tpert}(\MVQ)$} & \multicolumn{2}{c||}{\cref{chap:mv-robustness:theorem:chromatic}} & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} & \multicolumn{2}{c|}{$\RiskM_{\Tpert}(\MVQ)$} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester}} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester-0}}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$\\
+\midrule
+--- & ---         & \textit{.021} \sep \bf \textit{.020} & .021 \sep \bf .020 & \bf 0.060 \sep 0.070 & \textit{.019} \sep \textit{.019} & .019 \sep .019 & \bf 0.130 \sep  0.139 &  \bf 0.130 \sep  0.139 \\
+--- & \PGDU       & \textit{.951} \sep \bf \textit{.944} & \bf .606 \sep .719 & \bf 1.275 \sep 1.333 & \textit{.935} \sep \bf\textit{.920} & \bf .762 \sep .864 & \bf 1.617 \sep 2.503 &  1.421 \sep \bf 1.317 \\
+--- & \IFGSMU     & \textit{.957} \sep \bf \textit{.947} & \bf .588 \sep .718 & \bf 1.231 \sep 1.336 & \textit{.950} \sep \textit{.950} & \bf .734 \sep .851 & \bf 1.587 \sep 2.495 &  1.395 \sep \bf 1.316 \\
+\U  & ---         & \bf \textit{.076} \sep \textit{.077} & \bf .076 \sep .077 &  \bf 0.178 \sep 0.184 & \bf \textit{.076} \sep \textit{.077} & \bf .076 \sep .077 &  \bf 0.230 \sep  0.235 &  \bf 0.230 \sep  0.235 \\
+\U  & \PGDU       & \textit{.964} \sep \bf \textit{.961} & \bf .714 \sep .719 & 1.496 \sep \bf 1.265 & \textit{.966} \sep \bf \textit{.963} & \bf .853 \sep .859 & \bf 2.098 \sep 2.417 &  1.785 \sep \bf 1.416 \\
+\U  & \IFGSMU     & \textit{.978} \sep \bf \textit{.976} & \bf .627 \sep .632 & 1.306 \sep \bf 1.259 & \textit{.979} \sep \textit{.979} & \bf .758 \sep .762 & \bf 1.914 \sep 2.422 &  1.597\sep \bf 1.396 \\
+\hdashline
+\PGDU & ---       & \textit{.041} \sep \bf \textit{.040} & .041 \sep \bf .040 &  0.114 \sep  \bf 0.111 & \textit{.041} \sep \bf \textit{.040} & .041 \sep \bf .040 &  0.173 \sep  \bf 0.171 &   0.173 \sep \bf 0.171 \\
+\PGDU & \PGDU     & \textit{.098} \sep \bf \textit{.097} & .089 \sep \bf .086 & \bf  0.207 \sep  0.210 & \textit{.099} \sep \bf \textit{.097} & .101 \sep \bf .100 &  \bf 0.306 \sep 1.826 &   0.281 \sep \bf 0.267 \\
+\PGDU & \IFGSMU   & \textit{.113} \sep \bf \textit{.112} & .105 \sep \bf .101 &  \bf 0.244 \sep  0.246 & \textit{.115} \sep \bf \textit{.112} & .120 \sep \bf .113 &  \bf 0.353 \sep 1.853 &   0.321 \sep \bf 0.302 \\
+\IFGSMU & ---     & \bf \textit{.045} \sep \textit{.047} & \bf .045 \sep .047 &  \bf 0.131 \sep  0.137 & \bf \textit{.045} \sep \textit{.047} & \bf .045 \sep .047 &  \bf 0.188 \sep  0.194  &  \bf 0.188 \sep  0.194 \\
+\IFGSMU & \PGDU   & \bf \textit{.100} \sep \textit{.102} & .089 \sep \bf .085 &  \bf 0.203 \sep  0.232 & \bf \textit{.100} \sep \textit{.102} & \bf .102 \sep \bf .102 &  \bf 0.298 \sep 1.645  & \bf 0.274 \sep  0.287 \\
+\IFGSMU & \IFGSMU & \bf \textit{.112} \sep \textit{.116} & .099 \sep \bf .096 &  \bf 0.232 \sep  0.260 & \bf \textit{.112} \sep \textit{.116} & .114 \sep \bf .112 &  \bf 0.328 \sep 1.687  &  \bf 0.301 \sep  0.313 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Fashion MNIST Sandall vs Ankle Boot}
+\end{subtable}
+
+\begin{subtable}{0.99\linewidth}
+\resizebox{\textwidth}{!}{
+\newcommand{\sep}{ & }
+\begin{tabular}{ll||c|c||c|c|c|c||c|c||c|c|c|c|c|c}
+\toprule
+\multicolumn{2}{c||}{$\ell_\infty$-norm} &  \multicolumn{6}{c||}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:seeger-chromatic}}} & \multicolumn{8}{c}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:max-mcallester}}}\\
+\multicolumn{2}{c||}{$b=0.1$} & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &   \multicolumn{4}{c||}{ } & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &\multicolumn{6}{c}{ }  \\
+& & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} &  \multicolumn{2}{c|}{$\Risk_{\Tpert}(\MVQ)$} & \multicolumn{2}{c||}{\cref{chap:mv-robustness:theorem:chromatic}} & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} & \multicolumn{2}{c|}{$\RiskM_{\Tpert}(\MVQ)$} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester}} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester-0}}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$\\
+\midrule
+--- & ---         & \textit{.038} \sep \bf \textit{.037} & .038 \sep \bf .037 & \bf .088 \sep .091 & \textit{.038} \sep \bf \textit{.037} & .038 \sep \bf .037 &  \bf 0.153 \sep  0.155 &  \bf 0.153 \sep .155 \\
+--- & \PGDU       & \textit{.596} \sep \bf \textit{.515} & .477 \sep \bf .218 & .844 \sep \bf .662 & \textit{.590} \sep \bf \textit{.576} & .570 \sep \bf .502 & \bf 1.049 \sep 1.924 &   0.948 \sep \bf .857 \\
+--- & \IFGSMU     & \textit{.723} \sep \bf \textit{.623} & .573 \sep \bf .257 & .971 \sep \bf .751 & \textit{.716} \sep \bf \textit{.695} & .678 \sep \bf .598 & \bf 1.189 \sep 2.031 &  1.080 \sep \bf .980 \\
+\U  & ---         & \textit{.032} \sep \textit{.032} & .032 \sep .032 & \bf .083 \sep .085 & \bf \textit{.032} \sep \textit{.033} & \bf .032 \sep .033 &  \bf 0.149 \sep  0.151 &  \bf 0.149 \sep .151 \\
+\U  & \PGDU       & \bf \textit{.438} \sep \textit{.439} & .356 \sep \bf .245 & .813 \sep \bf .563 & \textit{.435} \sep \textit{.435} & .423 \sep \bf .312 & \bf 1.082 \sep 1.867 &   0.959 \sep \bf .688 \\
+\U  & \IFGSMU     & \bf \textit{.546} \sep \textit{.547} & .453 \sep \bf .325 & .974 \sep \bf .690 & \bf \textit{.544} \sep \textit{.547} & .530 \sep \bf .409 & \bf 1.266 \sep 2.009 &  1.128 \sep \bf .823 \\
+\hdashline
+\PGDU & ---       & \bf \textit{.048} \sep \textit{.053} & \bf .048 \sep .053 & \bf .115 \sep .130 & \bf \textit{.048} \sep \textit{.053} & \bf .048 \sep .053 & \bf 0.177 \sep  0.188 &  \bf 0.177 \sep .188 \\
+\PGDU & \PGDU     & \bf \textit{.102} \sep \textit{.116} & \bf .089 \sep .099 & \bf .205 \sep .223 & \bf \textit{.102} \sep \textit{.116} & \bf .096 \sep .115 & \bf 0.282 \sep 1.323 &  \bf 0.266 \sep .278 \\
+\PGDU & \IFGSMU   & \bf \textit{.120} \sep \textit{.135} & \bf .102 \sep .115 & \bf .237 \sep .255 & \bf \textit{.120} \sep \textit{.135} & \bf .109 \sep .133 &  \bf 0.318 \sep 1.380 & \bf 0.299 \sep .309 \\
+\IFGSMU & ---     & \textit{.051} \sep \bf \textit{.045} & .051 \sep \bf .045 & .120 \sep \bf .115 & \textit{.051} \sep \bf \textit{.045} & .051 \sep \bf .045 &  0.179 \sep  \bf 0.175  &   0.179 \sep \bf .175 \\
+\IFGSMU & \PGDU   & \textit{.106} \sep \bf \textit{.094} & .091 \sep \bf .085 & .211 \sep \bf .193 & \textit{.106} \sep \bf \textit{.094} & .102 \sep \bf .097 & \bf  0.292 \sep 1.488  &   0.273 \sep \bf .252 \\
+\IFGSMU & \IFGSMU & \textit{.120} \sep \bf \textit{.111} & \bf .101 \sep .102 & .239 \sep \bf .218 & \textit{.119} \sep \bf \textit{.111} & .113 \sep .113 &  \bf 0.322 \sep 1.546  &   0.299 \sep \bf .277 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Fashion MNIST Top vs Pullover}
+\end{subtable}
+\label{ap:mv-robustness:tab:fashion-infty-details}
+\end{table*}
+
+\begin{table*}
+\begin{subtable}{0.99\linewidth}
+\resizebox{\textwidth}{!}{
+\newcommand{\sep}{ & }
+\begin{tabular}{ll||c|c||c|c|c|c||c|c||c|c|c|c|c|c}
+\toprule
+\multicolumn{2}{c||}{$\ell_\infty$-norm} &  \multicolumn{6}{c||}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:seeger-chromatic}}} & \multicolumn{8}{c}{\cref{chap:mv-robustness:algo-step}\ {\rm with \cref{chap:mv-robustness:eq:max-mcallester}}}\\
+\multicolumn{2}{c||}{$b=0.1$} & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &   \multicolumn{4}{c||}{ } & \multicolumn{2}{c}{\scriptsize\rm Attack  without {\sc u}} &\multicolumn{6}{c}{ }  \\
+& & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} &  \multicolumn{2}{c|}{$\Risk_{\Tpert}(\MVQ)$} & \multicolumn{2}{c||}{\cref{chap:mv-robustness:theorem:chromatic}} & \multicolumn{2}{c||}{$\RiskA_{\dT}(\MVQ)$} & \multicolumn{2}{c|}{$\RiskM_{\Tpert}(\MVQ)$} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester}} & \multicolumn{2}{c}{\cref{chap:mv-robustness:theorem:bound-average-max} - \cref{chap:mv-robustness:eq:max-mcallester-0}}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$ & $\Hsigned$ & $\H$\\
+\midrule
+--- & ---         & \textit{.122} \sep \textit{.122} & .122 \sep .122 &  \bf 0.276 \sep  0.286 & \textit{.122} \sep \textit{.122} & .122 \sep .122 &  \bf 0.318 \sep  0.328 &  \bf 0.318 \sep  0.328 \\
+--- & \PGDU       & \bf \textit{.884} \sep \textit{.887} & \bf .781 \sep .795 & 1.579 \sep \bf 1.268 & \bf \textit{.882} \sep \textit{.886} & \bf .864 \sep .872 & \bf 2.020 \sep 2.640 &  1.803 \sep \bf 1.390 \\
+--- & \IFGSMU     & \bf \textit{.901} \sep \textit{.902} & \bf .756 \sep .774 & 1.558 \sep \bf 1.272 & \bf\textit{.901} \sep \textit{.902} & \bf .865 \sep .876 & \bf 2.032 \sep 2.651 &  1.795 \sep \bf 1.393 \\
+\U  & ---         & \textit{.166} \sep \textit{.166} & .166 \sep .166 & \bf 0.352 \sep 0.357 & .166 \sep \textit{.166} & \textit{.166} \sep .166 &  \bf 0.389 \sep  0.394 &  \bf 0.389 \sep  0.394 \\
+\U  & \PGDU       & \bf \textit{.911} \sep \textit{.914} & \bf .796 \sep .798 & 1.402 \sep \bf 1.326 & \bf\textit{.913} \sep \textit{.914} & .896 \sep \bf .888 & \bf 1.934 \sep 2.325 &  1.713 \sep \bf 1.447 \\
+\U  & \IFGSMU     & \bf \textit{.935} \sep \textit{.937} & \bf .787 \sep .798 & 1.392 \sep \bf 1.350 & \bf\textit{.934} \sep \textit{.936} & .887 \sep \bf .882 & \bf 1.905 \sep 2.378 &  1.693 \sep \bf 1.469 \\
+\hdashline
+\PGDU & ---       & \textit{.163} \sep \bf \textit{.162} & .163 \sep \bf .162 &  \bf 0.386 \sep  0.395 & \textit{.163} \sep \bf  \textit{.162} & .163 \sep \bf .162 &  \bf 0.419 \sep  0.430 &  \bf 0.419 \sep  0.430 \\
+\PGDU & \PGDU     & \bf \textit{.394} \sep \textit{.396} & .359 \sep \bf .329 &  0.764 \sep \bf 0.673 & \bf\textit{.394} \sep \textit{.396} & .403 \sep \bf .394 & \bf 0.954 \sep 2.321 &   0.865 \sep \bf 0.726 \\
+\PGDU & \IFGSMU   & \bf\textit{.475} \sep \textit{.480} & .442 \sep \bf .410 &  0.910 \sep \bf 0.769 & \bf \textit{.477} \sep \textit{.480} & .487 \sep \bf .472 & \bf 1.121 \sep 2.411 &  1.020 \sep \bf 0.826 \\
+\IFGSMU & ---     & \bf \textit{.167} \sep \textit{.168} & \bf .167 \sep .168 &  0.411 \sep \bf  0.395 & \bf \textit{.167} \sep \textit{.168} & \bf .167 \sep .168 & 0.445 \sep  \bf 0.429  &   0.445 \sep \bf 0.429 \\
+\IFGSMU & \PGDU   & \textit{.396} \sep \bf \textit{.373} & .359 \sep \bf .293 &  0.772 \sep \bf 0.641 & \textit{.396} \sep \bf \textit{.373} & .405 \sep \bf .328 & \bf 0.970 \sep 2.368  &   0.877 \sep \bf 0.692 \\
+\IFGSMU & \IFGSMU & \textit{.465} \sep \bf \textit{.428} & .424 \sep \bf .334 &  0.891 \sep  \bf 0.705 & \textit{.465} \sep \bf \textit{.429} & .470 \sep \bf .372 & \bf 1.090 \sep 2.425  &   0.995 \sep \bf 0.758 \\
+\bottomrule
+\end{tabular}
+}
+\caption{Fashion MNIST Coat vs Shirt}
+\end{subtable}
+\end{table*}

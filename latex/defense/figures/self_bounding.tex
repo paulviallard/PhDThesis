@@ -1,0 +1,19 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\node[] at (-5.6, 1.0) {\red{\bf Generalization bounds}};
+\node[] at (0,0) {
+    $\displaystyle\text{{\bf true risk}(model)} \le \underbrace{\text{{\bf empirical risk}(model)} + \text{{\bf complexity}}(\text{model, number of examples})}$};
+ 
+\draw[->, line width=0.1cm] (1.47, -0.23) -- (1.47, -1.4);
+ 
+ \node[] at (-5.45, -1) {\red{\bf Self-bounding algorithm}};
+\node[] at (0.8,-1.79) {
+ $\displaystyle\underset{\text{\bf model}}{\text{minimize}}\,\Big\{ \overbrace{\text{{\bf empirical risk}(model)} + \text{{\bf complexity}}(\text{model, number of examples})} \Big\}$};
+
+\end{tikzpicture}
+\end{document}

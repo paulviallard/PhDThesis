@@ -1,0 +1,76 @@
+\chapter*{List of Notations}
+\addcontentsline{toc}{chapter}{List of Notations}\mtcaddchapter
+
+\def\arraystretch{1.5}
+
+\centerline{\bf General}
+\vspace{0.2cm}
+\begin{tabular}{cp{13cm}}
+$\displaystyle a$ & A scalar (integer or real)\\
+$\displaystyle \abf$ & A vector\\
+$\displaystyle \Abf$ & A matrix\\
+$\displaystyle \Abb, \abb$ & A set\\
+$\displaystyle \R$ & The set of real numbers\\
+$\displaystyle \R_*$ & The set of real numbers excluding $0$\\
+$\displaystyle \R_*^+$ & The set of positive real numbers excluding $0$\\
+$\displaystyle \N$ & The set of natural numbers\\
+$\displaystyle \N_*$ & The set of natural numbers excluding $0$\\
+$\displaystyle \card(\cdot)$ & The cardinal of a set\\
+$\displaystyle a_i$ & $i$-th element of the vector $\abf$\\
+\end{tabular}
+
+\vspace{0.7cm}
+
+\centerline{\bf Statistical Learning Theory}
+\vspace{0.2cm}
+\begin{tabular}{cp{13cm}}
+$\displaystyle \X$ & Set of $\d$-dimensional inputs ($\subseteq \R^\d$)\\
+$\displaystyle \Y$ & Set of labels\\
+$\displaystyle \x$ & A real-valued input $\x\in\X$\\ 
+$\displaystyle \y$ & A label $\y\in\Y$ associated to the input $\x$\\
+$\displaystyle \D$ & Unknown data distribution on $\X\times\Y$\\
+$\displaystyle \D^\m$ & Unknown data distribution on the $\m$-samples, \ie, on $(\X{\times}\Y)^\m$\\
+$\displaystyle \S$ & Learning sample $\S=\{(\x_i, \y_i)\}_{i=1}^{\m}$ drawn from $\D^\m$\\
+$\displaystyle \dS$ & Uniform distribution on $\S$\\
+$\displaystyle \T$ & Test set drawn from $\D^\m$\\
+\end{tabular}
+
+\begin{tabular}{cp{13cm}}
+$\displaystyle \dT$ & Uniform distribution on $\T$\\
+$\displaystyle \H$ & The set of hypotheses\\
+$\displaystyle \h$ & A hypothesis $\h \in \H$\\
+$\loss(\cdot, \cdot)$ & Loss function\\
+$\RiskLoss_{\Dp}(\h)$ & Risk of the hypothesis $\h\in\H$ \wrt the loss function $\loss()$ on $\Dp$\\
+$\Risk_{\Dp}(\h)$ & Risk of the hypothesis $\h\in\H$ \wrt the 0-1 loss on $\Dp$\\
+\end{tabular}
+
+\vspace{0.7cm}
+
+\centerline{\bf Probability Theory}
+\vspace{0.2cm}
+\begin{tabular}{cp{13cm}}
+$\EE_{X\sim\Xcal}\LB\cdot\RB$ & The expectation \wrt the random variable $X\sim\Xcal$\\
+$\PP_{X\sim\Xcal}\LB\cdot\RB$ & The probability \wrt the random variable $X\sim\Xcal$\\
+$\displaystyle \indic\LB a\RB$ & Indicator function; returns $1$ if $a$ is true and $0$ otherwise\\
+$\M(\H)$ & Set of Probability densities \wrt the reference measure on $\H$\\
+$\Q$ & Posterior distribution $\Q\in\M(\H)$ on $\H$\\
+$\P$ & Prior distribution $\P\in\M^{*}(\H)$ on $\H$\\
+$\displaystyle \KL(\Q\|\P)$ & Kullback-Leibler (KL) divergence between $\Q$ and $\P$\\
+$\displaystyle \Renyi_{\alpha}(\Q\|\P)$ & Rényi Divergence between $\Q$ and $\P$\\
+$\Unif(\Abb)$ & Uniform distribution on $\Abb$\\
+$\Dir(\paramDir)$ & Dirichlet distribution of parameters $\paramDir\in\R_{*}^+$\\
+\end{tabular}
+
+\vspace{0.7cm}
+
+\centerline{\bf Majority Vote}
+\vspace{0.2cm}
+\begin{tabular}{cp{13cm}}
+$\MV_{\Q}(\cdot)$ & The majority vote classifier\\
+$\MaQ(\x,\y)$ & Majority vote's margin for the example $(\x,\y)\in\X{\times}\Y$\\
+$\OmMaQ(\x,\y)$ & $\frac{1}{2}$-Margin for the example $(\x,\y)\in\X{\times}\Y$\\
+$\sign(a)$ & Sign function; returns ${+}1$ if $a\ge0$ and ${-}1$ otherwise\\
+$r_{\Dp}(\Q)$ & Gibbs risk on the distribution $\Dp$ associated to the majority vote $\MVQ()$\\
+$e_{\Dp}(\Q)$ & Joint Error on the distribution $\Dp$ associated to the majority vote $\MVQ()$\\
+$d_{\Dp}(\Q)$ & Disagreement on the distribution $\Dp$ associated to the majority vote $\MVQ()$\\
+\end{tabular}

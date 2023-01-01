@@ -1,0 +1,148 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+\usepackage{pgfplots}
+
+\begin{document}
+
+% From https://tex.stackexchange.com/questions/11368/bell-curve-gaussian-function-normal-distribution-in-tikz-pgf
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+\pgfplotsset{ticks=none}
+
+
+\begin{tikzpicture}[thick,scale=0.8, every node/.style={scale=0.8}]
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{scope}[xshift=0cm]
+
+    \draw[fill=grey, grey] (2,1) circle (0.1cm) node(node31) {};
+    \draw[fill=grey, grey] (0,0) circle (0.1cm) node(node21) {};
+    \draw[fill=grey, grey] (0,1) circle (0.1cm) node(node22) {};
+    \draw[fill=grey, grey] (0,2) circle (0.1cm) node(node23) {};
+    \draw[fill=grey, grey] (-2,1) circle (0.1cm) node(node11) {};
+     
+    \draw[line width=0.05cm] (node31) -- (node21);
+    \draw[line width=0.05cm] (node31) -- (node22);
+    \draw[line width=0.05cm] (node31) -- (node23);
+    \draw[line width=0.05cm] (node21) -- (node11);
+    \draw[line width=0.05cm] (node22) -- (node11);
+    \draw[line width=0.05cm] (node23) -- (node11);
+
+    \begin{scope}[xshift=0.2cm,yshift=0.7cm,scale=0.1]
+        \begin{axis}[every axis plot post/.append style={
+            domain=-1.5:1.5,samples=50,smooth},
+            ticks=none,
+            axis line style={draw=none},
+            enlargelimits=upper]
+            \addplot[color=orange,line width=0.5cm] {gauss(0,0.5)};
+        \end{axis}
+    \end{scope}
+
+    \begin{scope}[xshift=0.75cm,yshift=1.2cm,scale=0.1]
+        \begin{axis}[every axis plot post/.append style={
+            domain=-1.5:1.5,samples=50,smooth},
+            ticks=none,
+            axis line style={draw=none},
+            enlargelimits=upper]
+            \addplot[color=orange,line width=0.5cm] {gauss(0,0.5)};
+        \end{axis}
+    \end{scope}
+
+    \begin{scope}[xshift=0.75cm,yshift=0.2cm,scale=0.1]
+        \begin{axis}[every axis plot post/.append style={
+            domain=-1.5:1.5,samples=50,smooth},
+            ticks=none,
+            axis line style={draw=none},
+            enlargelimits=upper]
+            \addplot[color=orange,line width=0.5cm] {gauss(0,0.5)};
+        \end{axis}
+    \end{scope}
+
+    \begin{scope}[xshift=-1.3cm,yshift=0.7cm,scale=0.1]
+        \begin{axis}[every axis plot post/.append style={
+            domain=-1.5:1.5,samples=50,smooth},
+            ticks=none,
+            axis line style={draw=none},
+            enlargelimits=upper]
+            \addplot[color=orange,line width=0.5cm] {gauss(0,0.5)};
+        \end{axis}
+    \end{scope}
+
+    \begin{scope}[xshift=-0.8cm,yshift=1.4cm,scale=0.1]
+        \begin{axis}[every axis plot post/.append style={
+            domain=-1.5:1.5,samples=50,smooth},
+            ticks=none,
+            axis line style={draw=none},
+            enlargelimits=upper]
+            \addplot[color=orange,line width=0.5cm] {gauss(0,0.5)};
+        \end{axis}
+    \end{scope}
+
+    \begin{scope}[xshift=-0.9cm,yshift=0.0cm,scale=0.1]
+        \begin{axis}[every axis plot post/.append style={
+            domain=-1.5:1.5,samples=50,smooth},
+            ticks=none,
+            axis line style={draw=none},
+            enlargelimits=upper]
+            \addplot[color=orange,line width=0.5cm] {gauss(0,0.5)};
+        \end{axis}
+    \end{scope}
+
+    \node[] at (-2.8, 1.0) {{\bf Input}};
+    \node[] at (2.8, 1.0) {{\bf Label}};
+    
+    \end{scope}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \node[] at (6.1,1.3) {\bf Sampling};
+    \draw[->, line width=0.05cm] (4.0, 1.0) -- (8.0, 1.0); 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \begin{scope}[xshift=12cm]
+
+    \draw[fill=grey, grey] (2,1) circle (0.1cm) node(node31) {};
+    \draw[fill=grey, grey] (0,0) circle (0.1cm) node(node21) {};
+    \draw[fill=grey, grey] (0,1) circle (0.1cm) node(node22) {};
+    \draw[fill=grey, grey] (0,2) circle (0.1cm) node(node23) {};
+    \draw[fill=grey, grey] (-2,1) circle (0.1cm) node(node11) {};
+     
+    \draw[line width=0.05cm] (node31) -- (node21);
+    \draw[line width=0.05cm] (node31) -- (node22);
+    \draw[line width=0.05cm] (node31) -- (node23);
+    \draw[line width=0.05cm] (node21) -- (node11);
+    \draw[line width=0.05cm] (node22) -- (node11);
+    \draw[line width=0.05cm] (node23) -- (node11);
+
+    \begin{scope}[xshift=0.6cm,yshift=0.8cm,scale=0.1]
+        \node[] at (0.0,0.0) {\orange{\bf -0.15}};
+    \end{scope}
+
+    \begin{scope}[xshift=1.2cm,yshift=1.8cm,scale=0.1]
+        \node[] at (0, 0) {\orange{\bf +0.03}};
+    \end{scope}
+
+    \begin{scope}[xshift=1.1cm,yshift=0.2cm,scale=0.1]
+        \node[] at (0,0) {\orange{\bf -0.96}};
+    \end{scope}
+
+    \begin{scope}[xshift=-0.8cm,yshift=1.2cm,scale=0.1]
+        \node[] at (0,0) {\orange{\bf +1.01}};
+    \end{scope}
+
+    \begin{scope}[xshift=-1.2cm,yshift=1.8cm,scale=0.1]
+        \node[] at (0,0) {\orange{\bf -1.62}};
+    \end{scope}
+
+    \begin{scope}[xshift=-0.9cm,yshift=0.0cm,scale=0.1]
+        \node[] at (0,0) {\orange{\bf +0.58}};
+    \end{scope}
+
+    \node[] at (-2.8, 1.0) {{\bf Input}};
+    \node[] at (2.8, 1.0) {{\bf Label}};
+    
+    \end{scope}
+    
+  \end{tikzpicture}
+  
+\end{document}

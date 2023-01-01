@@ -1,0 +1,43 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+\begin{tikzpicture}[thick,scale=0.65, every node/.style={scale=0.65}]
+
+  \begin{scope}[xshift=0cm,yshift=0cm]
+    \node[] at (0,0) {\includegraphics[scale=1.5]{voter.pdf}};
+    \node[] at (2.5,0) {\includegraphics[scale=1.5]{voter.pdf}};
+    \node[] at (5,0) {\includegraphics[scale=1.5]{voter.pdf}};
+
+    \node[] at (0,-0.6) {\bf\orange{{\Large$\frac{1}{3}$} of the votes}};
+    \node[] at (2.5, -0.6) {\bf\orange{{\Large$\frac{1}{3}$} of the votes}};
+    \node[] at (5,-0.6) {\bf\orange{{\Large$\frac{1}{3}$} of the votes}};
+
+    \node[] at (0, 0.6) {\small\bf Voter 1};
+    \node[] at (2.5, 0.6) {\small\bf Voter 2};
+    \node[] at (5, 0.6) {\small\bf Voter 3};
+  \end{scope}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\node[inner sep=0pt] at (7.5, 0.3) {\small\bf Learning};
+\draw[->, line width=0.05cm] (6.5, 0.0) -- (8.5, 0.0);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \begin{scope}[xshift=10.5cm,yshift=0cm]
+    \node[] at (0,0) {\includegraphics[scale=1.5]{voter.pdf}};
+    \node[] at (2.5,0) {\includegraphics[scale=1.5]{voter.pdf}};
+    \node[] at (5,0) {\includegraphics[scale=1.5]{voter.pdf}};
+
+    \node[] at (0,-0.6) {\bf\orange{{\Large$\frac{1}{5}$} of the votes}};
+    \node[] at (2.5, -0.6) {\bf\orange{{\Large$\frac{3}{5}$} of the votes}};
+    \node[] at (5,-0.6) {\bf\orange{{\Large$\frac{1}{5}$} of the votes}};
+
+    \node[] at (0, 0.6) {\small\bf Voter 1};
+    \node[] at (2.5, 0.6) {\small\bf Voter 2};
+    \node[] at (5, 0.6) {\small\bf Voter 3};
+  \end{scope}
+
+\end{tikzpicture}
+\end{document}

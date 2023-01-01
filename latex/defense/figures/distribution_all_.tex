@@ -1,0 +1,14 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\begin{tikzpicture}
+\node[inner sep=0] at (0,0) {\includegraphics[scale=1.0]{distribution_all.pdf}};
+\draw[draw=red, line width=0.07cm] (-2,0.15) -- (-2,-1.67);
+
+\node[fill=red, inner sep=0.1cm] at (-2.7,0.8) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    
+\end{tikzpicture}
+\end{document}

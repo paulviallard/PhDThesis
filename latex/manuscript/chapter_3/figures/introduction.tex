@@ -1,0 +1,25 @@
+\documentclass{standalone}
+\input{header_standalone}
+
+\begin{document}
+  \begin{tikzpicture}
+    
+  \begin{scope}[xshift=0cm, yshift=0cm]
+  \node[] at (0.0,0.0) {\includegraphics[scale=0.05]{chapter_3/figures/cat.jpg}};  
+  \node[] at (0.0, -2.2) {Prediction: ``Cat''};
+  \end{scope}
+    
+  \begin{scope}[xshift=6cm, yshift=0cm]
+  \node[] at (0.0,0.0) {\includegraphics[scale=0.05]{chapter_3/figures/random.jpg}};
+  \node[] at (0.0, -2.2) {Perturbation};
+  \end{scope}
+  
+  \node[scale=3.0] at (3, 0.2) {$+$};  
+  \node[scale=3.0] at (9, 0.2) {$=$};
+
+  \begin{scope}[xshift=12cm, yshift=0cm]
+  \node[] at (0.0,0.0) {\includegraphics[scale=0.05]{chapter_3/figures/cat.jpg}};  
+  \node[align=center] at (0.0, -2.5) {Prediction: ``Horse''\\(Adversarial example)};
+  \end{scope}  
+\end{tikzpicture}
+\end{document}

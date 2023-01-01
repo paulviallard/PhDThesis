@@ -1,0 +1,72 @@
+\usepackage{tikz}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{xspace}
+\usepackage{stmaryrd}
+\usepackage[misc]{ifsym}
+\usepackage{bbold}
+\usepackage{etoolbox}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{graphicx}
+%\usepackage{pgfplots}
+
+%\usefonttheme{serif}
+
+\graphicspath{{figures/}}
+
+
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[LGR, OT1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+
+% \ifcsundef{inputdone}{\input{../../notations}}{}
+%\ifcsundef{inputdone}{\input{notations}}{}
+\ifcsundef{abf}{\input{notations}}{}
+%\input{notations}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% font option
+%\usepackage{fix-cm}
+%\sffamily
+%\DeclareFontShape{T1}{cmss}{m}{sc}{<->sub*lmr/m/sc}{}
+%\renewcommand*{\familydefault}{\sfdefault}
+
+%\usepackage{helvet}
+%\usepackage{lmodern}
+\def\familydefault{\sfdefault}
+%\def\mathfamilydefault{\sfdefault}
+\usepackage{sansmath}
+\sansmath
+%
+%\DeclareMathAlphabet{\mathgtt}{LGR}{cmtt}{m}{n}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% xcolor options
+% Paul Tol's  "Vibrant" color scheme
+% https://personal.sron.nl/~pault/data/colourschemes.pdf
+
+\definecolor{blue}{HTML}{0077BB}
+\definecolor{cyan}{HTML}{33BBEE}
+\definecolor{green}{HTML}{009988}
+\definecolor{orange}{HTML}{EE7733}
+\definecolor{red}{HTML}{CC3311}
+\definecolor{magenta}{HTML}{EE3377}
+\definecolor{grey}{HTML}{BBBBBB}
+\definecolor{blockgrey}{RGB}{245, 245, 245}
+
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\cyan[1]{\textcolor{cyan}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\orange[1]{\textcolor{orange}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\magenta[1]{\textcolor{magenta}{#1}}
+\newcommand\grey[1]{\textcolor{grey}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

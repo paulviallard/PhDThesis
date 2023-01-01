@@ -1,0 +1,92 @@
+\chapter*{Conclusion and Perspectives}
+\addcontentsline{toc}{chapter}{Conclusion and Perspectives}
+\label{chap:conclu}
+
+\section*{Conclusion}
+
+This thesis mainly derives self-bounding algorithms that learn a model minimizing a (disintegrated) PAC-Bayesian generalization bound.
+This type of algorithm has received little attention in the machine learning literature and we propose some contributions in various contexts.\\
+
+Indeed, \Cref{part:contrib-pac-bayes} is dedicated to deriving self-bounding algorithms in the context of majority vote classifiers.
+In \Cref{chap:mv-robustness,chap:mv}, we derived self-bounding algorithms for the majority vote classifier in two different settings: the adversarial robustness and the classical supervised setting.
+More precisely, \Cref{chap:mv-robustness}'s self-bounding algorithms robustify the majority votes against small perturbations.
+While \Cref{chap:mv} minimizes the majority vote's true risk through the PAC-Bayesian C-Bounds considered as challenging to optimize~\citep{LorenzenIgelSeldin2019,MasegosaLorenzenIgelSeldin2020}.
+However, as shown in \Cref{chap:mv-sto}, the majority vote's self-bounding algorithms considered, \eg, in \Cref{chap:mv}, do not minimize tight generalization bounds on the true risk, even for simple tasks.
+Hence, to overcome this drawback, \Cref{chap:mv-sto} introduces the stochastic majority vote, which samples a majority vote for each prediction.
+Considering such a majority vote allows us to obtain tight generalization bounds.
+Additionally, we derive a self-bounding algorithm that directly minimizes the risk of the stochastic majority vote in this context.
+
+However, the risk of a stochastic model is the expected risk of the hypotheses, which requires certain assumptions to be computed while we may be only interested in assessing the behavior of only one hypothesis in some situations.
+Hence, to overcome this drawback, we consider in \Cref{part:contrib-disintegrated} the {\it disintegrated} PAC-Bayesian bounds.
+\Cref{chap:dis-pra} provides new bounds based on the Rényi divergence that are more easily optimizable (for self-bounding algorithms) than the ones of the literature~\citep[\ie, ][]{BlanchardFleuret2007,Catoni2007,RivasplataKuzborskijSzepesvariShaweTaylor2020}.
+Even though \citet{RivasplataKuzborskijSzepesvariShaweTaylor2020}'s bound is not easily optimizable, it is a starting point to derive new generalizations bounds.
+Indeed, in the last contribution (\Cref{chap:dis-mu}), we leverage \citet{RivasplataKuzborskijSzepesvariShaweTaylor2020}'s disintegrated framework to derive generalization bounds with arbitrary complexity measures.
+Such work is fundamental in statistical learning theory: to the best of our knowledge, we are the first to provide generalization bounds that integrate complexity measures that can be defined by the user.
+This work allows the machine learning community to consider new generalization bounds by defining a new complexity measure.
+Hence, new works can focus on developing new complexity measures to understand better the generalization phenomenon.
+
+\section*{Perspectives}
+
+We present several perspectives following the contributions of this thesis.
+
+\subsection*{Perspectives on the Adversarial Robustness Setting}
+
+As recalled in \Cref{chap:mv-robustness}, in the adversarial robustness setting, we aim to make the model robust to small perturbations in the input.
+Indeed, we must ensure that the model does not radically change its prediction for a slight change in the input.
+To do so, we consider that the model's output must not change in a ball of a given radius.
+This new constraint on the input actually creates a new unknown data distribution that is close, in some sense, to the original unknown data distribution.\\
+
+On the other hand, the transfer learning/domain adaptation\footnote{We refer the reader to \citet{RedkoMorvantHabrardSebbanBennani2019,RedkoMorvantHabrardSebbanBennani2020} for an introduction on domain adaption.} consider two unknown data distributions: a source (\ie, the original) and a target (\ie, a new) distribution.
+In this setting, the model learned to solve a task (represented by the source distribution) is adapted to solve a new task (represented by the target distribution).
+In some transfer learning scenarios, we assume that we have access to the labels and the inputs obtained from the target distribution, while in unsupervised domain adaptation, only the inputs are considered.
+In these two settings, the true risk on the target distribution can be upper-bounded with a generalization bound \citep[see \eg,][]{BenDavidBlitzerCrammerKuleszaPereiraVaughan2010,McNamaraBalcan2017,GalantiWolfHazan2016,GermainHabrardLavioletteMorvant2020}.\\
+
+Besides, it is known that domain adaptation and adversarial robustness are related: unlabeled examples (considered in domain adaptation) can be used to improve the adversarial robustness~\citep{CarmonRaghunathanSchmidtDuchiLiang2019,AlayracUesatoHuangFawziStanforthKohli2019,DengZhangGhorbaniZou2021}.
+As a perspective, we propose to investigate the link between these two settings from a theoretical viewpoint.
+First, we could explore the connection between the original distribution and the new data distribution induced by the adversarial robustness that can be respectively seen as a source and a target distribution in transfer learning.
+Then, this connection may help to leverage transfer learning/domain adaptation generalization bounds to obtain guarantees for the adversarial robustness setting.
+The new guarantees might serve to get self-bounding algorithms that {\it (i)} detect out-of-distribution examples\footnote{The examples that are not probable in a given distribution are called out-of-distribution examples.} and {\it (ii)} robustify machine learning models.
+
+\subsection*{Extending the Majority Vote}
+
+In \Cref{part:contrib-pac-bayes}, we consider that the set of voters in the PAC-Bayesian majority vote is fixed.
+Hence, only the weights of the majority vote are adapted to fit the examples.
+Alternatively, in the (Gradient) Boosting framework~\citep{FreundSchapire1996,Friedman2001}, the voters are greedily learned one by one.
+Moreover, in bagging~\citep{Breiman1996} and random forest~\citep{Breiman2001}, no weights are learned while the models are learned separately.
+For the Support Vector Machine~\citep{GraepelHerbrichShaweTaylor2005} that can be interpreted as a majority vote, the voters are fixed before learning the weights by choosing a kernel.
+As we can remark in these approaches, the voters and the weights are not learned together.
+This appears as a limitation since learning the weights and the voters in an end-to-end way can offer a better accurate majority vote.
+Hence, one bottleneck has to be overcome: deriving differentiable voters such as differentiable decision stumps.
+By doing so, we may improve the voters' diversity while limiting the voters' complexity.
+Moreover, the disintegrated PAC-Bayesian framework (developed, \eg, in \Cref{part:contrib-disintegrated}) may be leveraged to derive generalization guarantees for majority votes that depend on the full learning sample.
+Again, new generalization bounds can be further used to derive self-bounding algorithms.
+
+\subsection*{Self-bounding and Optimization Algorithms}
+
+The optimization algorithms are key to obtain a good classifier in self-bounding algorithms.
+Specifically in \Cref{chap:mv,chap:mv-sto}, we use an optimization algorithm that tune automatically the learning rate, namely COCOB~\citep{OrabonaTommasi2017}.
+This approach, belonging to the parameter-free algorithms\footnote{We refer the reader to the ICML 2020 tutorial on Parameter-free online optimization for more details on the parameter-free algorithms.}, is interesting in machine because it has a clear advantage: there is no need to tune the learning rate.
+Hence, the parameter-free algorithms could facilitate the use of machine learning approaches for practitioners.
+However, we believe that more hyper-parameters can be tuned automatically in parameter-free optimization algorithms such as the batch size, which offers interesting research perspectives.
+
+One idea to derive new parameter-free algorithms is to take inspiration from the federated learning setting.\footnote{Federated learning is a sub-field of machine learning; see \citet{Kairouz2021} for a survey.}
+It considers different clients that learn collaboratively in a machine learning model; each client has its own learning sample and does not necessarily share it.
+For instance, to learn the model, each client has its own local model and runs an optimization algorithm, to obtain new weights.
+The new weights of each local model are aggregated to obtain a global model finally, without exchanging the data; see, \eg, the FedAvg algorithm~\citep[see][]{McMahanMooreRamageHampsonArcas2017}.
+A modification must be made to FedAvg to obtain a parameter-free algorithm since each client runs an algorithm with different values of hyper-parameters. 
+The aggregation of the weights can take different forms, such as a convex combination. 
+With this latter type of aggregation, the PAC-Bayesian theory might be helpful to obtain convergence guarantees.
+
+\subsection*{Towards a New Type of Generalization Bounds}
+
+The PAC-Bayesian theory considers that the data and the models are respectively sampled from two probability distributions: the unknown distribution and the posterior distribution.
+While it can be convenient to derive generalization guarantees on a single model sampled from the posterior distribution, we are usually interested in a model that is not necessarily sampled.
+
+Instead of considering the posterior distribution on the models, one could consider a distribution on the label set conditioned on the input.
+If this distribution is somehow learned from the learning sample, it can be seen as a machine learning model.
+Thanks to this distribution, we could derive generalization bounds on the expected loss when the labels are sampled from the new data-dependent distribution (associated with a classifier).
+We can for example hope to obtain a bound dependent on the mutual information between the predictions and the labels.
+Roughly speaking, mutual information measures how much information on the labels is contained in the predictions.
+Hence, it can be seen as a complexity measure of the data-dependent distribution (representing the classifier).
+For instance, this quantity has been considered in the information bottleneck framework of~\citet{TishbyPereiraBialek2000}.
+Besides, the training of neural networks has been studied through this framework~\citep[see][]{ShwartzZivTishby2017}\pokeball

@@ -1,0 +1,1001 @@
+\chapter{Appendix of Chapter~\ref{chap:dis-pra}}
+\label{ap:dis-pra}
+
+\begin{noaddcontents}
+\section{Proof of \Cref{chap:dis-pra:theorem:disintegrated}}
+\label{chap:dis-pra:sec:proof-disintegrated}
+
+\theoremdisintegrated*
+\begin{proof}
+For any sample $\S\in(\X{\times}\Y)^\m$, prior $\P\in\M^{*}(\H)$ and deterministic algorithm $A$ fixed apriori, let $\AQ=A(\S, \P)$ the distribution obtained from the algorithm $A$.
+Note that $\varphi(\h,\!\S)$ is a strictly-positive random variable.
+Hence, from \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}), we have
+\begin{align*}
+&\PP_{\h\sim \AQ}\LB\varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RB\ge 1{-}\tfrac{\delta}{2}\\
+\iff &\EE_{\h\sim \AQ}\indic\LB \varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S) \RB\ge 1{-}\tfrac{\delta}{2}.
+\end{align*}
+Taking the expectation over $\S\sim\D^{\m}$ to both sides of the inequality gives 
+\begin{align*}
+&\EE_{\S\sim\D^{\m}}\EE_{\h\sim \AQ}\indic\LB \varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S) \RB\ge 1-\tfrac{\delta}{2}\\
+\iff &\PP_{\S\sim\D^{\m},\h\sim \AQ}\LB \varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S) \RB\ge 1-\tfrac{\delta}{2}.
+\end{align*}
+Since both sides of the inequality are strictly positive, we can take the logarithm and multiply by $\frac{\lambda}{\lambda-1}>0$ to obtain
+\begin{align*}
+\PP_{\S\sim\D^{\m},\h\sim \AQ}\LB\frac{\lambda}{\lambda-1}\ln\LP\varphi(\h,\!\S)\RP \le \frac{\lambda}{\lambda-1}\ln\LP\frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RP\RB\ge 1-\tfrac{\delta}{2}.
+\end{align*}
+We develop the right-hand side of the inequality and take the expectation of the hypothesis over the prior distribution $\P$. 
+We have for all prior $\P\in\M^{*}(\H)$,
+\begin{align*}
+ \frac{\lambda}{\lambda-1}\ln\LP\frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RP &= \frac{\lambda}{\lambda-1}\ln\LP\frac{2}{\delta}\EE_{\h'{\sim} \AQ}\frac{\AQ(\h')\P(\h')}{\P(\h')\AQ(\h')}\varphi(\h'\!, \S)\RP\\
+&= \frac{\lambda}{\lambda-1}\ln\LP\frac{2}{\delta}\EE_{\h'{\sim}\P}\frac{\AQ(\h')}{\P(\h')}\varphi(\h'\!, \S)\RP,
+\end{align*}
+Remark that $\frac{1}{r}+\frac{1}{s}=1$ with $r=\lambda$ and $s=\frac{\lambda}{\lambda-1}$. Hence, we can apply \textsc{Hölder}'s inequality (\Cref{ap:tools:theorem:holder}):
+\begin{align*}
+    \EE_{\h'{\sim}\P}\frac{\AQ(\h')}{\P(\h')}\varphi(\h'\!, \S) \le \LB\EE_{\h'{\sim}\P}\Bigg(\Bigg[\frac{\AQ(\h')}{\P(\h')}\Bigg]^{\lambda}\Bigg)\RB^{\frac{1}{\lambda}}\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda-1}{\lambda}}.
+\end{align*}
+Then, since both sides of the inequality are strictly positive, we take the logarithm; add $\ln(\tfrac{2}{\delta})$ and multiply by $\frac{\lambda}{\lambda-1}>0$ to both sides of the inequality, to obtain
+\begin{align*}
+    &\frac{\lambda}{\lambda{-}1}\ln\!\LP\frac{2}{\delta}\EE_{\h'{\sim}\P}\frac{\AQ(\h')}{\P(\h')}\varphi(\h'\!, \S)\RP\\
+    \le &\frac{\lambda}{\lambda{-}1}\ln\!\LP\frac{2}{\delta}\!\LB\EE_{\h'{\sim}\P}\LP\Bigg[\frac{\AQ(\h')}{\P(\h')}\Bigg]^{\lambda}\RP\RB^{\frac{1}{\lambda}}\!\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda-1}{\lambda}}\RP\\
+    = &\frac{1}{\lambda{-}1}\ln\!\LP\EE_{\h'{\sim}\P}\!\LP\Bigg[\frac{\AQ(\h')}{\P(\h')}\Bigg]^{\lambda}\RP\RP+
+    \frac{\lambda}{\lambda{-}1}\ln\frac{2}{\delta} +\ln\!\LP\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\!\RP\\
+    = &\Renyi_{\lambda}(\AQ\|\P) + \frac{\lambda}{\lambda{-}1}\ln\frac{2}{\delta} + \ln\LP\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\RP\!.
+\end{align*}
+From this inequality, we can deduce that
+\begin{align}
+    \PP_{\S\sim\D^{\m},\h\sim \AQ}\Big[\forall \P\in\M^{*}(\H), &\frac{\lambda}{\lambda-1}\ln\LP\varphi(\h,\!\S)\RP \le
+    \Renyi_{\lambda}(\AQ\|\P)\nonumber\\
+    &+ \frac{\lambda}{\lambda{-}1}\ln\frac{2}{\delta} +\ln\LP\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\RP\Big]\ge 1-\tfrac{\delta}{2}.
+    \label{chap:dis-pra:eq:disintegrated-proof-1}
+\end{align}
+Given a prior $\P\in\M^{*}(\H)$, note that $\EE_{\h'{\sim}\P}\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}$ is a strictly positive random variable. 
+Hence, we apply \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}) to have
+\begin{align*}
+    \PP_{\S\sim\D^{\m}}\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP \le \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB\ge 1-\tfrac{\delta}{2}.
+\end{align*}
+Since the inequality does not depend on the random variable $\h\sim \AQ$, we have
+\begin{align*}
+    &\PP_{\S\sim\D^{\m}}\!\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\!\frac{\lambda}{\lambda-1}}\RP \!\le\! \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\!\frac{\lambda}{\lambda-1}}\RP\!\RB\\
+    = &\EE_{\S\sim\D^{\m}}\!\indic\!\LB\EE_{\h'{\sim}\P}\!\LP\varphi(\h'\!, \S)^{\!\frac{\lambda}{\lambda-1}}\RP \!\le\! \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\!\frac{\lambda}{\lambda-1}}\RP\RB\\
+    = &\EE_{\S\sim\D^{\m}}\EE_{\h\sim \AQ}\!\indic\!\LB\EE_{\h'{\sim}\P}\!\LP\varphi(\h'\!, \S)^{\!\frac{\lambda}{\lambda-1}}\RP \!\le\! \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\!\frac{\lambda}{\lambda-1}}\RP\RB\\
+    = &\PP_{\S\sim\D^{\m},\h\sim \AQ}\!\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\!\frac{\lambda}{\lambda-1}}\RP \!\le\! \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\!\frac{\lambda}{\lambda-1}}\RP\RB\!.
+\end{align*}
+Since both sides of the inequality are strictly positive, we take the logarithm to both sides of the inequality, and we add $\frac{\lambda}{\lambda-1}\ln\frac{2}{\delta}$ to have
+\begin{align}
+    &\PP_{\S\sim\D^{\m},\h\sim \AQ}\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP \le \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB\ge 1-\tfrac{\delta}{2} \hspace{0.1cm}\iff\nonumber\\
+    &\PP_{\S\sim\D^{\m},\h\sim \AQ}\Bigg[\frac{\lambda}{\lambda{-}1}\ln\frac{2}{\delta}+\ln\LP\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\RP
+    \le\frac{2\lambda-1}{\lambda{-}1}\ln\frac{2}{\delta}\nonumber\\
+    &\hspace{2cm}+\ln\!\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RP\Bigg]\ge 1{-}\tfrac{\delta}{2}.
+    \label{chap:dis-pra:eq:disintegrated-proof-2}
+\end{align}
+Combining \Cref{chap:dis-pra:eq:disintegrated-proof-1,chap:dis-pra:eq:disintegrated-proof-2} with a union bound gives us the desired result.
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:disintegrated}}
+\label{chap:dis-pra:sec:proof-corollary-disintegrated}
+
+\corollarydisintegrated*
+\begin{proof} 
+Starting from \Cref{chap:dis-pra:theorem:disintegrated} and rearranging, we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m},\h\sim \AQ}\!\Bigg[\! &\ln\LP\varphi(\h,\!\S)\RP \le {\frac{2\lambda{-}1}{\lambda}}\ln\frac{2}{\delta}\, +\frac{\lambda{-}1}{\lambda}\Renyi_{\lambda}(\AQ\|\P)\\
+    &+ \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP \!\Bigg]\!\!\ge\! 1{-}\delta.
+\end{align*}
+Then, we will prove the case when $\lambda\rightarrow 1$ and $\lambda\rightarrow +\infty$ separately.
+
+\paragraph{When $\lambda\rightarrow 1$.}
+We have $\lim_{\lambda\rightarrow 1^+}\frac{2\lambda{-}1}{\lambda}\ln\!\frac{2}{\delta}{=}\ln\frac{2}{\delta}$ and $\lim_{\lambda\rightarrow 1^+}\frac{\lambda-1}{\lambda}\Renyi_{\lambda}(\AQ\|\P){=}0$.\\
+Furthermore, note that 
+\begin{align*}
+    \|\varphi\|_{\frac{\lambda}{\lambda{-}1}} = \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\vert\varphi(\h'\!, \S')\vert^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}} = \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}
+\end{align*}
+is the $L^{\frac{\lambda}{\lambda{-}1}}$-norm of the function $\varphi: \H\times(\X{\times}\Y)^\m \rightarrow \Rbb_{+}^*$, where $\lim_{\lambda\rightarrow 1} \|\varphi\|_{\frac{\lambda}{\lambda{-}1}} = \lim_{\lambda'\rightarrow +\infty} \|\varphi\|_{\lambda'}$ (since we have $\lim_{\lambda\rightarrow 1^+}\frac{\lambda}{\lambda{-}1} = (\lim_{\lambda\rightarrow1}\lambda)(\lim_{\lambda\rightarrow1}\frac{1}{\lambda{-}1}) = +\infty$).
+Then, it is well known that
+\begin{align*}
+    \|\varphi\|_{\infty}= \lim_{\lambda'\rightarrow+\infty}\|\varphi\|_{\lambda'} = \esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S').
+\end{align*}
+Hence, we have 
+\begin{align*}
+    &\lim_{\lambda\rightarrow1} \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow1} \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow1} \| \varphi\|_{\frac{\lambda}{\lambda-1}}\RP = \ln\LP \lim_{\lambda'\rightarrow+\infty} \| \varphi\|_{\lambda'}\RP \\
+    = &\ln\LP \| \varphi\|_{\infty}\RP = \ln\LP \esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S') \RP.
+\end{align*}
+Finally, we can deduce that 
+\begin{align*}
+    &\lim_{\lambda\rightarrow 1}\LB{\frac{2\lambda{-}1}{\lambda}}\ln\frac{2}{\delta}\, +\frac{\lambda{-}1}{\lambda}\Renyi_{\lambda}(\AQ\|\P){+} \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\RB\\
+    = &\ln\frac{2}{\delta} + \ln\left[\esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S')\right].
+\end{align*}
+
+\paragraph{When \mbox{$\lambda\rightarrow +\infty$}.} First, we have  
+$\lim_{\lambda\rightarrow+\infty}{\frac{2\lambda{-}1}{\lambda}}\ln\frac{2}{\delta} = \ln\frac{2}{\delta}\LB2 -\lim_{\lambda\rightarrow+\infty}\frac{1}{\lambda} \RB = 2\ln\frac{2}{\delta}= \ln\frac{4}{\delta^2}$ and $\lim_{\lambda\rightarrow +\infty} \|\varphi\|_{\frac{\lambda}{\lambda{-}1}} = \lim_{\lambda'\rightarrow 1} \|\varphi\|_{\lambda'} = \|\varphi\|_1$ (since $\lim_{\lambda\rightarrow +\infty}\frac{\lambda}{\lambda-1}\!= \lim_{\lambda\rightarrow +\infty} \frac{1}{1-\frac{1}{\lambda}}=1$).
+Hence, we have 
+\begin{align*}
+    &\lim_{\lambda\rightarrow+\infty} \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow+\infty} \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow+\infty} \| \varphi\|_{\frac{\lambda}{\lambda-1}}\RP = \ln\LP \lim_{\lambda'\rightarrow1} \| \varphi\|_{\lambda'}\RP\\
+    = &\ln\LP \| \varphi\|_{1}\RP = \ln\LP \EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\varphi(\h'\!, \S') \RP.
+\end{align*}
+Moreover, by rearranging the terms in $\frac{\lambda{-}1}{\lambda}\Renyi_{\lambda}(\AQ\|\P)$, we have
+\begin{align*}
+\frac{\lambda{-}1}{\lambda}\Renyi_{\lambda}(\AQ\|\P) = &\frac{1}{\lambda}\ln\!\LP \EE_{\h{\sim}\P}\!\LP\LB\!\frac{ \AQ(\h)}{\P(\h)}\RB^{\!\lambda}\RP\RP = \ln\!\LP \LB\EE_{\h{\sim}\P}\!\LP\LB\!\frac{ \AQ(\h)}{\P(\h)}\RB^{\!\lambda}\RP\RB^{\frac{1}{\lambda}}\RP\\
+= &\ln\!\LP \LB\EE_{\h{\sim}\P}\LP\gamma(\h)^{\lambda}\RP\RB^{\frac{1}{\lambda}}\RP = \ln\!\LP \| \gamma\|_{\lambda}\RP,
+\end{align*}
+where $\| \gamma\|_{\lambda}$ is the $L^{\lambda}$-norm of the function $\gamma$ defined as $\gamma(\h)=\tfrac{\AQ(\h)}{\P(\h)}$.
+We have
+\begin{align*}
+    \lim_{\lambda\rightarrow +\infty}  \frac{\lambda{-}1}{\lambda}\Renyi_{\lambda}(\AQ\|\P) =& \lim_{\lambda\rightarrow +\infty}  \ln\!\LP \| \gamma\|_{\lambda}\RP = \ln\LP\lim_{\lambda\rightarrow +\infty} \|\gamma\|_{\lambda}\RP\\
+    =& \ln\LP \|\gamma\|_{\infty}\RP = \ln\LP\esssup_{\h\in\H}\gamma(\h)\RP = \ln\LP\esssup_{\h\in\H}\frac{\AQ(\h)}{\P(\h)}\RP.
+\end{align*}
+Finally, we can deduce that 
+\begin{align*}
+    &\lim_{\lambda\rightarrow +\infty}\LB{\frac{2\lambda{-}1}{\lambda}}\ln\frac{2}{\delta}\, +\frac{\lambda{-}1}{\lambda}\Renyi_{\lambda}(\AQ\|\P){+} \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\RB\\ 
+    = &\ln{\displaystyle\esssup_{\h'\in\H}}\,\frac{\AQ(\h')}{\P(\h')}{+}\ln\!\Big[\frac{4}{\delta^2} {\displaystyle \EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\varphi(\h'{,}\S')}\Big].
+\end{align*}
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:theorem:disintegrated-lambda}}
+\label{chap:dis-pra:sec:proof-disintegrated-lambda}
+
+For the sake of completeness, we first prove an upper bound on $\sqrt{ab}$ \citep[see, \eg,][]{ThiemannIgelWintenbergerSeldin2017}. 
+\begin{lemma} For any $a>0, b>0$, we have
+\begin{align*}
+    \sqrt{\tfrac{a}{b}} = \argmin_{\lambda>0}\LP\frac{a}{\lambda}+\lambda b\RP,\ &\text{and}\ \ 2\sqrt{ab} = \min_{\lambda>0}\LP\frac{a}{\lambda}+\lambda b\RP,\\
+    &\ \text{and}\ \ \forall\lambda>0, \sqrt{ab} \le \frac{1}{2}\LP\frac{a}{\lambda}+\lambda b\RP.
+\end{align*}
+\label{chap:dis-pra:lemma:sqrt}
+\end{lemma}
+\begin{proof}
+Let $f(\lambda) = \LP \tfrac{a}{\lambda}+\lambda b \RP$. The first derivative of $f$ {\it w.r.t.} $\lambda$ is
+\begin{align*}
+    \frac{\partial f}{\partial\lambda}(\lambda) = \LP b-\frac{a}{\lambda^2}\RP.
+\end{align*}
+Moreover, from the derivative we can deduce that  we have $\frac{\partial f}{\partial\lambda}(\lambda) < 0 \iff \lambda \in (0, \sqrt{\frac{a}{b}})$, and $\frac{\partial f}{\partial\lambda}(\lambda) > 0 \iff \lambda > \sqrt{\frac{a}{b}}$ and $\frac{\partial f}{\partial\lambda}(\lambda) = 0 \iff \lambda = \sqrt{\frac{a}{b}}$.
+It implies that the function is strictly decreasing on $\lambda \in (0, \sqrt{\frac{a}{b}})$, strictly increasing for $\lambda > \sqrt{\frac{a}{b}}$ and admit a unique minimum at $\lambda^* = \sqrt{\frac{a}{b}}$.
+Additionally, $f(\lambda^*)=2\sqrt{ab}$ which proves the claim.
+\end{proof}
+We can now prove \Cref{chap:dis-pra:theorem:disintegrated-lambda} with \Cref{chap:dis-pra:lemma:sqrt}.\\
+
+\theoremdisintegratedlambda*
+\begin{proof}
+The proof is similar to the one of \Cref{chap:dis-pra:theorem:disintegrated}. 
+Since $\varphi(\h,\!\S)$ is a strictly positive random variable, from \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}), we have
+\begin{align*}
+&\PP_{\h\sim \AQ}\!\!\LB\varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RB\!\!\ge 1-\tfrac{\delta}{2}\\
+\iff &\EE_{\h\sim \AQ}\!\!\indic\LB\varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RB\!\!\ge 1-\tfrac{\delta}{2}.
+\end{align*}
+Taking the expectation over $\S\sim\D^{\m}$ to both sides of the inequality gives
+\begin{align*}
+    &\EE_{\S\sim\D^{\m}}\EE_{\h\sim \AQ}\!\!\indic\LB\varphi(\h,\!\S)\le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RB\!\!\ge 1-\tfrac{\delta}{2}\\
+    \iff &\PP_{\S\sim\D^{\m},\h\sim \AQ}\!\!\LB\varphi(\h,\!\S) \le \frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RB\!\!\ge 1-\tfrac{\delta}{2}.
+\end{align*}
+Using \Cref{chap:dis-pra:lemma:sqrt} with $a=\tfrac{4}{\delta^2}\varphi(\h'\!, \S)^2$ and $b=\tfrac{ \AQ(\h')^2}{\P(\h')^2}$, we have for all prior $\P{\in}\M^{*}(\H)$
+\begin{align*}
+    \forall\lambda{>}0,\quad \frac{2}{\delta}\!\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S) &= \EE_{\h'{\sim}\P}\sqrt{\frac{ \AQ(\h')^2}{\P(\h')^2}\frac{4}{\delta^2}\varphi(\h'\!, \S)^2}\\
+    &\le \frac{1}{2}\!\LB\lambda\EE_{\h'{\sim}\P}\!\!\LP\frac{ \AQ(\h')}{\P(\h')}\RP^2\!\!{+} \frac{4}{\lambda\delta^2}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP\RB\!.
+\end{align*}
+Then, since both sides of the inequality are strictly positive, we take the logarithm to obtain
+\begin{align*}
+    \forall\lambda{>}0, \ln\!\LP\frac{2}{\delta}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S)\RP &\le \ln\!\LP\frac{1}{2}\!\LB\lambda\EE_{\h'{\sim}\P}\LP\frac{ \AQ(\h')}{\P(\h')}\RP^2\!\!{+} \frac{4}{\lambda\delta^2}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP\RB\RP\\
+    &=  \ln\!\LP\frac{1}{2}\!\LB\lambda \exp(\Renyi_{2}( \AQ\|\P)){+} \frac{4}{\lambda\delta^2}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP\RB\RP.
+\end{align*}
+Hence, we can deduce that
+\begin{align}
+    \PP_{\S\sim\D^{\m},\h\sim \AQ}\!\!\Bigg[\forall\P{\in}\M^{*}(\H),\ &\forall\lambda>0, \ln\LP\varphi(\h,\!\S)\RP\nonumber\\
+    &\le \ln\LP\frac{1}{2}\LB\lambda e^{\Renyi_{2}( \AQ\|\P)}+ \frac{4}{\lambda\delta^2}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP\RB\RP\Bigg]\ge 1{-}\tfrac{\delta}{2}.
+    \label{chap:dis-pra:eq:disintegrated-param-proof-1}
+\end{align}
+Given a prior $\P\in\M^{*}(\H)$, note that $\EE_{\h'{\sim}\P}\varphi(\h'\!, \S)^{2}$ is a strictly-positive random variable. 
+Hence, we apply \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}):
+\begin{align*}
+    \PP_{\S\sim\D^{\m}}\LB \EE_{\h'{\sim}\P}\varphi(\h'\!, \S)^2 \le \frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\varphi(\h'\!, \S')^2\RB \ge 1-\tfrac{\delta}{2}.
+\end{align*}
+Since the inequality does not depend on the random variable $\h\sim \AQ$, we have
+\begin{align*}
+    &\PP_{\S\sim\D^{\m}}\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP \le\frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^2\RP\RB\\
+    = &\PP_{\S\sim\D^{\m},\h\sim \AQ}\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP \le\frac{2}{\delta}\!\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^2\RP\RB\!.
+\end{align*}
+Additionally, note that multiplying by $\frac{4}{2\lambda\delta^2}>0$, adding $\frac{\lambda}{2}\exp(\Renyi_{2}( \AQ\|\P))$, and taking the logarithm to both sides of the inequality results in the same indicator function. Indeed,
+\allowdisplaybreaks
+\begin{align*}
+    &\indic\LB\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP \le\frac{2}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^2\RP\RB\\
+    =\ &\indic\LB\forall\lambda>0, \tfrac{4}{2\lambda\delta^2}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP \le\tfrac{8}{2\lambda\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^2\RP\RB\\
+    =\ &\indic\Bigg[\forall\lambda>0, \ln\!\LP\!\tfrac{\lambda}{2}\!\exp(\Renyi_{2}( \AQ\|\P)){+}\tfrac{4}{2\lambda\delta^2}\!\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP\!\RP\\
+    &\hspace{0.3cm}\le \ln\!\LP\!\tfrac{\lambda}{2}\!\exp(\Renyi_{2}( \AQ\|\P)){+}\!\tfrac{8}{2\lambda\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^2\RP\RP\Bigg]\!.
+\end{align*}
+Hence, we can deduce that
+\begin{align}
+    &\PP_{\S\sim\D^{\m},\h\sim \AQ}\Bigg[\forall\lambda{>}0,\,\ln\LP\frac{1}{2}\LB\lambda\exp(\Renyi_{2}( \AQ\|\P)){+} \frac{4}{\lambda\delta^2}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^2\RP\RB\RP\nonumber\\
+    &\hspace{0.2cm}\le \ln\LP\frac{1}{2}\LB\lambda\exp(\Renyi_{2}( \AQ\|\P)){+}\frac{8}{\lambda\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^2\RP\RB\RP \Bigg]\ge 1-\tfrac{\delta}{2}.
+    \label{chap:dis-pra:eq:disintegrated-param-proof-2}
+\end{align}
+Combining \Cref{chap:dis-pra:eq:disintegrated-param-proof-1,chap:dis-pra:eq:disintegrated-param-proof-2} with a union bound gives us the desired result.
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:prop:lambda-min}}
+\label{chap:dis-pra:sec:proof-min-lambda}
+
+\proplambdamin*
+\begin{proof}
+We consider the right-hand side of the inequality of \Cref{chap:dis-pra:theorem:disintegrated-lambda} (which is strictly positive): we have 
+\begin{align}
+\ln\LB \frac{\lambda}{2} e^{\Renyi_{2}(\AQ\|\P)} {+} \frac{8}{2\lambda\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LB\varphi(\h', \S')^2\RB\RB.
+\label{chap:dis-pra:eq:prop:lambda-min-1}
+\end{align}
+Since $\ln$ is a strictly increasing function, we have
+\begin{align*}
+    &\min_{\lambda>0}\LC \ln\LB \frac{\lambda}{2} e^{\Renyi_{2}(\AQ\|\P)} {+} \frac{8}{2\lambda\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LB\varphi(\h', \S')^2\RB\RB \RC\\
+    = &\ln\LB\min_{\lambda>0}\LC \frac{\lambda}{2} e^{\Renyi_{2}(\AQ\|\P)} {+} \frac{8}{2\lambda\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LB\varphi(\h', \S')^2\RB\RC\RB.
+\end{align*}
+Then, we apply \Cref{chap:dis-pra:lemma:sqrt} by taking $a = \frac{8}{2\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LB\varphi(\h', \S')^2\RB$ and $b=\frac{1}{2}e^{\Renyi_{2}(\AQ\|\P)}$ to obtain $\lambda^*=\sqrt{\frac{a}{b}}= \sqrt{\frac{\EE_{\S'{\sim}\D^{\m}}{\EE}_{{\h'{\sim}\P}}\LB8\varphi(\h'\!, \S')^2\RB}{\delta^3 \exp(\Renyi_{2}(\AQ\|\P))}}$.
+Finally, by substituting $\lambda^*$ into \Cref{chap:dis-pra:eq:prop:lambda-min-1}, we obtain
+\begin{align*}
+    &\ln\LB \frac{\lambda^*}{2} e^{\Renyi_{2}(\AQ\|\P)} {+} \frac{8}{2\lambda^*\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LB\varphi(\h', \S')^2\RB\RB\\
+    = &\frac{1}{2}\LP \Renyi_{2}(\AQ\|\P) + \ln\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}
+\LP\frac{8\varphi(\h'\!, \S')^{2}}{\delta^3}\RP\RB\RP, 
+\end{align*}
+which is the desired result.
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:nn}}
+\label{chap:dis-pra:sec:proof-corollary-nn}
+
+We introduce \Cref{chap:dis-pra:theorem:disintegrated-union} which takes into account a set of priors $\priorset$ while \Cref{chap:dis-pra:theorem:disintegrated} handles a unique prior $\P$.
+
+\begin{restatable}{theorem}{theoremdisintegratedunion} For any distribution $\D$ on $\X{\times}\Y$, for any hypothesis set $\H$,  for any priors set $\priorset{=}\{\P_\t\}_{\t=1}^\iter$ of $\iter$ prior $\P\in\M^{*}(\H)$, for any measurable function $\varphi\!:\! \H{\times}(\X{\times}\Y)^{\m}{\to} \Rbb_{+}^*$, for any $\lambda\!>\!1$, for any $\delta\in(0,1]$, for any algorithm $A\!:\!(\X{\times}\Y)^{\m}{\times}\M^{*}(\H){\to} \M(\H)$, we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m},\h\sim \AQ}\!\Bigg[&\forall \P_\t\in\priorset, \frac{\lambda}{\lambda{-}1}\ln\LP\varphi(\h,\!\S)\RP \le \Renyi_{\lambda}(\AQ\|\P){+} \frac{\lambda}{\lambda{-}1}\ln\frac{2}{\delta}\\
+    + &\ln\!\frac{2\iter}{\delta} + \ln\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RP\!\Bigg]\ge 1{-}\delta,
+\end{align*}
+where $\AQ{\defeq}A(\S, \P)$ is output by the deterministic algorithm $A$.
+\label{chap:dis-pra:theorem:disintegrated-union}
+\end{restatable}
+
+\begin{proof} The proof is mainly the same as \Cref{chap:dis-pra:theorem:disintegrated}.
+Indeed, we first derive the same equation as \Cref{chap:dis-pra:eq:disintegrated-proof-1}, we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m},\h\sim \AQ}\!\Big[&\forall\P{\in}\M^{*}(\H),\,\frac{\lambda}{\lambda{-}1}\ln\!\LP\varphi(\h,\!\S)\RP \le \Renyi_{\lambda}( \AQ\|\P)\\
+    &+ \frac{\lambda}{\lambda{-}1}\ln\frac{2}{\delta}{+}\ln\!\LP\EE_{\h'{\sim}\P}\LP\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda-1}}\RP\RP\Big]\!\!\ge 1{-}\tfrac{\delta}{2}.
+\end{align*}
+Then, we apply \textsc{Markov}'s inequality (as in \Cref{chap:dis-pra:theorem:disintegrated}) $\iter$ times with the $\iter$ priors $\P_\t$ belonging to $\priorset$, however, we set the confidence to $\frac{\delta}{2\iter}$ instead of $\tfrac{\delta}{2}$, we have 
+\begin{align*}
+    &\PP_{\S\sim\D^{\m},\h\sim \AQ}\Bigg[\ln\!\LP\EE_{\h'{\sim}\P_\t}\LB\varphi(\h'\!, \S)^{\frac{\lambda}{\lambda{-}1}}\RB\RP\\
+    &\hspace{2cm}\le \ln\!\frac{2\iter}{\delta}{+}\ln\!\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P_\t}\LB\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RB\RP\Bigg]\ge1{-}\tfrac{\delta}{2\iter}.
+\end{align*}
+Finally, combining the $\iter+1$ bounds with a union bound gives us the desired result.
+\end{proof}
+
+We now prove \Cref{chap:dis-pra:corollary:nn} from \Cref{chap:dis-pra:theorem:disintegrated-union}.\\
+
+\corollarynn*
+\begin{proof}
+We instantiate \Cref{chap:dis-pra:theorem:disintegrated-union} with $\varphi(\h,\!\S)=\exp\!\LB\tfrac{\lambda-1}{\lambda}\m\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\RB$ and $\lambda=2$. 
+We have with probability at least $1-\delta$ over $\S\sim\D^\m$ and $\h\sim\AQ$, for all prior $\P_\t\!\in\! \priorset$ 
+\begin{align*}
+    \kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\! 
+    \le \! \tfrac{1}{\m}\!\LB \Renyi_{2}(\AQ\|\P_\t)+ \ln\LP\frac{8\iter}{\delta^3}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P_\t}e^{\m\kl(\RiskLoss_{\dSp}(\h')\|\RiskLoss_{\D}(\h'))}\RP \RB\!.
+\end{align*}
+From \citet{Maurer2004} we upper-bound  $\EE_{\S'{\sim}\D^\m}\EE_{\h'{\sim}\P_\t} e^{\m\kl(\RiskLoss_{\dSp}(\h')\|\RiskLoss_{\D}(\h'))}$ by $2\sqrt{\m}$ for each prior $\P_\t$ (\Cref{ap:pac-bayes:lemma:2-sqrt-m}). 
+Hence, we have, for all prior $\P_\t\!\in\! \priorset$ 
+\begin{align*}
+    \kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\! 
+    \le \! \tfrac{1}{\m}\!\LB \Renyi_{2}(\AQ\|\P_\t)+ \ln\LP\tfrac{16\iter\sqrt{\m}}{\delta^3}\RP \RB\!.
+\end{align*}
+Additionally, the \textsc{Rényi} divergence $\Renyi_{2}(\AQ\|\P_\t)$ between two multivariate Gaussians $\AQ{=}\Ncal(\wbf, \sigma^2\Ibf_{D})$ and $\P_\t{=}\Ncal(\vbf_\t, \sigma^2\Ibf_{D})$ is well known: its closed-form solution is $\Renyi_{2}(\AQ\|\P_\t){=}\frac{\|\wbf{-}\vbf_\t\|_{2}^{2}}{\sigma^2}$ (see, for example, \citep{GilAlajajiLinder2013}).
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:nn-rbc}}
+\label{chap:dis-pra:sec:proof-corollary-nn-rbc}
+
+We first prove the following lemma in order to prove \Cref{chap:dis-pra:corollary:nn-rbc}.
+\begin{lemma}
+If $\AQ=\Ncal(\wbf, \sigma^2\Ibf_D)$ and $\P = \Ncal(\vbf, \sigma^2\Ibf_{D})$, we have 
+\begin{align*}
+    \ln\frac{\AQ(\h)}{\P(\h)} = \frac{1}{2\sigma^2}\Big[\|\wbf{+}\epsilonbf-\vbf\|_2^2-\|\epsilonbf\|_2^2\Big],
+\end{align*}
+where $\epsilonbf{\sim}\Ncal(\zerobf, \sigma^2\Ibf_{D})$ is a Gaussian noise 
+such that  $\wbf{+}\epsilonbf$ are the weights of $\h{\sim}\AQ$ with \mbox{$\AQ{=}\Ncal(\wbf, \sigma^2\Ibf_{D})$}.
+\label{chap:dis-pra:lemma:disintegrated-kl}
+\end{lemma}
+\begin{proof}
+The probability density functions of $\AQ$ and $\P$ for $\h\sim\AQ$ (with the weights $\wbf{+}\epsilonbf$) can be rewritten as
+\begin{align*}
+    &\AQ(\h) = \LB\frac{1}{\sigma\sqrt{2\pi}}\RB^D\!\exp\!\LP\!-\frac{1}{2\sigma^2}\|\wbf{+}\epsilonbf-\wbf\|_2^2\RP = \LB\frac{1}{\sigma\sqrt{2\pi}}\RB^D\!\exp\!\LP\!-\frac{1}{2\sigma^2}\|\epsilonbf\|_2^2\RP\\
+    \text{and}\quad &\P(\h)=\LB\frac{1}{\sigma\sqrt{2\pi}}\RB^D\!\exp\!\LP\!-\frac{1}{2\sigma^2}\|\wbf{+}\epsilonbf-\vbf\|_2^2\RP.
+\end{align*}
+We can derive a closed-form expression of $\ln\!\LB\frac{\AQ(\h)}{\P(\h)}\RB$. 
+Indeed, we have
+\begin{align*}
+    \ln\!\LB\frac{\AQ(\h)}{\P(\h)}\RB &= \ln\LB\AQ(\h)\RB-\ln\LB\P(\h)\RB\\
+    &= \ln\LP\LB\frac{1}{\sigma\sqrt{2\pi}}\RB^D\!\exp\!\LP\!-\frac{1}{2\sigma^2}\|\epsilonbf\|_2^2\RP\RP\\
+    &\hspace{0.4cm}-\ln\LP\LB\frac{1}{\sigma\sqrt{2\pi}}\RB^D\!\exp\!\LP\!-\frac{1}{2\sigma^2}\|\wbf{+}\epsilonbf-\vbf\|_2^2\RP\RP\\
+    &= -\frac{1}{2\sigma^2}\|\epsilonbf\|_2^2 + \frac{1}{2\sigma^2}\|\wbf{+}\epsilonbf-\vbf\|_2^2= \frac{1}{2\sigma^2}\Big[\|\wbf{+}\epsilonbf-\vbf\|_2^2-\|\epsilonbf\|_2^2\Big].
+\end{align*}
+\end{proof}
+
+We can now prove \Cref{chap:dis-pra:corollary:nn-rbc}.
+
+\corollarynnrbc*
+\begin{proof}
+We will prove the three bounds separately.\\
+
+\textbf{\Cref{chap:dis-pra:eq:nn-rivasplata}.} We instantiate Theorem~1{\footnotesize\it (i)} of \citet{RivasplataKuzborskijSzepesvariShaweTaylor2020} (proved in \Cref{chap:pac-bayes:theorem:general-disintegrated-rivasplata}) with $\varphi(\h,\!\S)=\exp\!\LB m\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\RB$, however, we apply the theorem $\iter$ times for each prior $\P_\t\in\priorset$ (with a confidence $\frac{\delta}{\iter}$ instead of $\delta$).
+Hence, for each prior $\P_\t\in\priorset$, we have with probability at least $1-\frac{\delta}{\iter}$ over the random choice of $\S\sim\D^\m$ and $\h\sim\AQ$
+\begin{align*}
+\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\le \frac{1}{\m}\!\LB\ln\!\LB\frac{\AQ(\h)}{\P_\t(\h)}\RB{+}\ln\!\LP\frac{\iter}{\delta}\!\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}e^{\m\kl(\RiskLoss_{\dSp}(\h')\|\RiskLoss_{\D}(\h'))}\!\RP\!\RB\!.
+\end{align*}
+From \citet{Maurer2004}, we upper-bound  $\EE_{\S'{\sim}\D^\m}\EE_{\h'{\sim}\P_\t} e^{\m\kl(\RiskLoss_{\dSp}(\h')\|\RiskLoss_{\D}(\h'))}$ by $2\sqrt{\m}$ (\Cref{ap:pac-bayes:lemma:2-sqrt-m}) and using \Cref{chap:dis-pra:lemma:disintegrated-kl} we rewrite the disintegrated KL divergence.
+Finally, a union bound argument gives us the claim.\\
+
+\textbf{\Cref{chap:dis-pra:eq:nn-blanchard}.}  We apply $\iter\card(\blaset)$ times Proposition~3.1 of \citet{BlanchardFleuret2007} (proved in \Cref{chap:pac-bayes:theorem:disintegrated-blanchard})
+with a confidence $\frac{\delta}{\iter\card(\blaset)}$ instead of $\delta$. 
+For each prior $\P_\t\in\priorset$ and hyperparameters $b\in\blaset$, we have with probability at least $1-\frac{\delta}{\iter\card(\blaset)}$ over the random choice of $\S\sim\D^\m$ and $\h\sim\AQ$
+\begin{align*}
+\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\le \frac{1}{\m}\!\LB\frac{b{+}1}{b}\!\!\LB\ln\!\frac{\AQ(\h)}{\P_\t(\h)}\RB_{+}\!\!{+}\ln\!\LP\frac{\iter\card(\blaset)(b{+}1)}{\delta}\!\RP\!\RB\!.
+\end{align*}
+From \Cref{chap:dis-pra:lemma:disintegrated-kl} and a union bound argument, we obtain the claim.\\
+
+\textbf{\Cref{chap:dis-pra:eq:nn-catoni}.} We apply $\iter\card(\catset)$ times Theorem 1.2.7 of \citet{Catoni2007} (proved in \Cref{chap:pac-bayes:theorem:disintegrated-catoni}) with a confidence $\tfrac{\delta}{\iter\card(\catset)}$ instead of $\delta$. 
+For each prior $\P_{\t}\in\priorset$ and hyperparameter $c\in\catset$, we have with probability at least $1-\tfrac{\delta}{\iter\card(\catset)}$ over the random choice of $\S\sim\D^\m$ and $\h\sim\AQ$
+\begin{align*}
+\RiskLoss_{\D}(\h) \!\le\, \frac{1}{1{-}e^{{-}c}}\LB1{-}\exp\LP{-}c\RiskLoss_{\dS}(\h) {-}\frac{1}{\m}\!\!\left[\ln\LB\frac{\AQ(\h)}{\P_\t(\h)}\RB {+} \ln\!\frac{\iter\card(\catset)}{\delta}\right]\RP\RB\!.
+\end{align*}
+From \Cref{chap:dis-pra:lemma:disintegrated-kl} and a union bound argument, we obtain the claim.
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:nn-sto}}
+\label{chap:dis-pra:sec:proof-nn-sto}
+
+\corollarynnsto*
+\begin{proof}
+We instantiate \Cref{chap:pac-bayes:theorem:seeger} and apply \textsc{Jensen}'s inequality (\Cref{ap:tools:theorem:jensen}) on the left-hand side of the inequation for each prior $\P_\t{=}\Ncal(\vbf_\t, \sigma^2\Ibf_{D})$ with the posterior $\Q{=}\Ncal(\wbf, \sigma^2\Ibf_{D})$ with a confidence $\tfrac{\delta}{2\iter}$ instead of $\delta$.
+Indeed, for each prior $\P_\t$, with probability at least $1{-}\tfrac{\delta}{2\iter}$ over the random choice of $\S\sim\D^\m$, \mbox{we have for all posterior $\Q$ on $\H$},
+\begin{align*}
+\kl\!\LP\EE_{\h{\sim}\Q}\!\!\RiskLoss_{\dS}(\h)\| \EE_{\h{\sim}\Q}\!\!\RiskLoss_{\D}(\h)\!\RP{\le} \frac{1}{\m}\!\LB 
+\KL(\Q\|\P_\t)
+{+}\ln\tfrac{4\iter\sqrt{\m}}{\delta}\RB\!.
+\end{align*}
+Note that the closed-form solution of the $\KL$~divergence between the Gaussian distributions $\Q$ and $\P_\t$ is well known, we have $\KL(\Q\|\P_\t){=}\frac{\|\wbf{-}\vbf_\t\|_{2}^{2}}{2\sigma^2}$.
+Then, by applying a union bound argument over the $\iter$ bounds obtained with the $\iter$ priors $\P_\t$, we have with probability at least $1{-}\frac{\delta}{2}$ over the random choice of $\S\sim\D^\m$, for all prior $\P_\t\in\priorset$, for all posterior $\Q$
+\begin{align*}
+\kl\!\LP\EE_{\h{\sim}\Q}\!\!\RiskLoss_{\dS}(\h)\| \EE_{\h{\sim}\Q}\!\!\RiskLoss_{\D}(\h)\!\RP{\le} \frac{1}{\m}\!\LB 
+\tfrac{\|\wbf{-}\vbf_\t\|_{2}^{2}}{2\sigma^2}
+{+}\ln\tfrac{4\iter\sqrt{\m}}{\delta}\RB\!.\quad\text{(\Cref{chap:dis-pra:eq:nn-sto-seeger})}
+\end{align*}
+Additionally, we obtained \Cref{chap:dis-pra:eq:nn-sto-sample} by a direct application the Theorem~2.2 of \citet{DziugaiteRoy2017} (with confidence $\frac{\delta}{2}$ instead of $\delta$).
+Finally, from a union bound of the two bounds in \Cref{chap:dis-pra:eq:nn-sto-sample,chap:dis-pra:eq:nn-sto-seeger} gives the result.
+\end{proof}
+
+\section{Evaluation and Minimization of the Bounds of \Cref{chap:dis-pra:corollary:nn,chap:dis-pra:corollary:nn-rbc,chap:dis-pra:corollary:nn-sto}}
+\label{chap:dis-pra:sec:evaluation-minimization}
+
+We optimize and evaluate the bounds of the corollaries (except \Cref{chap:dis-pra:eq:nn-catoni}) thanks to the inverting functions of $\kl()$ defined in \Cref{chap:pac-bayes:def:invert-kl}.
+Indeed, for the different corollaries, the PAC-Bayesian generalization bounds become
+\begin{align*}
+&\RiskLoss_{\D}(\h) \le \underbrace{\klmax\!\LP\RiskLoss_{\dS}(\h) \;\middle\vert\; \frac{1}{\m}\!\!\left[ \frac{\|\wbf{-}\vbf_\t\|_{2}^{2}}{\sigma^2}{+}\ln\frac{16\iter\sqrt{\m}}{\delta^3}\right]\RP}_{\text{\Cref{chap:dis-pra:corollary:nn}}},\\
+&\RiskLoss_{\D}(\h) \le \underbrace{\klmax\!\LP\RiskLoss_{\dS}(\h) \;\middle\vert\; \frac{1}{\m}\!\!\LB\!\frac{\| \wbf{+}\epsilonbf{-}\vbf_\t\|^2_{2}\!{-}\|\epsilonbf\|^2_{2}}{2\sigma^2}{+} \ln\!\tfrac{2\iter\sqrt{\m}}{\delta}\RB\RP}_{\text{\Cref{chap:dis-pra:eq:nn-rivasplata}}},\\
+&\RiskLoss_{\D}(\h) \le \underbrace{\klmax\!\LP\RiskLoss_{\dS}(\h) \;\middle\vert\; \frac{1}{\m}\!\!\LB\!\frac{b{+}1}{b}\!\LB\frac{\| \wbf{+}\epsilonbf{-}\vbf_\t\|^2_{2}\!{-}\|\epsilonbf\|^2_{2}}{2\sigma^2}\RB_{+}\!\!{+} \ln\!\tfrac{(b+1)\iter\card(\blaset)}{\delta}\RB\RP}_{\text{\Cref{chap:dis-pra:eq:nn-blanchard}}},\\
+\text{and }\ &\EE_{\h\sim\Q}\RiskLoss_{\D}(\h) \le \underbrace{\klmax\!\LP \spadesuit \;\middle\vert\; \frac{1}{\m}\!\LB \frac{\|\wbf{-}\vbf_\t\|_{2}^{2}}{2\sigma^2} {+}\ln\frac{4\iter\sqrt{\m}}{\delta}\RB\RP}_{\text{\Cref{chap:dis-pra:corollary:nn-sto}}},\\
+\text{where }\ & \spadesuit = \klmax\!\LP \frac{1}{\K}\sum_{i=1}^{\K}\!\Risk_{\S}(\h_i) \;\middle\vert\; \frac{1}{\K} \ln\frac{4}{\delta}\RP.
+\end{align*}
+
+Based on these bounds, we can deduce some objective functions that is approximated on a mini-batch $\batch\subseteq\S$. 
+Indeed, at each iteration in phase {\bf 2)}, after sampling the noise $\epsilonbf$, the algorithm updates the weights $\omegabf$ (\ie, the hypothesis $\h$) by optimizing 
+\begin{align*}
+&\underbrace{\klmax\LP\!\RiskLoss_{\dbatch}(\h) \middle\vert  \frac{1}{\m}\!\!\LB\frac{\|\omegabf{-}\vbf_\t\|_{2}^{2}}{\sigma^2}{+}\ln\frac{16\iter\sqrt{\m}}{\delta^3}\RB\RP}_{\text{Objective function for \Cref{chap:dis-pra:corollary:nn}}},\\
+&\underbrace{\klmax\LP\!\RiskLoss_{\dbatch}(\h) \middle\vert \frac{1}{\m}\!\!\LB\frac{\| \omegabf{+}\epsilonbf{-}\vbf_\t\|^2_{2}\!{-}\|\epsilonbf\|^2_{2}}{2\sigma^2}{+}\ln\frac{2\iter\sqrt{\m}}{\delta}\RB\RP}_{\text{Objective function for \Cref{chap:dis-pra:eq:nn-rivasplata}}},\\
+&\underbrace{\klmax\LP\RiskLoss_{\dbatch}(\h) \;\middle\vert\; \frac{1}{\m}\!\!\LB\!\frac{b{+}1}{b}\!\LB\frac{\| \omegabf{+}\epsilonbf{-}\vbf_\t\|^2_{2}\!{-}\|\epsilonbf\|^2_{2}}{2\sigma^2}\RB_{+}\!\!\!{+} \ln\!\tfrac{(b{+}1)\iter\card(\blaset)}{\delta}\RB\RP}_{\text{Objective function for \Cref{chap:dis-pra:eq:nn-blanchard}}},
+\end{align*}
+where the loss $\loss()$ is the bounded cross-entropy loss of \citet{DziugaiteRoy2018}, \ie, $\loss(\h, (\x,\y)) = -\frac{1}{Z}\ln\!\LB e^{-Z}+(1-2e^{-Z})\h[y]\RB$.\\
+
+\looseness=-1
+Concerning the optimization of the hyperparameters $c\in\catset$ and $b\in\blaset$ for \Cref{chap:dis-pra:eq:nn-blanchard,chap:dis-pra:eq:nn-catoni}, we {\it (i)} initialize $b\in\blaset$ or $c\in\catset$ with the one that performs best on the first mini-batch and {\it (ii)} optimize by gradient descent the hyperparameter.
+To evaluate \Cref{chap:dis-pra:eq:nn-blanchard,chap:dis-pra:eq:nn-catoni}, we take $b\in\blaset$ and $c\in\catset$ that leads to the tightest bound.
+
+\section{Disintegrated Information-theoretic Bounds}
+\label{chap:dis-pra:sec:info-theoretic}
+We discuss in this section another interpretation of the disintegration procedure through \Cref{chap:dis-pra:theorem:mutual-info-kl,chap:dis-pra:theorem:mutual-info} below.
+Actually, the \textsc{Rényi} divergence between $\P$ and $\Q$ is sensitive to the choice of the learning \mbox{sample $\S$}: when the posterior $\Q$ learned from $\S$ differs greatly from the prior $\P$ the divergence is high. 
+To avoid such a behavior, we consider mutual information which is a measure of dependence between the random variables $\S\!\in\!(\X{\times}\Y)^\m$ and $\h\!\in\!\H$.
+More formally, the mutual information is defined as
+\begin{align*}
+    \MI(\h{;} \S) = \min_{\P\in\M^{*}(\H)}\EE_{\S\sim\D^\m}\KL(\AQ\|\P).
+\end{align*}
+From this quantity, we can derive the generalization bound introduced in the following theorem.
+\begin{restatable}{theorem}{theoremmutualinfokl}
+For any distribution $\D$ on $\X{\times}\Y$, for any hypothesis set $\H$, for any measurable function $\varphi:\H\times (\X{\times}\Y)^{\m}\rightarrow [1, +\infty[$, for any $\delta\in(0,1]$, for any deterministic algorithm $A:(\X{\times}\Y)^{\m}\times\M^{*}(\H){\rightarrow} \M(\H)$, we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m}, \h\sim \AQ}\LB\ln\varphi(\h,\!\S)\le \frac{1}{\delta}\LB \MI(\h{;}\S) +\ln\LP\EE_{\S\sim\D^\m}\EE_{\h\sim\P^*}\varphi(\h, \S)\RP\RB \RB \ge 1-\delta,
+\end{align*}
+where $\P^*$ is defined such that $\P^*(\h)=\EE_{\S\sim\D^\m}\AQp(\h)$.
+\label{chap:dis-pra:theorem:mutual-info-kl}
+\end{restatable}
+\begin{proof}
+Deferred to~\Cref{ap:dis-pra:sec:proof-mutual-info}.
+\end{proof}
+
+As for the disintegrated bounds introduced in \Cref{chap:dis-pra:sec:contrib}, the bound on $\ln \varphi(\h,\!\S)$ depends on mainly two terms: a term (\ie, $\MI(\h{;}\S)$) that measures the dependence of $\h\in\H$ on the learning sample $\S$ and $\ln\LP\EE_{\S\sim\D^\m}\EE_{\h\sim\P^*}\varphi(\h, \S)\RP$ that must be upper-bounded to obtain a computable bound.
+However, the bound has a polynomial dependence of $\delta$, \ie, we have $\frac{1}{\delta}$ instead of $\ln\frac{1}{\delta}$.
+To improve such dependence, we consider Sibson's mutual information~\citep{Verdu2015}.
+It involves an expectation over the learning samples of a given size $\m$ and is defined for a given $\lambda{>}1$ by
+\begin{align*}
+\MI_{\lambda}(\h{;}\S) 
+&\defeq \min_{\P\in\M^{*}(\H)}  \frac{1}{\lambda{-}1}\!\ln\!\LB\EE_{\S\sim\D^{\m}}\EE_{\h\sim \P}\!\LB\!\frac{\AQ(\h)}{\P(\h)}\!\RB^{\lambda}\RB.
+\end{align*}
+
+The higher $\MI_{\lambda}(\h{;}\S)$, the higher the correlation is, meaning that the sampling of $\h$ is highly dependent on the choice of $\S$. 
+This measure has two interesting properties: it generalizes the mutual information~\citep{Verdu2015}, and it can be related to the \textsc{Rényi} divergence.
+Indeed, let $\rho(\h, \S){=} \AQ(\h)\D^{\m}(\S)$, \textit{resp.} $\pi(\h, \S){=} \P(\h)\D^{\m}(\S)$, be the probability of sampling both  $\S{\sim}\D^\m$ and  $\h{\sim}\AQ$, \textit{resp.}  $\S{\sim}\D^\m$ and $\h{\sim}\P$.
+Then we can write: 
+\begin{align}
+\MI_{\lambda}(\h{;}\S) 
+ &=\!\!\min_{\P\in\M^{*}(\H)} \frac{1}{\lambda{-}1}\!\ln\!\Bigg[\!\EE_{\S\sim\D^{\m}}\EE_{\h\sim \P}\!\LB\!\frac{\AQ(\h)\D^{\m}(\S)}{\P(\h)\D^{\m}(\S)}\!\RB^{\lambda}\!\!\Bigg]\nonumber\\
+ &=\!\!\min_{\P\in\M^{*}(\H)} \Renyi_{\lambda}(\rho\|\pi).\label{chap:dis-pra:eq:mutual-info-min}
+\end{align}
+
+From~\citet{Verdu2015} the 
+optimal prior $\P^*$ minimizing \Cref{chap:dis-pra:eq:mutual-info-min} is  a {\it distribution-dependent} prior: 
+\begin{align*}
+\displaystyle \P^*(\h)=\frac{\LB\EE_{\S'{\sim}\D^{\m}}\AQp (\h)^{\lambda}\RB^{\frac{1}{\lambda}}}{\EE_{\h'{\sim}\P}\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\AQp (\h')^{\lambda}\RB^{\frac{1}{\lambda}}}.
+\end{align*}
+This leads to an {\it Information-Theoretic generalization 
+bound}.
+
+
+\begin{restatable}[Disintegrated Information-Theoretic Bound]{theorem}{theoremmutualinfo}\label{chap:dis-pra:theorem:mutual-info}
+For any distribution $\D$ on $\X{\times}\Y$, for any hypothesis set $\H$, for any measurable function $\varphi\!:\!\H{\times} (\X{\times}\Y)^{\m}{\to}\Rbb_{+}^*$, \mbox{for any $\lambda\!>\!1$}, for any $\delta\in(0,1]$, for any algorithm $A\!:\!(\X{\times}\Y)^{\m}\times\M^{*}(\H){\rightarrow} \M(\H)$, we have
+\begin{align*}
+   \PP_{\substack{\S\sim\D^{\m},\\\h\sim \AQ}} \!\left(
+   \frac{\lambda}{\lambda{-}1}\!\ln\!\LP\varphi(\h,\!\S)\RP \le \MI_{\lambda}(\h'{;} \S')\!+\!  \ln\left[\frac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\!\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P^*}\!\!\LB\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RB\right] 
+   \right)\ge 1{-}\delta.
+\end{align*}
+\end{restatable}
+\begin{proof}
+Deferred to~\Cref{ap:dis-pra:sec:proof-mutual-info}.
+\end{proof}
+
+We can remark that \Cref{chap:dis-pra:theorem:mutual-info} is tighter than \Cref{chap:dis-pra:theorem:mutual-info-kl}. 
+For example, when we instantiate \Cref{chap:dis-pra:theorem:mutual-info-kl} with $\varphi(\h,\S)=\exp\LB m\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\RB$, the bound will be multiplied by $\frac{1}{\delta m}$, while the bound of \Cref{chap:dis-pra:theorem:mutual-info} is only multiplied by $\frac{1}{\m}$ (but we add the term $\frac{1}{\m}\ln\frac{1}{\delta}$ to the bound which is small even for small $\m$).
+
+For the sake of comparison, we introduce the following corollary of \Cref{chap:dis-pra:theorem:mutual-info}.
+
+\begin{restatable}{corollary}{corollarymutualinfo}\label{chap:dis-pra:corollary:mutual-info} Under the assumptions of  \Cref{chap:dis-pra:theorem:mutual-info}, when $\lambda{\to}1^+$,  with probability at least $1{-}\delta$ we have
+\begin{align*}
+\ln\varphi(\h{,}\S) \le \ln\frac{1}{\delta} + \ln\left[\esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S')\right].
+\end{align*}
+\textit{When $\lambda{\to}+\infty$, with probability at least $1{-}\delta$ we have}
+\begin{align*}
+\ln\varphi(\h{,} \S){\le}\ln\LP\esssup_{\S\in\S, h\in\H}\frac{\AQ(\h)}{\P^*(\h)}\RP{+}\ln\!\Big[\frac{1}{\delta} {\displaystyle \EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\varphi(\h'{,}\S')}\Big]\!.  
+\end{align*}
+\end{restatable}
+As for \Cref{chap:dis-pra:theorem:disintegrated}, this corollary illustrate a trade-off introduced by $\lambda$ between the Sibson's mutual information $\MI_{\lambda}(\h'; \S')$ and the term $\ln\!\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\!\RP$.\\
+
+Furthermore, \citet[Cor.4]{EspositoGastparIssa2020}  introduced a bound involving Sibson's mutual information.
+Their bound holds with probability at least $1{-}\delta$ over $\S\sim\D^\m$ and $\h\sim\AQ$:
+\begin{align}
+2(\RiskLoss_{\dS}(\h){-}\RiskLoss_{\D}(\h))^2\le \tfrac{1}{\m}\!\LB \MI_{\lambda}(\h'; \S') + \ln \tfrac{2}{\delta^{\frac{\lambda}{\lambda{-}1}}}\RB.\label{chap:dis-pra:eq:esposito}
+\end{align}
+Hence, we compare \Cref{chap:dis-pra:eq:esposito} with the equations of the following corollary.
+\begin{corollary}
+For any distribution $\D$ on $\X{\times}\Y$, for any hypothesis set $\H$, for any $\lambda\!>\!1$, for any $\delta\in(0,1]$, for any algorithm $A\!:\!(\X{\times}\Y)^{\m}\times\M^{*}(\H){\rightarrow} \M(\H)$, with probability at least $1{-}\delta$ over $\S\sim\D^\m$ and $\h\sim\AQ$, we have
+\begin{align}
+   & \kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\! 
+    \le \! \tfrac{1}{\m}\!\LB \MI_{\lambda}(\h'; \S')\! +\! \ln\! \tfrac{2\sqrt{\m}}{\delta^{\frac{\lambda}{\lambda{-}1}}} \RB\label{chap:dis-pra:eq:mutual-info-seeger}\\
+   \text{\quad and\quad}
+    & 2(\RiskLoss_{\dS}(\h){-}\RiskLoss_{\D}(\h))^2\! \le\! \tfrac{1}{\m}\!\LB \MI_{\lambda}(\h'; \S')\! +\! \ln\! \tfrac{2\sqrt{\m}}{\delta^{\frac{\lambda}{\lambda{-}1}}}\RB\label{chap:dis-pra:eq:mutual-info-mcallester}\!.
+\end{align}
+\label{chap:dis-pra:corollary:mutual-info-seeger-mcallester}
+\end{corollary}
+\begin{proof}
+First of all, we instantiate \Cref{chap:dis-pra:theorem:mutual-info} with the function $\varphi(\h,\!\S)=\exp\!\LB\tfrac{\lambda-1}{\lambda}\m\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\RB$, we have (by rearranging the terms)
+\begin{align*}
+    \kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))\! 
+    \le \! \frac{1}{\m}\!\LB \MI_{\lambda}(\h'; \S')\! +\! \ln\!\LP\! \tfrac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\EE_{\S'{\sim}\D^\m}\EE_{\h'{\sim}\P}e^{\m\kl(\RiskLoss_{\dSp}(\h')\|\RiskLoss_{\D}(\h'))}\RP \RB\!.
+\end{align*}
+Then, from \citet{Maurer2004}, we upper-bound  $\EE_{\S'{\sim}\D^\m}\EE_{\h'{\sim}\P} e^{\m\kl(\RiskLoss_{\dSp}(\h')\|\RiskLoss_{\D}(\h'))}$ by $2\sqrt{\m}$ (\Cref{ap:pac-bayes:lemma:2-sqrt-m}) to obtain \Cref{chap:dis-pra:eq:mutual-info-seeger}.
+Finally, to obtain \Cref{chap:dis-pra:eq:mutual-info-mcallester}, we apply \textsc{Pinsker}'s inequality (\Cref{ap:pac-bayes:theorem:pinsker}), \ie, we have the inequality $2(\RiskLoss_{\dS}(\h){-}\RiskLoss_{\D}(\h))^2\le \kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h))$ on \Cref{chap:dis-pra:eq:mutual-info-seeger}.
+\end{proof}
+\Cref{chap:dis-pra:eq:mutual-info-mcallester} is slightly looser than \Cref{chap:dis-pra:eq:esposito} since it involves an extra term of $\tfrac1m\ln\sqrt{\m}$.
+However, \Cref{chap:dis-pra:eq:mutual-info-seeger} is tighter than \Cref{chap:dis-pra:eq:esposito} when we have $\kl(\RiskLoss_{\dS}(\h)\|\RiskLoss_{\D}(\h)){-}2(\RiskLoss_{\dS}(\h){-}\RiskLoss_{\D}(\h))^2 \ge \tfrac1m\ln\sqrt{\m}$ (which becomes more frequent as $\m$ grows).
+Moreover, from a theoretical view, \Cref{chap:dis-pra:theorem:mutual-info} brings a different philosophy than the disintegrated PAC-Bayes bounds. 
+Indeed, in \Cref{chap:dis-pra:theorem:disintegrated,chap:dis-pra:theorem:disintegrated-lambda}, given $\S$, the \textsc{Rényi} divergence  $\Renyi_{\lambda}(\AQ\|\P)$ suggests that the learned posterior $\AQ$ should be close enough to the prior $\P$  to get a low bound.
+While in \Cref{chap:dis-pra:theorem:mutual-info}, the Sibson's mutual information $\MI_{\lambda}(\h'; \S')$ suggests that the random variable $\h$ has to be {\it not too much correlated} to $\S$.
+However, the bound of \Cref{chap:dis-pra:theorem:mutual-info} is not computable in practice due notably to the sample expectation over the unknown distribution $\D$ in $\MI_{\lambda}()$.
+An exciting line of future works could be to study how we can make use of  \Cref{chap:dis-pra:theorem:mutual-info} in practice.
+
+\section{Proof of \Cref{chap:dis-pra:theorem:mutual-info-kl}}
+
+In order to prove \Cref{chap:dis-pra:theorem:mutual-info-kl}, we need to prove \Cref{chap:dis-pra:lemma:mutual-info-kl}.
+
+\begin{lemma}
+For any distribution $\D$ on $\X{\times}\Y$, for any hypothesis set $\H$, for any  measurable function $\varphi:\H\times (\X{\times}\Y)^{\m}\rightarrow [1, +\infty[$, for any $\delta\in(0,1]$, for any deterministic algorithm $A:(\X{\times}\Y)^{\m}\times\M^{*}(\H){\rightarrow} \M(\H)$, we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m}, \h\sim \AQ}\Bigg[\forall\P{\in}\M^{*}(\H),\ \ln\varphi(\h,\!\S)&\le \frac{1}{\delta}\Big[\EE_{\S\sim\D^\m}\KL(\AQ\|\P)\\
+    &+\ln\LP\EE_{\S\sim\D^\m}\EE_{\h\sim\P}\varphi(\h, \S)\RP\Big] \Bigg] \ge 1-\delta.
+\end{align*}
+\label{chap:dis-pra:lemma:mutual-info-kl}
+\end{lemma}
+\begin{proof}
+By developing $\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\varphi(\h, \S)$, we have for all prior $\P\in\M^{*}(\H)$
+\begin{align*}
+\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\varphi(\h, \S) &= \EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\LB\frac{\AQ(\h)\P(\h)}{\P(\h)\AQ(\h)}\varphi(\h, \S)\RB\\
+&= \EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\LB\frac{\AQ(\h)}{\P(\h)}\RB +\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\LB\frac{\P(\h)}{\AQ(\h)}\varphi(\h, \S)\RB\\
+&= \EE_{\S\sim\D^\m}\KL(\AQ\|\P) +\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\LB\frac{\P(\h)}{\AQ(\h)}\varphi(\h, \S)\RB.
+\end{align*}
+From \textsc{Jensen}'s inequality (\Cref{ap:tools:theorem:jensen}), we have for all prior $\P\in\M^{*}(\H)$
+\begin{align}
+    &\EE_{\S\sim\D^\m}\KL(\AQ\|\P) +\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\LB\frac{\P(\h)}{\AQ(\h)}\varphi(\h, \S)\RB\nonumber\\
+    \le &\EE_{\S\sim\D^\m}\KL(\AQ\|\P) +\ln\LB\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\frac{\P(\h)}{\AQ(\h)}\varphi(\h, \S)\RB\nonumber\\
+    = &\EE_{\S\sim\D^\m}\KL(\AQ\|\P) +\ln\LB\EE_{\S\sim\D^\m}\EE_{\h\sim\P}\varphi(\h, \S)\RB.\label{chap:dis-pra:eq:mutual-info-1}
+\end{align}
+Since we assume in this case that $\varphi(\h, \S) \ge 1$ for all $h\in\H$ and $\S\in(\X{\times}\Y)^\m$, we have $\ln\varphi(\h, \S) \ge 0$; we can apply \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}) to obtain
+\begin{align}
+    \PP_{\S\sim\D^{\m}, \h\sim \AQ}\LB \ln\varphi(\h,\!\S)\le \frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQ}\ln\varphi(\h, \S) \RB \ge 1-\delta.\label{chap:dis-pra:eq:mutual-info-2}
+\end{align}
+Then, from \Cref{chap:dis-pra:eq:mutual-info-1,chap:dis-pra:eq:mutual-info-2}, we can deduce the stated result.
+\end{proof}
+We are now ready to prove \Cref{chap:dis-pra:theorem:mutual-info-kl}.
+\theoremmutualinfokl*
+\begin{proof}
+Note that the mutual information is $\MI(\h{;} \S){=} \min_{\P\in\M^{*}(\H)}\EE_{\S\sim\D^\m}\KL(\AQ\|\P)$. 
+Hence, to prove \Cref{chap:dis-pra:theorem:mutual-info-kl}, we have to instantiate \Cref{chap:dis-pra:lemma:mutual-info-kl} with the optimal prior, \ie, the prior $\P$ which minimizes $\EE_{\S\sim\D^\m}\KL(\AQ\|\P)$.
+The optimal prior is well-known~\citep[see, \eg,][]{Catoni2007,LeverLavioletteShaweTaylor2013}: for the sake of completeness, we derive it. First, we have
+\begin{align*}
+    \EE_{\S\sim\D^\m}\KL(\AQ\|\P) &= \EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\frac{\AQ(\h)}{\P(\h)}\\
+    &= \EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\!\LB\frac{\AQ(\h)[\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)]}{\P(\h)[\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)]}\RB\\
+    &= \EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\!\LB\frac{\AQ(\h)}{\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)}\RB{+}\EE_{\h\sim\AQ}\ln\!\LB\frac{\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)}{\P(\h)}\RB.
+\end{align*}
+Hence, 
+
+\begin{align*}
+    \argmin_{\P\in\M^{*}(\H)}\EE_{\S\sim\D^\m}\KL(\AQ\|\P)= &\argmin_{\P\in\M^{*}(\H)} \Bigg[\EE_{\S\sim\D^\m}\EE_{\h\sim\AQ}\ln\LB\frac{\AQ(\h)}{\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)}\RB\\
+    &\hspace{1.5cm}+ \EE_{\h\sim\AQ}\ln\LB\frac{\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)}{\P(\h)}\RB\Bigg]\\
+    =&\argmin_{\P\in\M^{*}(\H)}\LB \EE_{\h\sim\AQ}\ln\LB\frac{\EE_{\S'\sim\D^\m}\Q_{\S'}(\h)}{\P(\h)}\RB \RB=\P^*,
+\end{align*}
+where $\P^*(\h) = \EE_{\S'\sim\D^\m}\Q_{\S'}(\h)$.
+Note that $\P^*$ is defined from the data distribution $\D$, hence, $\P^*$ is a valid prior when instantiating \Cref{chap:dis-pra:lemma:mutual-info-kl} with $\P^*$.
+Then, we have with probability at least $1{-}\delta$ over $\S\sim\D^\m$ and $\h\sim\AQ$
+\begin{align*}
+    \ln\varphi(\h,\!\S) &\le \frac{1}{\delta}\LB\EE_{\S\sim\D^\m}\KL(\AQ\|\P^*) +\ln\LP\EE_{\S\sim\D^\m}\EE_{\h\sim\P^*}\varphi(\h, \S)\RP\RB\\
+    &= \frac{1}{\delta}\LB \MI(\h{;} \S) +\ln\LP\EE_{\S\sim\D^\m}\EE_{\h\sim\P^*}\varphi(\h, \S)\RP\RB.
+\end{align*}
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:theorem:mutual-info}}
+\label{ap:dis-pra:sec:proof-mutual-info}
+
+We first introduce \Cref{chap:dis-pra:lemma:mutual-info} in order to prove \Cref{chap:dis-pra:theorem:mutual-info}.
+\begin{lemma} For any distribution $\D$ on $\X{\times}\Y$, for any hypothesis set $\H$, for any prior distribution $\P$ on $\H$, for any  measurable function $\varphi:\H\times (\X{\times}\Y)^{\m}$, for any $\lambda>1$, for any $\delta\in(0,1]$, for any deterministic algorithm $A:(\X{\times}\Y)^{\m}\times\M^{*}(\H){\rightarrow} \M(\H)$, we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m}, \h\sim \AQ}\!\!\Bigg[\forall\P{\in}\M^{*}(\H),& \displaystyle\frac{\lambda}{\lambda{-}1}\!\ln\!\LP\varphi(\h,\!\S)\RP \le \Renyi_{\lambda}(\rho\|\pi)\\
+    &+\ln\!\LP\!\tfrac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\!\RP \Bigg]\!\!\ge 1{-}\delta.
+\end{align*}
+\textit{where $\rho(\h, \S){=} \AQ(\h)\D^{\m}(\S)$; $\pi(\h, \S){=} \P(\h)\D^{\m}(\S)$.}
+\label{chap:dis-pra:lemma:mutual-info}
+\end{lemma}
+\begin{proof}
+Note that $\varphi(\h,\!\S)$ is a non-negative random variable. 
+From \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}), we have
+\begin{align*}
+    \PP_{\S\sim\D^{\m}, \h\sim \AQ}\LB \varphi(\h,\!\S)\le \frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQ}\varphi(\h'\!, \S') \RB \ge 1-\delta.
+\end{align*}
+Then, since both sides of the inequality are strictly positive, we take the logarithm to both sides of the equality and multiply by $\frac{\lambda}{\lambda-1}>0$ to obtain
+\begin{align*}
+\PP_{\S\sim\D^{\m},\h\sim \AQ}\LB\frac{\lambda}{\lambda-1}\ln\LP\varphi(\h,\!\S)\RP \le \frac{\lambda}{\lambda{-}1}\ln\LP\frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQp }\varphi(\h'\!, \S')\RP\RB\ge 1-\delta.
+\end{align*}
+We develop the right-hand side of the inequality in the indicator function and make the expectation of the hypothesis over the distribution $\P$ appear.
+We have for all priors $\P{\in}\M^{*}(\H)$,
+\begin{align*}
+&\frac{\lambda}{\lambda{-}1}\ln\LP\frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQp }\varphi(\h'\!, \S')\RP\\
+= &\frac{\lambda}{\lambda{-}1}\ln\LP\frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQp }\frac{\AQp (\h')}{\P(\h')}\frac{\P(\h')}{\AQp (\h')}\varphi(\h'\!, \S')\RP\\
+= &\frac{\lambda}{\lambda{-}1}\ln\LP\frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\frac{\AQp (\h')}{\P(\h')}\varphi(\h'\!, \S')\RP.
+\end{align*}
+Then, since $\tfrac{1}{r}+\tfrac{1}{s}=1$ where $r{=}\lambda$ and $s{=}\frac{\lambda}{\lambda-1}$. Hence, \textsc{Hölder}'s inequality (\Cref{ap:tools:theorem:holder}) gives
+\begin{align*}
+    \EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQp}\varphi(\h'\!, \S'){\le}\!\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\!\LP\Bigg[\frac{\AQp (\h')}{\P(\h')}\Bigg]^{\lambda}\RP\!\RB^{\frac{1}{\lambda}}\!\!\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\!\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda-1}{\lambda}}\!\!\!.
+\end{align*}
+Since both sides of the inequality are positive, we take the logarithm.
+Moreover, we add $\ln(\tfrac{1}{\delta})$, and we multiply by $\frac{\lambda}{\lambda-1}>0$ to both sides of the inequality.
+We have
+\begin{align*}
+    &\frac{\lambda}{\lambda{-}1}\ln\LP\frac{1}{\delta}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \AQp }\varphi(\h'\!, \S')\RP \\
+    \le &\frac{\lambda}{\lambda{-}1}\ln\LP\frac{1}{\delta}\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\Bigg[\frac{\AQp (\h')}{\P(\h')}\Bigg]^{\lambda}\RP\RB^{\frac{1}{\lambda}}\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda-1}{\lambda}}\RP\\
+    = &\frac{1}{\lambda{-}1}\ln\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\Bigg[\frac{\AQp (\h')}{\P(\h')}\Bigg]^{\lambda}\RP\RP + \ln\LP\frac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RP\!.
+\end{align*}
+Hence, we can deduce that 
+\begin{align*}
+    \PP_{\S\sim\D^{\m}, \h\sim \AQ}\Bigg[&\forall\P{\in}\M^{*}(\H), \frac{\lambda}{\lambda{-}1}\!\ln\!\LP\varphi(\h,\!\S)\RP \le \frac{1}{\lambda{-}1}\!\ln\!\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\!\LP\Bigg[\!\frac{\AQp (\h')}{\P(\h')}\!\Bigg]^{\lambda}\RP\RP\\
+    &+ \ln\!\LP\!\tfrac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\!\RP \Bigg]\ge 1{-}\delta,
+\end{align*}
+where by definition we have $\Renyi_{\lambda}(\rho\|\pi)=\frac{1}{\lambda{-}1}\!\ln\!\LP\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\!\LP\LB\!\frac{\AQp (\h')}{\P(\h')}\!\RB^{\lambda}\RP\RP$.
+\end{proof}
+From \Cref{chap:dis-pra:lemma:mutual-info}, we prove \Cref{chap:dis-pra:theorem:mutual-info}.
+
+\theoremmutualinfo*
+\begin{proof}
+Sibson's mutual information is $\MI_{\lambda}(\h{;}\S)=\min_{\P\in\M^{*}(\H)}\Renyi_{\lambda}(\rho\|\pi)$.
+Hence, in order to prove \Cref{chap:dis-pra:theorem:mutual-info}, we have to instantiate \Cref{chap:dis-pra:lemma:mutual-info} with the optimal prior, \ie, the prior $\P$ which minimizes $\Renyi_{\lambda}(\rho\|\pi)$.
+Actually, this optimal prior has a closed-form solution~\citep{Verdu2015}.
+For the sake of completeness, we derive it. First, we have
+\begin{align*}
+    &\Renyi_{\lambda}(\rho\|\pi)\\
+    = &\frac{1}{\lambda{-}1}\!\ln\!\LP\EE_{\S\sim\D^{\m}}\EE_{\h\sim \P}\!\LP\LB\!\frac{\AQ(\h)}{\P(\h)}\!\RB^{\lambda}\RP\RP\\
+    = &\frac{1}{\lambda{-}1}\!\ln\!\LP\EE_{\h\sim \P}\LB\EE_{\S\sim\D^{\m}}\LP\AQ(\h)^{\lambda}\RP\RB\LP\P(\h)^{-\lambda}\RP\!\RP\\
+    = &\frac{1}{\lambda{-}1}\!\ln\!\LP\!\EE_{\h\sim \P}\LB\EE_{\S\sim\D^{\m}}\LP\AQ (\h)^{\lambda}\RP\RB\LP\P(\h)^{-\lambda}\RP\!\!\LB\tfrac{\EE_{\h'{\sim}\P}\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\frac{1}{\lambda}}}{\EE_{\h'{\sim}\P}\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\frac{1}{\lambda}}}\RB^{\!\lambda}\RP\\
+    = &\frac{\lambda}{\lambda{-}1}\!\ln\!\LP\EE_{\h'{\sim}\P}\!\tfrac{1}{\P(\h')}\!\!\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\!\frac{1}{\lambda}}\!\RP\!\\
+    &\hspace{0.1cm}+\frac{1}{\lambda{-}1}\!\ln\!\LP\EE_{\h\sim\P}\tfrac{1}{\P(\h)^{\lambda}}\!\!\LB \!\tfrac{\LB\EE_{\S\sim\D^{\m}}\LP\AQ (\h)^{\lambda}\RP\RB^{\frac{1}{\lambda}}}{\EE_{\h'{\sim}\P}\!\!\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\frac{1}{\lambda}}}\!\RB^{\!\lambda} \RP\\
+    = &\frac{\lambda}{\lambda{-}1}\ln\LP\EE_{\h'{\sim}\P}\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\frac{1}{\lambda}}\RP + \Renyi_{\lambda}(\P^{*}\| \P),
+\end{align*}
+where $\P^*(\h)=\LB \!\tfrac{\LB\EE_{\S\sim\D^{\m}}\LP\AQ (\h)^{\lambda}\RP\RB^{\frac{1}{\lambda}}}{\EE_{\h'{\sim}\P}\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\frac{1}{\lambda}}}\!\RB$.
+
+From these equalities and using the fact that $\Renyi_{\lambda}(\P^*\| \P)$ is minimal (\ie, equal to zero) when $\P^*=\P$, we can deduce that
+\begin{align*}
+    &\argmin_{\P\in\M^{*}(\H)}\Renyi_{\lambda}(\rho\|\pi)\\
+    {=} &\argmin_{\P\in\M^{*}(\H)} \LB\frac{\lambda}{\lambda{-}1}\ln\LP\EE_{\h'{\sim}\P}\tfrac{1}{\P(\h')}\LB\EE_{\S'{\sim}\D^{\m}}\LP\AQp (\h')^{\lambda}\RP\RB^{\frac{1}{\lambda}}\RP{+} \Renyi_{\lambda}(\P^{*}\| \P)\RB\\
+    {=}&\argmin_{\P\in\M^{*}(\H)}\Renyi_{\lambda}(\P^{*}\| \P){=}\P^*.
+\end{align*}
+Note that $\P^*$ is defined from the data distribution $\D$, hence, $\P^*$ is a valid prior when instantiating \Cref{chap:dis-pra:lemma:mutual-info} with $\P^*$.
+Then, we have with probability at least $1{-}\delta$ over $\S\sim\D^\m$ and $\h\sim\AQ$
+\begin{align*}
+    \frac{\lambda}{\lambda{-}1}\!\ln\!\LP\varphi(\h,\!\S)\RP &\le \Renyi_{\lambda}(\rho\|\pi^*) + \ln\!\LP\!\tfrac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\!\RP\\
+    &= \MI_{\lambda}(\h'; \S') +\ \ln\!\LP\!\tfrac{1}{\delta^{\frac{\lambda}{\lambda{-}1}}}\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\!\RP.
+\end{align*}
+where $\pi^*(\h, \S)=\P^*(\h)\D^{\m}(\S)$.
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:mutual-info}}
+
+\corollarymutualinfo*
+\begin{proof} 
+The proof is similar to \Cref{chap:dis-pra:corollary:disintegrated}.
+Starting from \Cref{chap:dis-pra:theorem:mutual-info} and rearranging, we have
+\begin{align*}
+    \PP_{\substack{\S\sim\D^{\m}\\ h\sim \AQ}}\Bigg[ &\!\ln\!\LP\varphi(\h,\!\S)\RP \le  \frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S')\\ 
+    &+\ln\frac{1}{\delta} + \ln\!\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP \Bigg]\ge 1{-}\delta,
+\end{align*}
+Then, we will prove separately the case when $\lambda\rightarrow 1$ and $\lambda\rightarrow +\infty$.
+
+\paragraph{When $\lambda\rightarrow 1$.} We have  $\lim_{\lambda\rightarrow 1^+}\frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S') = 0$.
+Furthermore, note that 
+\begin{align*}
+    \|\varphi\|_{\frac{\lambda}{\lambda{-}1}} = \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\LP\vert\varphi(\h'\!, \S')\vert^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}} = \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}
+\end{align*}
+is the $L^{\frac{\lambda}{\lambda{-}1}}$-norm of the function $\varphi: \H\times(\X{\times}\Y)^\m \rightarrow \Rbb_{+}^*$, where $\lim_{\lambda\rightarrow 1} \|\varphi\|_{\frac{\lambda}{\lambda{-}1}} = \lim_{\lambda'\rightarrow +\infty} \|\varphi\|_{\lambda'}$ (since we have $\lim_{\lambda\rightarrow 1^+}\frac{\lambda}{\lambda{-}1} = (\lim_{\lambda\rightarrow1}\lambda)(\lim_{\lambda\rightarrow1}\frac{1}{\lambda{-}1}) = +\infty$).
+Then, it is well known that
+\begin{align*}
+    \|\varphi\|_{\infty}= \lim_{\lambda'\rightarrow+\infty}\|\varphi\|_{\lambda'} = \esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S').
+\end{align*}
+Hence, we have 
+\begin{align*}
+    &\lim_{\lambda\rightarrow1} \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow1} \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow1} \| \varphi\|_{\frac{\lambda}{\lambda-1}}\RP = \ln\LP \lim_{\lambda'\rightarrow+\infty} \| \varphi\|_{\lambda'}\RP \\
+    = &\ln\LP \| \varphi\|_{\infty}\RP = \ln\LP \esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S') \RP.
+\end{align*}
+Finally, we can deduce that 
+\begin{align*}
+    &\lim_{\lambda\rightarrow 1}\LB \frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S') +\ \ln\frac{1}{\delta} + \ln\!\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\RB\\
+    = &\ln\frac{1}{\delta} + \ln\left[\esssup_{\S'\in(\X{\times}\Y), \h'\in\H}\varphi(\h'{,} \S')\right].\\
+\end{align*}
+
+\paragraph{When \mbox{$\lambda\rightarrow +\infty$}.} First, we have $\lim_{\lambda\rightarrow +\infty} \|\varphi\|_{\frac{\lambda}{\lambda{-}1}} = \lim_{\lambda'\rightarrow 1} \|\varphi\|_{\lambda'} = \|\varphi\|_1$ 
+Hence, we have 
+\begin{align*}
+    &\lim_{\lambda\rightarrow+\infty} \ln\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow+\infty} \LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda{-}1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\\
+    = &\ln\LP \lim_{\lambda\rightarrow+\infty} \| \varphi\|_{\frac{\lambda}{\lambda-1}}\RP = \ln\LP \lim_{\lambda'\rightarrow1} \| \varphi\|_{\lambda'}\RP\\
+    = &\ln\LP \| \varphi\|_{1}\RP = \ln\LP \EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P^*}\varphi(\h'\!, \S') \RP.
+\end{align*}
+Moreover, by rearranging the terms in $\frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S')$, we have
+\begin{align*}
+\frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S') &= \frac{1}{\lambda}\ln\!\LP \EE_{\S{\sim}\D^\m}\EE_{\h{\sim}\P^*}\!\LP\!\LB\frac{ \AQ(\h)}{\P^*(\h)}\RB^{\!\lambda}\RP\RP\\
+&= \ln\!\LP \LB\EE_{\S{\sim}\D^\m}\EE_{\h{\sim}\P^*}\!\LP\LB\!\frac{ \AQ(\h)}{\P^*(\h)}\RB^{\!\lambda}\RP\RB^{\frac{1}{\lambda}}\RP\\
+&= \ln\!\LP \LB\EE_{\h{\sim}\P^*}\LP\gamma(\h)^{\lambda}\RP\RB^{\frac{1}{\lambda}}\RP = \ln\!\LP \| \gamma\|_{\lambda}\RP,
+\end{align*}
+where $\| \gamma\|_{\lambda}$ is the $L^{\lambda}$-norm of the function $\gamma$ defined as $\gamma(\h)=\tfrac{\AQ(\h)}{\P^*(\h)}$.
+We have
+\begin{align*}
+    \lim_{\lambda\rightarrow +\infty}  \frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S') =& \lim_{\lambda\rightarrow +\infty}  \ln\!\LP \| \gamma\|_{\lambda}\RP = \ln\LP\lim_{\lambda\rightarrow +\infty} \|\gamma\|_{\lambda}\RP\\
+    =& \ln\LP \|\gamma\|_{\infty}\RP = \ln\LP\esssup_{\S\in\S, h\in\H}\gamma(\h)\RP = \ln\LP\esssup_{\S\in\S, h\in\H}\frac{\AQ(\h)}{\P^*(\h)}\RP.
+\end{align*}
+Finally, we can deduce that 
+\begin{align*}
+    & \lim_{\lambda\rightarrow 1}\LB \frac{\lambda{-}1}{\lambda}\MI_{\lambda}(\h'; \S') +\ \ln\frac{1}{\delta} + \ln\!\LP\LB\EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim} \P^*}\LP\varphi(\h'\!, \S')^{\frac{\lambda}{\lambda-1}}\RP\RB^{\frac{\lambda{-}1}{\lambda}}\RP\RB\\ 
+    =\quad &\ln\LP\esssup_{\S\in\S, h\in\H}\frac{\AQ(\h)}{\P^*(\h)}\RP{+}\ln\!\Big[\frac{1}{\delta} {\displaystyle \EE_{\S'{\sim}\D^{\m}}\EE_{\h'{\sim}\P}\varphi(\h'{,}\S')}\Big].
+\end{align*}
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:disintegrated-riv-mv}}
+\label{ap:dis-pra:sec:proof-disintegrated-riv-mv}
+
+\corollarydisintegratedrivmv*
+\begin{proof}
+We apply \Cref{chap:pac-bayes:theorem:general-disintegrated-rivasplata} with $\phi(\Q,\S)=\m\kl(\RiskLoss_{\dS}(\MVQ)\|\RiskLoss_{\D}(\MVQ))$ to obtain with probability at least $1{-}\delta$ over the learning sample $\S\sim\D^\m$ and the posterior distribution $\Q\sim\hyperQ$, we have 
+\begin{align}
+    \kl(\RiskLoss_{\dS}(\MVQ)\|\RiskLoss_{\D}(\MVQ)){\le}\frac{1}{\m}\!\!\LB \ln\frac{\hyperQ(\Q)}{\hyperP(\Q)}{+}\ln\!\LB\frac{1}{\delta} \!\EE_{\Qp\sim\hyperP}\!e^{\m\kl(\RiskLoss_{\dS}(\MVQp)\|\RiskLoss_{\D}(\MVQp))}\RB\!\RB.\label{ap:dis-pra:eq:proof-disintegrated-riv-mv-1}
+\end{align}
+Moreover, the closed form solution of the disintegrated KL divergence $\ln\frac{\hyperQ(\Q)}{\hyperP(\Q)}$ is
+\begin{align}
+    \ln\frac{\hyperQ(\Q)}{\hyperP(\Q)} &= \ln(\hyperQ(\Q)) - \ln(\hyperP(\Q))\nonumber\\
+    &= \ln\LP\frac{1}{Z(\paramDir)}\prod_{j=1}^{\card(\H)} \Big[\Q(\h_j)\Big]^{\sparamDir_j-1}\RP - \ln\LP\frac{1}{Z(\paramDirP)}\prod_{j=1}^{\card(\H)} \Big[\Q(\h_j)\Big]^{\sparamDirP_j-1}\RP\nonumber\\
+    &= \ln\frac{Z(\paramDirP)}{Z(\paramDir)} + \sum_{j=1}^{\card(\H)}(\sparamDir_j-1)\ln(\Q(\h_j)) - \sum_{j=1}^{\card(\H)}(\sparamDirP_j-1)\ln(\Q(\h_j))\nonumber\\
+    &= \ln\frac{Z(\paramDirP)}{Z(\paramDir)} + \sum_{j=1}^{\card(\H)}(\sparamDir_j-\sparamDirP_j)\ln(\Q(\h_j)).\label{ap:dis-pra:eq:proof-disintegrated-riv-mv-2}
+\end{align}
+Additionally, from \Cref{ap:pac-bayes:lemma:2-sqrt-m}, we have 
+\begin{align}
+    \EE_{\Qp\sim\hyperP}e^{\m\kl(\RiskLoss_{\dS}(\MVQp)\|\RiskLoss_{\D}(\MVQp))} \le 2\sqrt{\m}.\label{ap:dis-pra:eq:proof-disintegrated-riv-mv-3}
+\end{align}
+Lastly, by merging \Cref{ap:dis-pra:eq:proof-disintegrated-riv-mv-1,ap:dis-pra:eq:proof-disintegrated-riv-mv-2,ap:dis-pra:eq:proof-disintegrated-riv-mv-3} we obtain the claim.
+\end{proof}
+
+\section{Proof of \Cref{chap:dis-pra:corollary:disintegrated-mv}}
+\label{ap:dis-pra:sec:proof-disintegrated-mv}
+
+\corollarydisintegratedmv*
+\begin{proof}
+We apply \Cref{chap:dis-pra:theorem:disintegrated} with $\phi(\Q,\S)=\exp\LB\frac{\lambda-1}{\lambda}\m\kl(\RiskLoss_{\dS}(\MVQ)\|\RiskLoss_{\D}(\MVQ))\RB$ to obtain with probability at least $1{-}\delta$ over the learning sample $\S\sim\D^\m$ and the posterior distribution $\Q\sim\hyperQ$, we have 
+
+\begin{align}
+    \kl(\RiskLoss_{\dS}(\MVQ)\|\RiskLoss_{\D}(\MVQ)) \le &\frac{1}{\m}\Bigg[{\frac{2\lambda{-}1}{\lambda{-}1}}\ln\frac{2}{\delta}
+ +\Renyi_{\lambda}(\hyperQ\|\hyperP)\nonumber\\
+ &+ \ln\LP\EE_{\Qp\sim\hyperP}e^{\m\kl(\RiskLoss_{\dS}(\MVQp)\|\RiskLoss_{\D}(\MVQp))}\RP \Bigg].\label{ap:dis-pra:eq:proof-disintegrated-mv-1}
+\end{align}
+
+Moreover, the closed form solution of the \textsc{Rényi} divergence $\Renyi_{\lambda}(\hyperQ\|\hyperP)$~\citep{GilAlajajiLinder2013} is given by
+\begin{align}
+    \Renyi_{\lambda}(\hyperQ\|\hyperP) &= \frac{1}{\lambda{-}1}\ln\LP\int_{\M(\H)}\hyperQ(\Q)^\lambda\hyperP(\Q)^{1-\lambda}d\xi(\Q)\RP\nonumber\\
+    &= \frac{1}{\lambda{-}1}\ln\Bigg(\int_{\M(\H)}\frac{1}{Z(\paramDir)^\lambda}\prod_{j=1}^{\card(\H)}(\Q(\h_j))^{\lambda(\sparamDir_j-1)}\nonumber\\
+    &\hspace{2cm}\frac{1}{Z(\paramDirP)^{1-\lambda}}\prod_{j=1}^{\card(\H)}(\Q(\h_j))^{(1-\lambda)(\sparamDirP_j-1)} d\xi(\Q)\Bigg)\nonumber\\
+    &= \frac{1}{\lambda{-}1}\ln\LP \frac{Z(\paramDirP)^{\lambda-1}}{Z(\paramDir)^{\lambda}}\RP\nonumber\\
+    &\hspace{0.5cm}+ \frac{1}{\lambda{-}1}\ln\LP\int_{\M(\H)}\prod_{i=1}^{\card(\H)} (\Q(\h_j))^{\lambda\sparamDir_j + (1-\lambda)\sparamDirP_j-1} d\xi(\Q)\!\RP\nonumber\\
+    &= \frac{1}{\lambda{-}1}\ln\LP \frac{Z(\paramDirP)^{\lambda-1}}{Z(\paramDir)^{\lambda}}\RP + \ln Z(\lambda\paramDir{+}(1{-}\lambda)\paramDirP)\nonumber\\
+    &= \frac{1}{\lambda{-}1}\ln\LP \frac{Z(\paramDirP)^{\lambda-1}}{Z(\paramDir)^{\lambda-1+1}}\RP + \ln Z(\lambda\paramDir{+}(1{-}\lambda)\paramDirP)\nonumber\\
+    &= \ln\frac{Z(\paramDirP)}{Z(\paramDir)} + \frac{1}{\lambda{-}1}\ln\frac{Z(\lambda\paramDir{+}(1{-}\lambda)\paramDirP)}{Z(\paramDir)},\label{ap:dis-pra:eq:proof-disintegrated-mv-2}
+\end{align}
+where $\xi$ is the reference measure on $\M(\H)$.
+Additionally, from \Cref{ap:pac-bayes:lemma:2-sqrt-m}, we have 
+\begin{align}
+    \EE_{\Qp\sim\hyperP}e^{\m\kl(\RiskLoss_{\dS}(\MVQp)\|\RiskLoss_{\D}(\MVQp))} \le 2\sqrt{\m}.\label{ap:dis-pra:eq:proof-disintegrated-mv-3}
+\end{align}
+Lastly, by merging \Cref{ap:dis-pra:eq:proof-disintegrated-mv-1,ap:dis-pra:eq:proof-disintegrated-mv-2,ap:dis-pra:eq:proof-disintegrated-mv-3} we obtain the claim.
+\end{proof}
+
+\section{Details of the Results}
+\Cref{chap:dis-pra:table:1_prior_0.1} to~\Cref{chap:dis-pra:table:1_prior_0.9} report empirical results for split ratios going from 0.0 to 0.9.
+\Cref{chap:dis-pra:table:2_data_mnist} to~\Cref{chap:dis-pra:table:2_data_cifar10} report the performances of the prior before applying Step {\bf 2)}. 
+\\
+
+For the split 0.0, since Step {\bf 1)} is skipped, the prior distribution $\P$ is only initialized as introduced in \Cref{chap:dis-pra:sec:models}. 
+Note that in this case, $\iter=1$ since we have only one prior.
+To do the same number of epochs compared to the other splits, we perform 11 epochs (instead of 1) for MNIST and Fashion-MNIST and 110 epochs (instead of 10) for CIFAR-10 during Step {\bf 2)}.
+The other parameters are not changed.
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this figure, that the split ratio is $0.0$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.0}
+}
+\label{chap:dis-pra:table:1_prior_0.0}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.1$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.1}
+}
+\label{chap:dis-pra:table:1_prior_0.1}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.2$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.2}
+}
+\label{chap:dis-pra:table:1_prior_0.2}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.3$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.3}
+}
+\label{chap:dis-pra:table:1_prior_0.3}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.4$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.4}
+}
+\label{chap:dis-pra:table:1_prior_0.4}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.5$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.5}
+}
+\label{chap:dis-pra:table:1_prior_0.5}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.6$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.6}
+}
+\label{chap:dis-pra:table:1_prior_0.6}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.7$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.7}
+}
+\label{chap:dis-pra:table:1_prior_0.7}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.8$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.8}
+}
+\label{chap:dis-pra:table:1_prior_0.8}
+\end{table}
+\end{landscape} 
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+\looseness=-1
+Comparison of \algoours, \algorivasplata, \algoblanchard and \algocatoni based on the disintegrated bounds, and \algostoNN based on the randomized bounds learned with two learning rates $\lr{\ \in}\{10^{-4}, 10^{-6}\}$ and different variances $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$.
+We report the test risk ($\Risk_{\dT}(\h)$), the bound value (Bnd), the empirical risk ($\Risk_{\dS}(\h)$), and the divergence (Div) associated with each bound (the \textsc{Rényi} divergence for \algoours, the KL divergence for \algostoNN, and the disintegrated KL divergence for \algorivasplata, \algoblanchard and \algocatoni).
+More precisely, we report the mean $\pm$ the standard deviation for $400$ neural networks sampled from $\AQ$ for \algoours, \algorivasplata, \algoblanchard, and \algocatoni.
+We consider, in this table, that the split ratio is $0.9$.
+}
+\resizebox{0.63\paperheight}{!}{
+\input{chapter_6/tables/table_1_prior_0.9}
+}
+\label{chap:dis-pra:table:1_prior_0.9}
+\end{table}
+\end{landscape} 
+
+\begin{landscape} \begin{table}[t]
+\caption{
+Comparison of the bound values before performing Step {\bf 2)} of our Training Method for \algoours, \algorivasplata, \algoblanchard and \algocatoni. 
+More precisely, for each split and each variance $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$, we report the mean $\pm$ the standard deviation (for $400$ neural networks sampled from $\P$) of the test risk ($\Risk_{\dT}(\h)$), the empirical risk ($\Risk_{\dS}(\h)$), and the value of the bounds of \Cref{chap:dis-pra:corollary:nn,chap:dis-pra:corollary:nn-rbc}.
+We consider in this table that the dataset is MNIST.
+}
+\begin{subtable}[h]{0.50\textwidth}
+    \centering
+    \resizebox{0.35\paperheight}{!}{
+    \input{chapter_6/tables/table_2_data_mnist_1}
+}
+\end{subtable}
+\begin{subtable}[h]{1.1\textwidth}
+    \centering
+    \resizebox{0.35\paperheight}{!}{
+    \input{chapter_6/tables/table_2_data_mnist_2}
+    }
+\end{subtable}
+\label{chap:dis-pra:table:2_data_mnist}
+\end{table}\end{landscape} 
+
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+Comparison of the bound values before performing Step {\bf 2)} of our Training Method for \algoours, \algorivasplata, \algoblanchard and \algocatoni. 
+More precisely, for each split and each variance $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$, we report the mean $\pm$ the standard deviation (for $400$ neural networks sampled from $\P$) of the test risk ($\Risk_{\dT}(\h)$), the empirical risk ($\Risk_{\dS}(\h)$), and the value of the bounds of \Cref{chap:dis-pra:corollary:nn,chap:dis-pra:corollary:nn-rbc}.
+We consider in this table that the dataset is Fashion-MNIST.
+}
+\begin{subtable}[h]{0.50\textwidth}
+    \centering
+    \resizebox{0.35\paperheight}{!}{
+    \input{chapter_6/tables/table_2_data_fashion_1}
+}
+\end{subtable}
+\begin{subtable}[h]{1.1\textwidth}
+    \centering
+    \resizebox{0.35\paperheight}{!}{
+    \input{chapter_6/tables/table_2_data_fashion_2}
+    }
+\end{subtable}
+\label{chap:dis-pra:table:2_data_fashion}
+\end{table}
+\end{landscape} 
+
+
+\begin{landscape}
+\begin{table}[t]
+\caption{
+Comparison of the bound values before performing Step {\bf 2)} of our Training Method for \algoours, \algorivasplata, \algoblanchard and \algocatoni. 
+More precisely, for each split and each variance $\sigma^2{\in}\{10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}\}$, we report the mean $\pm$ the standard deviation (for $400$ neural networks sampled from $\P$) of the test risk ($\Risk_{\dT}(\h)$), the empirical risk ($\Risk_{\dS}(\h)$), and the value of the bounds of \Cref{chap:dis-pra:corollary:nn,chap:dis-pra:corollary:nn-rbc}.
+We consider in this table that the dataset is CIFAR-10.
+}
+\begin{subtable}[h]{0.50\textwidth}
+    \centering
+    \resizebox{0.35\paperheight}{!}{
+    \input{chapter_6/tables/table_2_data_cifar10_1}
+}
+\end{subtable}
+\begin{subtable}[h]{1.1\textwidth}
+    \centering
+    \resizebox{0.35\paperheight}{!}{
+    \input{chapter_6/tables/table_2_data_cifar10_2}
+    }
+\end{subtable}
+\label{chap:dis-pra:table:2_data_cifar10}
+\end{table}
+\end{landscape}
+\end{noaddcontents}

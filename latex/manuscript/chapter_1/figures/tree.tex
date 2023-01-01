@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\input{header_standalone}
+
+\begin{document}    
+\begin{tikzpicture}[sibling distance=2cm, level distance=2.2cm]
+
+  \begin{scope}[xshift=0cm, yshift=0cm, scale=0.7, every node/.append style={transform shape}]
+    \node[style={rounded corners, draw, line width=0.05cm, inner sep=0.25cm}] {$x_1 \le 0.59$?}
+    child { node[rounded corners, draw, line width=0.05cm, inner sep=0.25cm] {$x_2 \le 0.63$?} child { node[rounded corners, draw, line width=0.05cm, inner sep=0.25cm, color=red] {$+1$} [->, line width=0.05cm] edge from parent node[left] {Yes} }
+    child { node[rounded corners, draw, line width=0.05cm, inner sep=0.25cm, color=blue] {$-1$} [->, line width=0.05cm] edge from parent node[right] {No} }
+    [->, line width=0.05cm] edge from parent node[left] {Yes} 
+    }
+    child { node[rounded corners, draw, line width=0.05cm, inner sep=0.25cm, color=blue] {$-1$} [->, line width=0.05cm] edge from parent node[right] {No} };
+  \end{scope}
+  
+  \begin{scope}[xshift=4.0cm, yshift=-1.5cm]
+    \node[] at (0.0,0.0) {\includegraphics[scale=0.5]{chapter_1/figures/tree.pdf}};  
+  \end{scope}
+
+\end{tikzpicture}
+\end{document}

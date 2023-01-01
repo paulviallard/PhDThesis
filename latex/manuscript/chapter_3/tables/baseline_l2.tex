@@ -1,0 +1,163 @@
+\begin{table}
+\caption{Test risks for 6 tasks of MNIST and Fashion MNIST datasets for all pairs (Defense,Attack) with the two voters' set $\H$ and $\Hsigned$ using $\ell_2$-norm.
+The results of these tables are computed considering defenses of the literature, \ie, adversarial training using \PGD~or \IFGSM. We also add an adversarial training using \U~for the completeness of comparison between this baseline defense and our algorithm.
+The results in \textbf{bold} correspond to the best values between results for $\H$ and $\Hsigned$.
+}
+\begin{subtable}{0.32\linewidth}
+\newcommand{\sep}{ & }
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll||cc}
+\toprule
+\multicolumn{2}{c}{$\ell_2$-norm, $b=1$} & \multicolumn{2}{c}{$\RiskA_{\dT}(\MVPp)$}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ \\
+\midrule
+--- & ---       &  .005 \sep  .005 \\
+--- & \PGD      & \bf .326 \sep .327 \\
+--- & \IFGSM    & .122 \sep \bf .121 \\
+\U  & ---       &  .005 \sep  .005 \\
+\U  & \PGD      & .191 \sep \bf .190 \\
+\U  & \IFGSM    & \bf .071 \sep .072 \\
+\hdashline
+\PGD & ---      &  .007 \sep  .007 \\
+\PGD & \PGD     & .027 \sep \bf .026 \\
+\PGD & \IFGSM   & .022 \sep \bf .021 \\
+\IFGSM & ---    & \bf .005 \sep .006 \\
+\IFGSM & \PGD   & .041 \sep \bf .035 \\
+\IFGSM & \IFGSM &  .021 \sep  .021 \\
+\bottomrule
+\end{tabular}
+}
+\caption{MNIST 1 vs 7}
+\end{subtable}
+\begin{subtable}{0.32\linewidth}
+\newcommand{\sep}{ & }
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll||cc}
+\toprule
+\multicolumn{2}{c}{$\ell_2$-norm, $b=1$} & \multicolumn{2}{c}{$\RiskA_{\dT}(\MVPp)$}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ \\
+\midrule
+--- & ---        &  .015 \sep  .015 \\
+--- & \PGD       & .692 \sep .692 \\
+--- & \IFGSM     & .464 \sep \bf .462 \\
+\U  & ---        & .024 \sep .024 \\
+\U  & \PGD       & .653 \sep .653 \\
+\U  & \IFGSM     & .441 \sep \bf .438 \\
+\hdashline
+\PGD & ---      & \bf .024 \sep .027 \\
+\PGD & \PGD     & \bf .136 \sep .138 \\
+\PGD & \IFGSM   & \bf .097 \sep .102 \\
+\IFGSM & ---    & \bf .022 \sep .027 \\
+\IFGSM & \PGD   & \bf .166 \sep .186 \\
+\IFGSM & \IFGSM & \bf .113 \sep .124 \\
+\bottomrule
+\end{tabular}
+}
+\caption{MNIST 4 vs 9}
+\end{subtable}
+\begin{subtable}{0.32\linewidth}
+\newcommand{\sep}{ & }
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll||cc}
+\toprule
+\multicolumn{2}{c}{$\ell_2$-norm, $b=1$} & \multicolumn{2}{c}{$\RiskA_{\dT}(\MVPp)$}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ \\
+\midrule
+--- & ---       &  .015 \sep  .015 \\
+--- & \PGD      &  .283 \sep  .283 \\
+--- & \IFGSM    &  .144 \sep  .144 \\
+\U  & ---       &  .017 \sep  .017 \\
+\U  & \PGD      & .220 \sep \bf .219 \\
+\U  & \IFGSM    &  .122 \sep  .122 \\
+\hdashline
+\PGD & ---      & .014 \sep \bf .013 \\
+\PGD & \PGD     & .056 \sep \bf .055 \\
+\PGD & \IFGSM   & .045 \sep \bf .041 \\
+\IFGSM & ---    & \bf .013 \sep .014 \\
+\IFGSM & \PGD   & .077 \sep \bf .070 \\
+\IFGSM & \IFGSM & .053 \sep \bf .047 \\
+\bottomrule
+\end{tabular}
+}
+\caption{MNIST 5 vs 6}
+\end{subtable}
+\begin{subtable}{0.32\linewidth}
+\newcommand{\sep}{ & }
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll||cc}
+\toprule
+\multicolumn{2}{c}{$\ell_2$-norm, $b=1$} & \multicolumn{2}{c}{$\RiskA_{\dT}(\MVPp)$}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ \\
+\midrule
+--- & ---       &  .019 \sep  .019 \\
+--- & \PGD      & .709 \sep \bf .708 \\
+--- & \IFGSM    & .426 \sep \bf .414 \\
+\U  & ---       & \bf .071 \sep .072 \\
+\U  & \PGD      & .531 \sep .531 \\
+\U  & \IFGSM    & .331 \sep \bf .329 \\
+\hdashline
+\PGD & ---      & \bf .034 \sep .036 \\
+\PGD & \PGD     & .107 \sep \bf .103 \\
+\PGD & \IFGSM   & .091 \sep \bf .087 \\
+\IFGSM & ---    & .031 \sep \bf .029 \\
+\IFGSM & \PGD   & .125 \sep \bf .108 \\
+\IFGSM & \IFGSM & .104 \sep \bf .090 \\
+\bottomrule
+\end{tabular}
+}
+\caption{\centering Fashion MNIST\linebreak Sandall vs Ankle Boot}
+\end{subtable}
+\begin{subtable}{0.32\linewidth}
+\newcommand{\sep}{ & }
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll||cc}
+\toprule
+\multicolumn{2}{c}{$\ell_2$-norm, $b=1$} & \multicolumn{2}{c}{$\RiskA_{\dT}(\MVPp)$}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ \\
+\midrule
+--- & ---        & .038 \sep .038 \\
+--- & \PGD       & .286 \sep \bf .285 \\
+--- & \IFGSM     & .188 \sep \bf .186 \\
+\U  & ---        & .041 \sep \bf .039 \\
+\U  & \PGD       & .249 \sep \bf .248 \\
+\U  & \IFGSM     & .197 \sep \bf .192 \\
+\hdashline
+\PGD & ---      & \bf .043 \sep .045 \\
+\PGD & \PGD     & \bf .102 \sep .117 \\
+\PGD & \IFGSM   & \bf .090 \sep .094 \\
+\IFGSM & ---    & \bf .038 \sep .040 \\
+\IFGSM & \PGD   & .120 \sep \bf .106 \\
+\IFGSM & \IFGSM & .092 \sep \bf .080 \\
+\bottomrule
+\end{tabular}
+}
+\caption{\centering Fashion MNIST\linebreak Top vs Pullover}
+\end{subtable}
+\begin{subtable}{0.32\linewidth}
+\newcommand{\sep}{ & }
+\resizebox{0.9\linewidth}{!}{
+\begin{tabular}{ll||cc}
+\toprule
+\multicolumn{2}{c}{$\ell_2$-norm, $b=1$} & \multicolumn{2}{c}{$\RiskA_{\dT}(\MVPp)$}\\[1mm]
+Defense & Attack & $\Hsigned$ & $\H$ \\
+\midrule
+--- & ---       & .122 \sep .122 \\
+--- & \PGD      & .768 \sep \bf .767 \\
+--- & \IFGSM    & .683 \sep \bf .680 \\
+\U  & ---       & .204 \sep .204 \\
+\U  & \PGD      & \bf .753 \sep .754 \\
+\U  & \IFGSM    & .607 \sep \bf .606 \\
+\hdashline
+\PGD & ---      & .182 \sep \bf .178 \\
+\PGD & \PGD     & .453 \sep \bf .412 \\
+\PGD & \IFGSM   & .408 \sep \bf .379 \\
+\IFGSM & ---    & .148 \sep \bf .146 \\
+\IFGSM & \PGD   & \bf .405 \sep .411 \\
+\IFGSM & \IFGSM & .369 \sep \bf .364 \\
+\bottomrule
+\end{tabular}
+}
+\caption{\centering Fashion MNIST\linebreak Coat vs Shirt}
+\end{subtable}
+\label{ap:mv-robustness:tab:l2-baseline}
+\end{table}

@@ -1,0 +1,36 @@
+\documentclass{standalone}
+\input{header_standalone}
+
+\begin{document}
+  \begin{tikzpicture}
+    
+  \begin{scope}[xshift=0cm, yshift=0cm]
+  \node[] at (0.0,0.0) {\includegraphics[scale=0.4]{chapter_1/figures/introduction_1.pdf}};  
+  \end{scope}
+    
+  \begin{scope}[xshift=5.4cm, yshift=0cm]
+  \node[] at (0.0,0.0) {\includegraphics[scale=0.4]{chapter_1/figures/introduction_2.pdf}};  
+  \end{scope}
+  
+  \draw [->,line width=0.05cm] (1.25, 0.0) to (4.15,0);
+  \node[] at (2.7, 0.2) {{\tiny Learning}};
+  
+  \iffalse
+  \begin{scope}[xshift=0.0cm, yshift=0.0cm]
+  \draw[line width=0.1cm] (0.7, 2.83) circle (0.765cm);
+    
+  
+  \draw[] (-1.0, 1.5) node[] {$\X{\times}\Y$};
+  \clip (0,2.8) circle (1.5cm);
+  \draw[step=1cm, rotate=45, black] (0.0, 0.0) grid (4, 4);
+  \begin{scope}[xshift=0.7cm, yshift=-0.72cm]
+  \filldraw [black, line width=0.1mm, fill=red] (0,3.65) circle (1pt) node[scale=0.5, xshift=0.6cm] {$(\x, \y)$};
+  \filldraw [black, line width=0.1mm, fill=blue] (0.3,3.3) circle (1pt) node[scale=0.5, xshift=-0.7cm] {$(\x', \y')$};
+  \node[scale=0.5] at (-0.52, 3.53) {$\Z_i$};
+  \end{scope}
+  \end{scope}
+  \fi
+  
+  
+\end{tikzpicture}
+\end{document}

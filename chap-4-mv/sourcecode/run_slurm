@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH --output=output/%j.out
+##SBATCH -p SHORT,MEDIUM,LONG,LONG2
+##SBATCH -p SHORT,LONG,MEDIUM
+#SBATCH -p LONG,MEDIUM
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH -N 1
+#SBATCH -x calcul-gpu-lahc-2,calcul-bigcpu-lahc-4,calcul-bigcpu-lahc-5
+
+echo $1
+mkdir -p output
+export HTTPS_PROXY=cache.univ-st-etienne.fr:3128
+export HTTP_PROXY=cache.univ-st-etienne.fr:3128
+source /home/vp82364h/Research/ch4-sourcecode/venv/bin/activate
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export PYTHONUNBUFFERED=1
+eval $1

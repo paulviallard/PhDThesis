@@ -1,0 +1,15 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+
+\begin{document}
+\begin{tikzpicture}[]
+
+\node at (0,0) {\includegraphics[scale=1.5]{distribution_prior.pdf}};
+\node at (0,-3.65) {\includegraphics[scale=1.5]{distribution_post.pdf}};
+
+\draw[->, line width=0.05cm] (-9.5, 0.5) to[out=180,in=180] (-9.5, -3.5);
+
+\node[rotate=90, scale=1.5] at (-11.3, -1.5) {Learning};
+
+\end{tikzpicture}
+\end{document}

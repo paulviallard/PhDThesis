@@ -1,0 +1,32 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[thick,scale=1.0, every node/.style={scale=1.0}]
+        
+    \begin{scope}[xshift=0.0cm]
+        \node[inner sep=0pt] at (0, 0) {\includegraphics[scale=0.54]{chapter_3/figures/figure_2.pdf}};
+        \begin{scope}[yshift=1.6cm, xshift=0.0cm]
+            \node[inner sep=0pt] at (0, 0.05) {\includegraphics[width=0.9\textwidth]{chapter_3/figures/figure_2_legend.pdf}};
+            \node[scale=0.7] at (-4.8, 0) {Fashion:COvsSH};
+            \node[scale=0.7] at (-2.5, 0) {Fashion:SAvsBO};
+            \node[scale=0.7] at (-0.25, 0) {Fashion:TOvsPU};
+            \node[scale=0.7] at (1.8, 0) {MNIST:1vs7};
+            \node[scale=0.7] at (3.75, 0) {MNIST:4vs9};
+            \node[scale=0.7] at (5.65, 0) {MNIST:5vs6};
+        \end{scope}
+        \node[inner sep=0pt] at (-4.7, -1.6) {$\Risk_{\dTpert}(\MVQ)$};
+        \node[inner sep=0pt] at (-1.45, -1.6){\footnotesize Bound of \Cref{chap:mv-robustness:eq:seeger-chromatic-T}};  
+        \node[inner sep=0pt] at (1.9, -1.6) {$\RiskM_{\dTpert}(\MVQ)$};
+        \node[inner sep=0pt] at (5.1, -1.6) {\footnotesize Bound of \Cref{chap:mv-robustness:eq:max-mcallester-T}};
+        \node[inner sep=0pt,rotate=90] at (-6.95, 0.0) {$\RiskA_{\dT}(\MVQ)$};
+    \end{scope}
+       \end{tikzpicture}
+    \caption[Visualization of the risk and bound values for ``$\text{Defense}{=}\text{Attack}$'']{
+    Visualization of the risk and bound values for ``$\text{Defense}{=}\text{Attack}$'' when the set of voters is $\Hsigned$.
+   Results obtained with the \PGDU, respectively \IFGSMU, defense are represented by a star $\bigstar$, respectively a circle $\newmoon$ 
+   {\it   (reminder: $\RiskA_{\dT}(\MVQ)$ is computed with a \PGD, respectively \IFGSM, attack).}
+   The dashed line corresponds to bisecting line $y{=}x$. 
+    For $\Risk_{\dTpert}(\MVQ)$ and $\RiskM_{\dTpert}(\MVQ)$, the closer the datasets are to the bisecting line, the more accurate our relaxed risk is compared to the classical adversarial risk $\RiskA_{\dT}(\MVQ)$.
+    For the bounds, the closer the datasets are to the bisecting line, the tighter the bound.
+   }
+    \label{chap:mv-robustness:fig:summarized-results}
+\end{figure}

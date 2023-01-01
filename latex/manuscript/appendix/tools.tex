@@ -1,0 +1,147 @@
+\chapter{Some Mathematical Tools}
+\addtextlist{loe}{Appendix}
+
+\section{\textsc{Jensen}'s Inequality}
+
+\begin{theorem}[\textsc{Jensen}'s Inequality]
+Let $X\in \Xbb$ a random variable following a probability distribution $\Xcal$ with $f: \Xbb\to \R$ a measurable convex function, we have
+\begin{align*}
+    f\LP\EE_{X\sim\Xcal}\LB X\RB\RP \le \EE_{X\sim\Xcal}\Big[ f\LP X\RP \Big].
+\end{align*}
+\label{ap:tools:theorem:jensen}
+\end{theorem}
+\begin{noaddcontents}\begin{proof}
+Since $f()$ is a convex function, the following inequality holds, \ie, we have
+\begin{align*}
+\forall X'\in\Xbb,\quad a\LP X' - \EE_{X\sim\Xcal}\LB X\RB\RP \le f(X') - f\LP\EE_{X\sim\Xcal}\LB X\RB\RP,
+\end{align*}
+where $a$ is the tangent's slope.
+By taking the expectation to both sides of the inequality, we have
+\begin{align*}
+\underbrace{a\LP \EE_{X\sim\Xcal}\LB X\RB - \EE_{X\sim\Xcal}\LB X\RB\RP}_{\displaystyle = 0} \le \EE_{X\sim\Xcal}\LB f(X)\RB - f\LP\EE_{X\sim\Xcal}\LB X\RB\RP.
+\end{align*}
+Hence, by rearranging the terms, we prove the claimed result.
+\end{proof}\end{noaddcontents}
+
+\section{\textsc{Markov}'s Inequality}
+\label{ap:tools:sec:markov}
+
+\begin{theorem}[\textsc{Markov}'s Inequality] Let $X\in \Xbb$ a non-negative random variable  following a probability distribution $\Xcal$ and $\threshold>0$, we have
+\begin{align*}
+    \PP_{X\sim\Xcal}\LB X\ge \threshold\RB \le \frac{\EE_{X\sim\Xcal}\LB X\RB}{\threshold}.
+\end{align*}
+\label{ap:tools:theorem:first-markov}
+\end{theorem}
+
+\begin{noaddcontents}\begin{proof}
+First of all, remark that we have the following inequality for any $X\in\Xbb$
+\begin{align}
+    \threshold\indic[X \ge \threshold] \;\le\; X\indic[X \ge \threshold] \;\le\; X.
+    \label{ap:tools:eq:proof-general-markov}
+\end{align}
+Indeed, on the one hand, if $X<\threshold$, $\indic[X \ge \threshold]=0$, the inequality holds trivially.
+On the other hand, if $X\ge\threshold$, $\indic[X \ge \threshold]=1$ and the inequality becomes $\threshold\le X$, which is true.
+By taking the expectation of \Cref{ap:tools:eq:proof-general-markov}, we have
+\begin{align*}
+    \EE_{X\sim\Xcal}\Big[\threshold\indic[X \ge \threshold]\Big] \le \EE_{X\sim\Xcal}\Big[ X\Big].
+\end{align*}
+From the fact that the expectation of a constant is the constant and by definition of the probability, we have
+\begin{align*}
+    \threshold\PP_{X\sim\Xcal}\LB X \ge \threshold\RB \le \EE_{X\sim\Xcal}\Big[ X\Big] \quad\iff\quad \PP_{X\sim\Xcal}\LB X \ge \threshold\RB \le \frac{\EE_{X\sim\Xcal}\LB X\RB}{\threshold},
+\end{align*}
+which is the desired result.
+\end{proof}\end{noaddcontents}
+
+\section{2nd Order \textsc{Markov}'s Inequality}
+
+\begin{theorem}[2nd Order \textsc{Markov}'s Inequality]
+Let $X$ a non-negative random variable  following a probability distribution $\Xcal$ and $\threshold>0$, we have
+\begin{align*}
+    \PP_{X\sim\Xcal}\LB X\ge \threshold\RB \le \frac{\EE_{X\sim\Xcal}\LB X^2\RB}{\threshold^2}.
+\end{align*}
+\label{ap:tools:theorem:snd-markov}
+\end{theorem}
+\begin{noaddcontents}\begin{proof}
+We apply \textsc{Markov}'s inequality~(\Cref{ap:tools:theorem:first-markov}) to have
+\begin{align*}
+\PP_{X\sim\Xcal}\LB X^2\ge \threshold^2\RB \le \frac{\EE_{X\sim\Xcal}\LB X^2\RB}{\threshold^2}.
+\end{align*}
+Moreover, since $\indic\LB X\ge \threshold\RB = \indic\LB X^2\ge \threshold^2 \RB$, we have
+\begin{align*}
+    \PP_{X\sim\Xcal}\LB X\ge \threshold\RB = \PP_{X\sim\Xcal}\LB X^2\ge \threshold^2\RB,
+\end{align*}
+which proves the desired result.
+\end{proof}\end{noaddcontents}
+
+\section{\textsc{Chebyshev}-\textsc{Cantelli} Inequality}
+
+\begin{theorem}[\textsc{Chebyshev}-\textsc{Cantelli} Inequality]Let $X$ a random variable  following a probability distribution $\Xcal$ and $\threshold>0$, we have
+\begin{align*}
+    \PP_{X\sim\Xcal}\LB X-\EE_{X'\sim\Xcal}X' \ge \threshold\RB \le \frac{\VAR_{X'\sim\Xcal}X'}{\VAR_{X'\sim\Xcal}X'+\threshold^2}.
+\end{align*}
+\label{ap:tools:theorem:cantelli}
+\end{theorem}
+\begin{noaddcontents}\begin{proof}
+First of all, remark that we have
+\begin{align}
+    \PP_{X\sim\Xcal}\LB X-\EE_{X'\sim\Xcal}X' \ge \threshold\RB &= \PP_{X\sim\Xcal}\LB X-\EE_{X'\sim\Xcal}X' + \frac{\VAR_{X'\sim\Xcal}X'}{\threshold} \ge \threshold + \frac{\VAR_{X'\sim\Xcal}X'}{\threshold}\RB\nonumber\\
+    &\le \PP_{X\sim\Xcal}\LB \LB X-\EE_{X'\sim\Xcal}X' + \frac{\VAR_{X'\sim\Xcal}X'}{\threshold}\RB^2 \ge \LB\threshold + \frac{\VAR_{X'\sim\Xcal}X'}{\threshold}\RB^2\RB,\label{ap:tools:eq:proof-cantelli}
+\end{align}
+where $\VAR_{X\sim\Xcal}X$ is the variance of the random variable $X\sim\Xcal$.
+From \Cref{ap:tools:eq:proof-cantelli} and \textsc{Markov}'s Inequality~(\Cref{ap:tools:theorem:first-markov}), we can deduce that 
+\begin{align*}
+    \PP_{X\sim\Xcal}\LB X-\EE_{X'\sim\Xcal}X' \ge \threshold\RB &\le \frac{\EE_{X\sim\Xcal}\LB X - {\textstyle\EE_{X'\sim\Xcal}X'} + \frac{\VAR_{X'\sim\Xcal}X'}{\threshold}\RB^2}{\LB\threshold + \frac{\VAR_{X'\sim\Xcal}X'}{\threshold}\RB^2}\\
+    &= \frac{\VAR_{X'\sim\Xcal}X'}{\VAR_{X'\sim\Xcal}X'+\threshold^2}.
+\end{align*}
+\end{proof}\end{noaddcontents}
+
+
+\section{\textsc{Hölder}'s Inequality}
+
+In order to prove \textsc{Hölder}'s inequality, we first prove the following lemma.
+
+\begin{lemma}[\textsc{Young}'s Inequality]
+For any $\alpha>1$ and $\beta>1$ such that $\frac{1}{\alpha}+\frac{1}{\beta}=1$, for any $a\ge0$ and $b\ge 0$, we have
+\begin{align*}
+    ab \le \frac{a^{\alpha}}{\alpha} + \frac{b^{\beta}}{\beta}.
+\end{align*}
+\label{ap:tools:lemma:young}
+\end{lemma}
+\begin{noaddcontents}\begin{proof}
+We first develop $\ln\LB ab\RB$ and we apply \textsc{Jensen}'s inequality (\Cref{ap:tools:theorem:jensen}) since the logarithm is concave and $\frac{1}{\alpha}+\frac{1}{\beta}=1$.
+Indeed, we have
+\begin{align*}
+    \ln\LB ab\RB = \ln a + \ln b = \frac{\alpha}{\alpha}\ln a + \frac{\beta}{\beta}\ln b = \frac{\ln a^{\alpha}}{\alpha} + \frac{\ln b^{\beta}}{\beta} \le \ln\LB \frac{a^{\alpha}}{\alpha} + \frac{b^{\beta}}{\beta} \RB.
+\end{align*}
+Then, we take the exponential to both sides of the inequality and we are done.
+\end{proof}\end{noaddcontents}
+
+We are now ready to prove \textsc{Hölder}'s inequality.
+
+\begin{theorem}[\textsc{Hölder}'s Inequality]
+\label{ap:tools:theorem:holder}
+For any measurable function $f()$ and $g()$, for any $\alpha>1$ and $\beta>1$ such that $\frac{1}{\alpha}+\frac{1}{\beta}=1$, we have
+\begin{align*}
+    \EE_{X\sim\Xcal}\LN f(X)g(X)\RN \le \LB\EE_{X\sim\Xcal}\LN f(X)\RN^\alpha\RB^{\frac{1}{\alpha}}\LB\EE_{X\sim\Xcal}\LN g(X)\RN^\beta\RB^{\frac{1}{\beta}}.
+\end{align*}
+\end{theorem}
+\begin{noaddcontents}\begin{proof}
+For convenience of notation, let $\|f\|_\alpha=\LB\EE_{X\sim\Xcal}\LN f(X)\RN^\alpha\RB^{\frac{1}{\alpha}}$ and $\|g\|_{\beta} = \LB\EE_{X\sim\Xcal}\LN g(X)\RN^\beta\RB^{\frac{1}{\beta}}$.
+If $\|f\|_\alpha=0$ or $\|g\|_\beta=0$, then $\EE_{X\sim\Xcal}\LN f(X)g(X)\RN=0$, hence, the inequality holds in this case.
+Then for $\|f\|_\alpha>0$ and $\|g\|_\beta>0$, we upper-bound the term $\frac{\LN f(X)g(X)\RN}{\|f\|_\alpha\|g\|_{\beta}}$ with \textsc{Young}'s inequality (\Cref{ap:tools:lemma:young}), \ie, we have
+\begin{align*}
+    \frac{\LN f(X)g(X)\RN}{\|f\|_\alpha\|g\|_{\beta}} \le \frac{\LN f(X)\RN^\alpha}{\alpha \|f\|_\alpha^\alpha} + \frac{\LN f(X)\RN^\beta}{\beta \|f\|_\beta^\beta}.
+\end{align*}
+By taking the expectation \wrt $X\sim\Xcal$, we have
+\begin{align*}
+    \frac{\EE_{X\sim\Xcal}\LN f(X)g(X)\RN}{\|f\|_\alpha\|g\|_{\beta}} &\le \frac{\EE_{X\sim\Xcal}\LN f(X)\RN^\alpha}{\alpha \|f\|_\alpha^\alpha} + \frac{\EE_{X\sim\Xcal}\LN f(X)\RN^\beta}{\beta \|f\|_\beta^\beta}\\
+    &= \frac{\|f\|_\alpha^\alpha}{\alpha \|f\|_\alpha^\alpha} + \frac{\|f\|_\beta^\beta}{\beta \|f\|_\beta^\beta}\\
+    &= \frac{1}{\alpha} + \frac{1}{\beta}\\
+    &= 1.
+\end{align*}
+This concludes the proof since 
+\begin{align*}
+\frac{\EE_{X\sim\Xcal}\LN f(X)g(X)\RN}{\|f\|_\alpha\|g\|_{\beta}} \le 1 \iff \EE_{X\sim\Xcal}\LN f(X)g(X)\RN \le \|f\|_\alpha\|g\|_\beta.
+\end{align*}
+\end{proof}\end{noaddcontents}
+

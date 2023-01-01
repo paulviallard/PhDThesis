@@ -1,0 +1,14 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \node[fill=red, inner sep=0.1cm] at (0.0,0) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    \node[inner sep=0] at (1.2,0) {\scalebox{2.0}{$ = ($}};
+    \node[] at (2.2,0) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    \node[] at (4.8,0) {\scalebox{2.0}{$, \red{\bf cat})\in \X\times\Y$}};
+    
+\end{tikzpicture}
+\end{document}

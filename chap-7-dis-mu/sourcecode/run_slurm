@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH --output=output/%j.out
+#SBATCH -p GPU,GPU-DEPINFO
+#SBATCH --gres=gpu:1
+#SBATCH -n 1
+#SBATCH -c 1
+#SBATCH -N 1
+#SBATCH --mem=20G
+#SBATCH -x calcul-gpu-lahc-2,calcul-bigcpu-lahc-4,calcul-bigcpu-lahc-5
+
+echo $1
+mkdir -p output
+source /home_expes/tools/python/Python-3.8.7_gpu/bin/activate
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export PYTHONUNBUFFERED=1
+eval $1

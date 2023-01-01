@@ -1,0 +1,199 @@
+\chapter*{Preamble}
+\addcontentsline{toc}{chapter}{Preamble}\mtcaddchapter
+\label{chap:prelim}
+
+\addtextlist{lof}{Preamble}
+
+\section*{Introduction}
+
+Statistical Machine Learning is a subfield of artificial intelligence at the intersection of computer science, statistics, and optimization that consists of a set of learning methods that learn mathematical models\footnote{The machine learning models are also referred to as hypotheses in statistical learning theory.} automatically to solve a task from a statistical perspective.
+We refer the reader to the textbook of \citet{RussellNorvig2020} for a general introduction to artificial intelligence and to \citet{Bishop2007}, \citet{MohriRostamizadehTalwalkar2012}, or \citet{ShalevShwartzBenDavid2014} for an introduction to machine learning.\\
+
+Various tasks can be solved through these methods, such as image recognition, medical diagnosis, fraud detection, recommendation system, etc.
+These machine learning methods aim to find a model $\h$ belonging to a set $\H$ that solves a given task.
+These method assume that we have some data, \ie, a set of examples, that are sufficiently representative of the task.
+Each example obtained from the task is generally composed of an input represented by some features and its corresponding output.
+Different types of output can be considered: the supervised regression setting uses real-valued output, while the supervised classification setting assumes that the outputs are categories (\aka classes or labels). 
+This thesis stands in the supervised classification setting.
+The supervised classification methods learn a model, called a classifier, that separates/classifies the inputs into different categories.\footnote{When the outputs are absent from the examples, unsupervised learning methods learn models that group (\ie cluster) together similar inputs.}
+For instance, in \Cref{chap:prelim:fig:setting}, we illustrate an image classification task: it consists in predicting if an image contains a horse or a cat.
+More precisely, the input is an image, and the label is either ``cat'' (the red image) or ``horse'' (the blue image).
+From the examples in the data, the learned model $\h$ (the black line) separates the red images from the blue images: the classifier correctly predicts all the images from the learning sample.\\
+
+\begin{figure}
+  \centering
+  \includestandalone[width=1.0\textwidth]{introduction/figures/supervised}
+  \caption[Illustration of the Supervised Classification Setting in Machine Learning]{
+  Illustration of the supervised classification setting in machine learning.
+  Given some labeled examples (\ie, the image and its associated category), a model $\h\in\H$ is learned, and then, once learned, it can be used to classify, possibly new examples.
+  The images in the blue area are classified as ``horse'' while the white area corresponds to the images classified as ``cat''.
+  }
+  \label{chap:prelim:fig:setting}
+\end{figure}
+
+One way to assess if a model performs well on the examples is to compute the probability that the model misclassifies an example in the available data; this quantity is called the {\it empirical risk}.
+However, the machine learning model may learn by heart the examples with an empirical risk at nearly $0$.
+In this case, the model may be completely inefficient on new examples from the task, \ie, unseen data; we say that the model {\it overfits} the data.
+To characterize if a model performs well on unseen examples from the task, we can define the notion of {\it true risk}.
+This notion is the probability that the model misclassifies an example from the task (represented by an unknown distribution).
+To assess if the empirical risk is representative of the true risk for a given model $h$, we are interested in the {\it generalization gap} defined as
+\begin{align*}
+  \text{{\it Generalization Gap($\h$)}} = \Big| \text{{\it True Risk($\h$)}} - \text{{\it Empirical Risk($\h$)}}\Big|.
+\end{align*}
+
+The model overfits the data when the generalization gap is high (close to $1$ in the worst case) while the empirical risk is close to $0$.
+On the contrary, when the gap is close to $0$, the empirical risk is a good approximation of the true risk.
+Hence, to obtain a model that performs well on a task, the generalization gap must be close to $0$ and the empirical risk close to $0$ as well.
+However, the gap is not computable because of the true risk since it relies on an unknown quantity: the underlying distribution of the task.
+Then, another strategy to assess the quality of the model is to consider computable upper bounds on the generalization gap called generalization bounds.
+The form of the first generalization bound, introduced by \citet{VapnikChervonenkis1968,VapnikChervonenkis1971,VapnikChervonenkis1974}, has the following form:
+\begin{align*}
+    &\text{{\it For all model $\h \in \H$,}}\\
+    &\Big| \text{{\it True Risk($\h$)}} - \text{{\it Empirical Risk($\h$)}}\Big| \le \text{{\it Generalization Bound($\H$)}}.
+\end{align*}
+
+The generalization bounds are {\it probabilistic}, meaning that with high probability (over the examples sampled from the unknown distribution), the bound holds.
+They generally depend on the number of examples and a complexity term.
+This complexity term determines the potential of a model to overfit: the higher the complexity, the more plausible the model overfits the data.
+Ideally, the upper bound decreases when the number of examples increases for a given finite fixed complexity term.
+After the seminal work of \citet{VapnikChervonenkis1968,VapnikChervonenkis1971,VapnikChervonenkis1974}, generalization bounds have been extended in several directions~\citep[see \eg, ][]{McAllester1998,BartlettMendelson2002,BousquetElisseeff2002}.
+By rearranging the terms, a bound (that is computable) on the true risk (uncomputable) can be deduced for all model $\h\in\H$:
+\begin{align}
+    \text{{\it True Risk($\h$)}} \le \text{{\it Empirical Risk($\h$)}}+\text{{\it Generalization Bound($\H$)}}.\label{intro:eq:bound}
+\end{align}
+This leads to a central point of this thesis: the possibility to derive algorithms minimizing a generalization bound, \eg, the right hand size of \Cref{intro:eq:bound}.
+Algorithms minimizing a generalization bound are called self-bounding algorithms~\citep{Freund1998}.
+The advantage of minimizing a generalization bound is the capacity to directly control or have at least an influence on the evolution of the true risk.
+In particular, as a side effect, the minimization of the generalization bound allows us to control the overfitting phenomenon better.\\
+
+One particular type of generalization bounds in which we are specifically interested comes from the PAC-Bayesian framework~\citep{ShaweTaylorWilliamson1997,McAllester1998}.
+This framework assumes that each model $\h\in\H$ is associated with a positive weight $\Q(\h)$ that forms a probability distribution over $\H$ called the {\it posterior distribution} $\Q$.
+Based on this assumption, the PAC-Bayesian generalization bounds allow us to upper-bound the expected generalization gap; the form of the bounds is defined as
+\begin{align*}
+    &\underset{\text{{\it $\h$ sampled from $\Q$}}}{\text{{\it Expectation}}}\Bigg[ \Big| \text{{\it True Risk($\h$)}} - \text{{\it Empirical Risk($\h$)}}\Big| \Bigg] \le \text{{\it Generalization Bound($\Q$)}}.
+\end{align*}
+
+This framework allows to upper-bound the risk of a {\it stochastic} model which, for each input $\x$, {\it (i)} samples a new model $\h\in\H$ from $\Q$ and {\it (ii)} predicts the output of $\x$ with $\h(\x)$.
+Actually, the risk of the stochastic model can be linked to the risk of a model in which we are particularly interested in this thesis: the majority vote; we provide an overview of such a model in \Cref{chap:prelim:fig:mv-pred}.
+The majority vote has a long history in science: \citet{Condorcet1785} started to explore mathematically voting systems.
+Famous machine learning models can be seen as a majority vote, such as linear classifiers, Support Vector Machine~\citep{GraepelHerbrichShaweTaylor2005}, $k$-Nearest Neighbors~\citep{BelletHabrardMorvantSebban2014}, or neural networks vote~\citep{KawaguchiPackKaelblingBengio2017, ViallardGermainHabrardMorvant2019}.
+Some approaches that learn majority votes belong to the ensemble methods~\citep{Dietterich2000} aiming to combine supervised classifiers (called voters) to create an accurate model.
+For instance, bagging~\citep{Breiman1996}, random forest~\citep{Breiman2001} and boosting~\citep{FreundSchapire1996} are famous examples of ensemble methods.
+In these methods, the voters' decisions are combined to obtain a better decision compared to the individual voters' decisions (which can be weak).
+\begin{figure}
+  \centering
+  \includestandalone[width=0.8\textwidth]{introduction/figures/mv_pred}
+  \caption[Example of the Majority Vote's Prediction]{
+Example of the majority vote's prediction: given an image, each voter outputs a label (``cat'' or ``horse''), and the majority vote gathers the results to output the majority label.   
+  }
+    \label{chap:prelim:fig:mv-pred}
+\end{figure}
+An important notion when combining different classifiers is the notion of diversity~\citep{Dietterich2000,Kuncheva2014}.
+Indeed, when voters are {\it weak} and perform a bit better than random as in boosting~\citep{FreundSchapire1996}, sufficiently diverse voters may improve the accuracy of the majority vote.
+We give in \Cref{chap:prelim:fig:mv} an example of the diversity's importance.
+The combination can be done in very different ways depending on the methods: in bagging~\citep{Breiman1996} and random forest~\citep{Breiman2001}, the voters' predictions are only averaged while boosting~\citep{FreundSchapire1996} performs a weighted average.
+In this thesis, we consider a convex combination of the voters where each voter $\h$ is associated with the weight $\Q(\h)$ encoding its importance in the majority vote.
+\begin{figure}
+    \centering
+    \includestandalone[width=1.0\textwidth]{introduction/figures/mv}
+    \caption[Example of a Majority Vote with Three Voters]{
+    Example of a majority vote with three voters on the classification horse/cat classification task presented before.
+    Each of the three voters makes some mistakes in the data.
+    However, when the majority rule combines the voters, the final vote classifies all the data correctly.
+    It is mainly because the three voters are diverse: they do not make the same mistakes, while the combination corrects the individual errors.
+    }
+    \label{chap:prelim:fig:mv}
+\end{figure}
+More formally, in the binary classification setting, each model $\h$ (\ie, voter) belonging to $\H$ predicts either the class $-1$ or the class $+1$.
+A weighted majority vote over the voters in $\H$ applied on a given input $\x$ is defined as:
+\begin{align*}
+    \sign\LB\sum_{\h\in\H} \Q(\h) \h(\x)\RB,
+\end{align*}
+where $\sign\LB a\RB=-1$ if $a<0$ and $\sign\LB a\RB=+1$ otherwise.
+
+However, one drawback of the PAC-Bayesian theory is that it is not possible to bound the generalization gap of only one model $\h$ in $\H$.
+Hopefully, the {\it disintegrated} PAC-Bayesian bounds -- introduced by~\citet{Catoni2007,BlanchardFleuret2007} -- overcome this drawback.
+The bounds have the following form: 
+
+\begin{align*}
+    &\text{{\it With high probability over the model $\h$ sampled from the posterior $\Q$,}}\\
+    &\Big| \text{{\it True Risk($\h$)}} - \text{{\it Empirical Risk($\h$)}}\Big| \le \text{{\it Generalization Bound($\Q$, $\h$)}}.
+\end{align*}
+
+They allow us to obtain a bound on the generalization gap for a unique model $\h$ (sampled from the posterior distribution) that holds with high probability and which will serve as a basis for some contributions of this thesis.
+
+\section*{Long Story Short}
+
+\paragraph{Motivations of this thesis.}
+As discussed above, generalization bounds can be used to assess when machine learning models generalize, \ie, when the empirical risk is representative of the true risk. 
+In this context, the PAC-Bayesian theory is adapted to upper-bound the generalization gap of models based on the majority vote or the stochastic classifier. 
+However, in the PAC-Bayesian literature, few works propose to minimize a generalization bound to learn a machine learning model, such as, \citet{MasegosaLorenzenIgelSeldin2020}.
+In the first series of contributions of this thesis, we develop new self-bounding algorithms for three settings.
+Firstly, we develop a new adversarial robustness setting tailored for the PAC-Bayesian and robustify majority votes after proving generalization bounds.
+Secondly, we minimize three particular PAC-Bayesian bounds on the majority vote's risk that was considered difficult to optimize~\citep{MasegosaLorenzenIgelSeldin2020}.
+Finally, we introduce a stochastic version of the majority vote, \ie, where the weights are assumed to be sampled from a probability distribution.
+The stochastic majority vote allows one to derive guarantees on majority-vote-based models. 
+However, upper-bounding the generalization gap of a single classifier with the PAC-Bayesian theory is tedious and generally applicable only to certain classifiers such as the majority vote \citep[see \eg,][]{LangfordShaweTaylor2002,GermainLacasseLavioletteMarchand2009,LetarteGermainGuedjLaviolette2019}.
+In our second series of contributions, we propose to overcome this drawback by considering the notion of disintegrated PAC-Bayesian bounds.
+Such bounds are able to provide generalization bounds for a single model.
+By leveraging this framework, we provide new bounds that are easily optimizable and allow us to derive new self-bounding algorithms.
+In our last contribution, we make use of this framework to develop a general way for incorporating arbitrary complexity measures in generalization bounds.
+
+\paragraph{Outline of this thesis.} This thesis is composed of three parts.
+
+\Cref{part:background} is dedicated to the introduction of the field of statistical learning theory and the PAC-Bayesian theory.
+
+\begin{enumerate}[label={\it (\roman*)}]
+    \item \Cref{chap:intro} presents the general setting of this thesis. 
+We introduce the notion of learning and solving a task with a statistical machine learning algorithm.
+Then, we introduce some machine learning models and some methods to learn them.
+Afterwards, we recall several classical generalization bounds, notably from \citet{VapnikChervonenkis1974}, that assess the quality of the obtained model for the chosen task.  
+
+    \item In \Cref{chap:pac-bayes}, we mainly recall some results from the PAC-Bayesian framework.
+    After a reminder about the majority vote, we recall different PAC-Bayesian bounds, which will serve as a basis for deriving new results in \Cref{part:contrib-pac-bayes}.
+    We also remind the first {\it disintegrated} PAC-Bayesian bounds, which are useful when we are interested in one model sampled from the posterior distribution.
+\end{enumerate}
+
+Based on the PAC-Bayesian theory, \Cref{part:contrib-pac-bayes} deals with our first series of contributions focusing on the derivation of self-bounding algorithms~\citep{Freund1998} that minimize PAC-Bayesian bounds to obtain a majority vote with guarantees on the true risk.
+
+\begin{enumerate}[label={\it (\roman*)}]
+    \item \Cref{chap:mv-robustness} stands in the adversarial robustness setting~\citep{GoodfellowShlensSzegedy2015}: the goal is to make the majority vote robust to small changes/perturbations in the input.
+    This setting is in contrast with the classical setting in machine learning, where no perturbations are applied to the input.
+    To the best of our knowledge, we are the first to {\it (i)} formalize the robustness setting in the PAC-Bayesian framework and {\it (ii)} assess the robustness of the majority vote with this framework.
+    We also derive a self-bounding algorithm that minimizes our new generalization bounds.
+    
+    \item  In \Cref{chap:mv}, we come back to the classical supervised classification setting.
+    We introduce the minimization of PAC-Bayesian bounds on the majority vote risk's surrogate called the C-Bound (recalled in \Cref{chap:pac-bayes}).
+    Unlike the algorithms of the PAC-Bayesian literature, our learning algorithms better consider the voters' correlations.
+
+  \item However, the self-bounding algorithms (including ours) do not fully exploit the diversity of the voters in general. 
+  Hence, after introducing the {\it stochastic} majority vote in \Cref{chap:mv-sto}, we develop a self-bounding learning algorithm to minimize the risk.
+  It allows us to optimize the expected risk directly without requiring the use of a surrogate of the majority vote's risk.
+\end{enumerate}
+
+The PAC-Bayesian theory, as considered in \Cref{part:contrib-pac-bayes}, has a major drawback.
+While the majority vote's generalization abilities can be analyzed through the PAC-Bayesian theory, it becomes more difficult to analyze the generalization of a single voter chosen randomly according to the weights.
+Thanks to the disintegrated bounds (recalled in \Cref{chap:pac-bayes}), we present two contributions in \Cref{part:contrib-disintegrated} that introduce self-bounding algorithms to choose a {\it single} classifier.
+
+\begin{enumerate}[label={\it (\roman*)}]
+  \item The disintegrated bounds of the literature are difficult to optimize (and to obtain self-bounding algorithms). 
+  Hence, in \Cref{chap:dis-pra}, we {\it (i)} derive new disintegrated PAC-Bayesian bounds (easier to optimize) and {\it (ii)} provide the first empirical study of self-bounding algorithms using these bounds.
+  We also instantiate the bounds with neural networks and compare them with the PAC-Bayesian considered, \eg, by \citet{DziugaiteRoy2017,ZhouVeitchAusternAdamsOrbanz2019,PerezOrtizRivasplataShaweTaylorSzepesvari2021}.
+
+  \item \Cref{chap:dis-mu} offers a new viewpoint on generalization bounds by leveraging the disintegrated PAC-Bayesian framework.
+  To the best of our knowledge, \Cref{chap:dis-mu} introduces -- for the first time -- a way to include arbitrary complexity measures in generalization bounds.
+  This work is another step toward the practical use of generalization bounds since the users can now include their complexity measures.
+\end{enumerate}
+
+Finally, \Cref{chap:conclu} presents some perspectives and future works.
+Note that, for the sake of completeness and clarity, we provide in Appendix all the proofs; we give a hyperlink to the proof for each theorem, corollary, and proposition. 
+Moreover, in order to reproduce the experiments and the figures, we provide the different source codes developed in the context of this thesis at
+\begin{center}
+  \href{https://github.com/paulviallard/PhDThesis}{\tt https://github.com/paulviallard/PhDThesis}.
+\end{center}
+
+\section*{Context of this thesis}
+
+This thesis was carried out in the Data Intelligence team of the laboratoire Hubert Curien: a joint research unit (UMR 5516) affiliated with the French National Center for Scientific Research (CNRS); the Institut d'Optique Graduate School, and the Université Jean Monnet in Saint-Etienne, France.
+The french ANR (Agence Nationale de la Recherche) financially supported this thesis through the project APRIORI (A PAC-Bayesian RepresentatIOn LeaRnIng Perspective) {\sc ANR-18-CE23-0015}.
+This research project was also the subject of a collaboration with Université Laval, Québec city, Canada.

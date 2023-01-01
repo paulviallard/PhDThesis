@@ -1,0 +1,20 @@
+\documentclass[]{standalone}
+\input{slides_header_standalone}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\begin{tikzpicture}
+    
+    \draw[draw=black, line width=0.05cm] (0,0) rectangle (4,2);
+    \node[inner sep=0] at (2,1.2) {\includegraphics[scale=0.3]{distribution.pdf}};
+    \node[inner sep=0] at (2,0.3) {Probability Distribution $\D$};
+    \node[inner sep=0,scale=1.4] at (2,-0.5) {$(\x,\y)\sim\D$};
+    
+    \draw[->, line width=0.1cm] (4,1) -- (5,1);
+    \node[fill=red, inner sep=0.1cm] at (5.5,1) {\includegraphics[scale=0.05]{supervised_cat_1.png}};
+    \node[inner sep=0, scale=2.0, opacity=0] at (6.5,1) {$\S\sim\D^\m$};
+
+    
+\end{tikzpicture}
+\end{document}

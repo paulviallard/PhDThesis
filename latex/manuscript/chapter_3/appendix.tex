@@ -1,0 +1,278 @@
+\chapter{Appendix of Chapter~\ref{chap:mv-robustness}}
+\label{ap:mv-robustness}
+
+\minitoc
+
+\begin{noaddcontents}
+\section{Proof of \Cref{chap:mv-robustness:proposition:risks}}
+\label{ap:mv-robustness:sec:proof-risks}
+
+\proprisks*
+\begin{proof} First, we prove $\RiskM_{\Dpert^{1}}(\MVQ){=}\Risk_{\Dpert}(\MVQ)$. We have
+\begin{align*}
+    \RiskM_{\Dpert^{1}}(\MVQ) &= 1- \PP_{((\x,\y), \Epert)\sim\Dpert^{1}} \LP \forall \epsilon\in\Epert, \MVQ(\x+\epsilon) = \y \RP\\
+    &= 1- \PP_{((\x,\y), \Epert)\sim\Dpert^{1}} \LP \forall \epsilon\in\{\epsilon_1\}, \MVQ(\x+\epsilon) = \y \RP\\
+    &= 1- \PP_{((\x,\y), \Epert)\sim\Dpert^{1}} \LP \MVQ(\x+\epsilon_1) = \y \RP = \Risk_{\Dpert}(\MVQ).
+\end{align*}
+\looseness=-1
+Then, we prove the inequality $\RiskM_{\Dpert^{n'}}(\MVQ) \le \RiskM_{\Dpert^{n}}(\MVQ)$ from the fact that the indicator function $\indic\LB\cdot\RB$ is upper-bounded by $1$. Indeed, from \Cref{chap:mv-robustness:def:average_max_risk} we have 
+\allowdisplaybreaks
+\begin{align*}
+    1-\RiskM_{\Dpert^{n}}(\MVQ) &= \EE_{(\x,\y)\sim\D} \ \EE_{\Epert\sim\DX^{n}} \indic\LB\forall\epsilon\in\Epert, \MVQ(\x+\epsilon) = \y\RB\\
+    &= \EE_{(\x,\y)\sim\D}\LB \prod_{i=1}^{{n}}\ \EE_{\epsilon_i\sim\DX}\indic\LB\MVQ(\x+\epsilon_i) = \y\RB\RB\\
+    &\le \EE_{(\x,\y)\sim\D}\LB \prod_{i=1}^{{n'}}\ \EE_{\epsilon_i\sim\DX}\indic\LB\MVQ(\x+\epsilon_i) = \y\RB\RB\\
+    &= \EE_{(\x,\y)\sim\D}\ \EE_{\Epert'\sim\DX^{n'}} \indic\LB\forall\epsilon\in\Epert', \MVQ(\x+\epsilon) = \y\RB\\
+    &= 1-\RiskM_{\Dpert^{n'}}(\MVQ).
+\end{align*}
+Lastly, to prove the right-most inequality, we have to use the fact that the expectation over the set $\Xpert$ is bounded by the maximum over the set $\Xpert$.  
+We have
+\begin{align*}
+    \RiskM_{\Dpert^{{n}}}(\MVQ)
+    &= \EE_{(\x,\y)\sim\D} \EE_{\epsilon_1\sim\DX} {\ldots}\EE_{\ \epsilon_{n}\sim\DX}\indic\LB\exists\epsilon{\in}\{\epsilon_1,\ldots, \epsilon_{n}\}, \MVQ(\x+\epsilon)\ne \y\RB\\
+    &\le \EE_{(\x,\y)\sim\D} \max_{\epsilon_1\in\Xpert}\ldots\max_{\epsilon_{n}\in\Xpert}\indic \LB\exists\epsilon\in\{\epsilon_1,{\ldots,}\epsilon_{n}\}, \MVQ(\x+\epsilon)\ne \y\RB\\
+    &= \EE_{(\x,\y)\sim\D} \max_{\epsilon_1\in\Xpert}{\ldots} \max_{\epsilon_{{n}-1}\in\Xpert} \indic \LB\exists\epsilon\in\{\epsilon_1,\ldots, \epsilon^*\}, \MVQ(\x+\epsilon)\ne \y\RB\\
+    &= \EE_{(\x,\y)\sim\D} \indic \LB \MVQ(\x+\epsilon^*)\ne \y\RB\\
+    &= \EE_{(\x,\y)\sim\D} \max_{\epsilon\in\Xpert}\indic \LB \MVQ(\x+\epsilon)\ne \y\RB\ =\  \ \RiskA_{\D}(\MVQ).
+\end{align*}
+Merging the three equations proves the claim.
+\end{proof}
+
+\section{Proof of \Cref{chap:mv-robustness:proposition:avg-worst-risk}}
+\label{ap:mv-robustness:sec:proof-avg-worst-risk}
+
+In this section, we provide the proof of \Cref{chap:mv-robustness:proposition:avg-worst-risk} that relies on \Cref{chap:mv-robustness:lemma:Delta,chap:mv-robustness:lemma:Pi} which are also described and proved.
+\Cref{chap:mv-robustness:lemma:Delta} shows that $\Risk_{\Dpert}(\MVQ)$ equals $\Risk_{\Gamma}(\MVQ)$.
+
+\begin{lemma}
+For any distribution $\Dpert$ on $(\X{\times}\Y){\times}\Xpert$ and its associated distribution $\Gamma$, for any posterior $\Q$ on $\H$, we have
+\label{chap:mv-robustness:lemma:Delta}
+\begin{align*}
+    \Risk_{\Dpert}(\MVQ) = \Pr_{(\x+\epsilon, \y)\sim\Gamma}\LB \MVQ(\x+\epsilon){\ne}y\RB = \Risk_{\Gamma}(\MVQ).
+\end{align*}
+\end{lemma}
+\begin{proof}
+Starting from the averaged risk $\Risk_{\Dpert}(\MVQ)=\EE_{((\x,\y){,}\epsilon)\sim\Dpert}\indic\LB\MVQ(\x+\epsilon){\ne}y\RB$, we have
+\begin{align*}
+    \Risk_{\Dpert}(\MVQ) &= \EE_{(\x'{+}\epsilon', \y')\sim \Gamma}\!\tfrac{1}{\Gamma(\x'{+}\epsilon'{,}\y')}\!\LB\Pr_{((\x,\y),\epsilon)\sim\Dpert}\!\LB\MVQ(\x+\epsilon){\ne}y, \x'{+}\epsilon'{=}\x+\epsilon, \y'{=}y\RB\RB\\
+    &= \EE_{(\x'{+}\epsilon', \y')\sim \Gamma}\!\tfrac{1}{\Gamma(\x'{+}\epsilon'{,}\y')}\!\LB
+    \EE_{((\x,\y),\epsilon)\sim\Dpert}\!\indic\!\LB\MVQ(\x+\epsilon){\ne}y\RB \indic\!\LB \x'{+}\epsilon'{=}\x+\epsilon, \y'{=}y\RB\RB.\\
+\end{align*}
+\looseness=-1
+In other words, the double expectation only rearranges the terms of the original expectation: given an example $(\x'{+}\epsilon'{,}\y')$, we gather probabilities such that $\MVQ(\x+\epsilon){\ne}y$ with $(\x+\epsilon{,}\y) {=} (\x'{+}\epsilon'{,}\y')$ in the inner expectation, while integrating over all couple $(\x'{+}\epsilon', \y')\in\X{\times}\Y$ in the outer expectation.
+Then, from the fact that when $\x'{+}\epsilon'{=}\x+\epsilon$ and $\y'{=}y$, $\indic\!\LB\MVQ(\x+\epsilon){\ne}y\RB=\indic\!\LB\MVQ(\x'{+}\epsilon'){\ne} \y'\RB$, we have 
+\begin{align*}
+    \Risk_{\Dpert}(\MVQ) &= \EE_{(\x'{+}\epsilon', \y')\sim \Gamma}\!\tfrac{1}{\Gamma(\x'{+}\epsilon'{, }\y')}\!\LB\EE_{((\x,\y),\epsilon)\sim\Dpert}\!\indic\!\LB\MVQ(\x'{+}\epsilon'){\ne}\y'\RB\!\indic\!\LB \x'{+}\epsilon'{=}\x+\epsilon, \y'{=}y\RB\RB\\
+    &= \EE_{(\x'{+}\epsilon', \y')\sim\Gamma}\!\tfrac{1}{\Gamma(\x'{+}\epsilon'{, }\y')}\!\LB\indic\!\LB\MVQ(\x'{+}\epsilon'){\ne}\y'\RB\EE_{((\x,\y),\epsilon)\sim\Dpert}\!\!\indic\!\LB \x'{+}\epsilon'{=}\x+\epsilon, \y'{=}y\RB\RB.
+\end{align*}
+Finally, by definition of $\Gamma(\x'{+}\epsilon'{,}\y')$, we can deduce that
+\begin{align*}
+    \Risk_{\Dpert}(\MVQ) &=\EE_{(\x'{+}\epsilon', \y')\sim \Gamma}\!\tfrac{1}{\Gamma(\x'{+}\epsilon'{, }\y')}\!\LB\indic\!\LB\MVQ(\x'{+}\epsilon'){\ne}\y'\RB\Gamma(\x'{+}\epsilon'{,}\y') \RB\\
+    &= \EE_{(\x'{+}\epsilon', \y')\sim \Gamma}\indic\!\LB\MVQ(\x'{+}\epsilon'){\ne}\y'\RB = \Risk_{\Gamma}(\MVQ).
+\end{align*}\end{proof}
+
+Similarly, \Cref{chap:mv-robustness:lemma:Pi} shows that $\RiskA_{\D}(\MVQ)$ is equivalent to $\Risk_{\gamma}(\MVQ)$.
+\begin{lemma} 
+For any distribution $\D$ on $\X\times\Y$ and its associated distribution $\gamma$, for any posterior $\Q$ on $\H$, we have
+\label{chap:mv-robustness:lemma:Pi}
+\begin{align*}
+    \RiskA_{\D}(\MVQ) = \Pr_{(\x+\epsilon{,}\y){\sim}\gamma}\!\LB \MVQ(\x+\epsilon){\ne}y\RB = \Risk_{\gamma}(\MVQ).
+\end{align*}
+\end{lemma}
+\begin{proof} 
+The proof is similar to the one of \Cref{chap:mv-robustness:lemma:Delta}.
+Indeed, starting from the definition of $\RiskA_{\D}(\MVQ) = \EE_{(\x,\y)\sim\D}\indic\!\LB\MVQ(\x+\epsilon^*(\x{,}\y)) \neq \y\RB$, we have
+\begin{align*}
+    &\RiskA_{\D}(\MVQ)\\
+    &= \EE_{(\x'{+}\epsilon', \y')\sim \gamma}\tfrac{1}{\gamma(\x'{+}\epsilon', \y')}\!\LB\EE_{(\x,\y)\sim\D}\indic\LB\MVQ(\x{+}\epsilon^*(\x{,}\y))\ne \y\RB\!\indic\!\LB \x'{+}\epsilon'{=}\x{+}\epsilon^*(\x{,}\y), \y'{=}y\RB\RB\\
+    &= \EE_{(\x'+\epsilon', \y')\sim\gamma}\tfrac{1}{\gamma(\x'{+}\epsilon', \y')}\!\LB\EE_{(\x{,}\y)\sim\D}\indic\LB\MVQ(\x'{+}\epsilon')\ne \y'\RB\!\indic\!\LB \x'{+}\epsilon'{=}\x{+}\epsilon^*(\x{,}\y), \y'{=}y\RB\RB.
+\end{align*}
+Finally, by definition of $\gamma(\x'{+}\epsilon', \y')$, we can deduce that
+\begin{align*}
+    \RiskA_{\D}(\MVQ) &\!=\!\!\EE_{(\x'+\epsilon', \y')\sim \gamma}\tfrac{1}{\gamma(\x'+\epsilon', \y')}\LB\indic\LB\MVQ(\x'{+}\epsilon')\ne \y'\RB\gamma(\x'{+}\epsilon'{,}\y')\RB\\
+    &= \EE_{(\x'+\epsilon', \y')\sim\gamma}\!\!\indic\LB\MVQ(\x'{+}\epsilon'){\ne}\y'\RB\! = \Risk_{\gamma}(\MVQ).
+\end{align*}
+\end{proof}
+
+We can now prove \Cref{chap:mv-robustness:proposition:avg-worst-risk}.
+
+\propavgworstrisk*
+\begin{proof}
+    From \Cref{chap:mv-robustness:lemma:Delta,chap:mv-robustness:lemma:Pi}, we have 
+    \begin{align*}
+        \Risk_{\Dpert}(\MVQ) = \Risk_{\Gamma}(\MVQ), \text{\quad and\quad} \RiskA_{\D}(\MVQ)=\Risk_{\gamma}(\MVQ).
+    \end{align*}
+    Then, we apply Lemma~4 of \citet{OhnishiHonorio2021}, we have
+    \begin{align*}
+    \Risk_{\gamma}(\MVQ) \le \TV(\gamma\|\Gamma) + \Risk_{\Gamma}(\MVQ)\quad 
+    \iff \quad \RiskA_{\D}(\MVQ) \le \TV(\gamma\|\Gamma) + \Risk_{\Dpert}(\MVQ).
+    \end{align*}
+\end{proof}
+
+\section{Proof of \Cref{chap:mv-robustness:theorem:2-adver-gibbs}}
+\label{ap:mv-robustness:sec:proof-2-adver-gibbs}
+
+\theoremadvergibbs*
+\begin{proof}
+By the definition of the majority vote and from \textsc{Markov}'s inequality (\Cref{ap:tools:theorem:first-markov}), we have 
+\begin{align*}
+    \frac12 \Risk_{\Dpert}(\MVQ)
+    &= \frac12\, \PP_{( (\x,\y),\epsilon)\sim\Dpert} \LP \y \EE_{\h\sim\Q} \h(\x+\epsilon) \le 0\RP\\
+    &= \frac12 \, \PP_{( (\x,\y),\epsilon)\sim\Dpert}\LP 1 - \y \EE_{\h\sim\Q} \h(\x+\epsilon) \ge 1\RP\\
+    &\leq  \EE_{( (\x,\y),\epsilon)\sim\Dpert} \frac12 \Big[ 1 - \y \EE_{\h\sim\Q} \h(\x+\epsilon) \Big]\\
+    &= \RiskS_{\Dpert}(\Q).
+\end{align*}
+    Similarly we have
+\begin{align*}
+    \frac12\RiskM_{\Dpert^{n\!}}(\MVQ) &=\frac12\,\PP_{( (\x,\y),\Epert)\sim\Dpert^{n\!}} \LP \exists \epsilon \in\Epert, \y \EE_{\h\sim\Q} \h(\x+\epsilon)\le 0 \RP\\
+    &=\frac12\,\PP_{( (\x,\y),\Epert)\sim\Dpert^{n\!}} \LP \min_{\epsilon\in\Epert} \Big( \y \EE_{\h\sim\Q} \h(\x+\epsilon)\Big) \le 0 \RP\\
+    &= \frac12 \, \PP_{( (\x,\y),\epsilon)\sim\Dpert}\LP 1 - \min_{\epsilon\in\Epert} \Big( \y \EE_{\h\sim\Q} \h(\x+\epsilon)\Big) \ge 1\RP\\
+    &\leq \EE_{( (\x,\y),\epsilon)\sim\Dpert} \frac12 \Big[ 1 - \min_{\epsilon\in\Epert}\Big( \y \EE_{\h\sim\Q} \h(\x+\epsilon)\Big) \Big]\\
+    &= \RiskMS_{\Dpert^{n}}(\Q).
+\end{align*}
+\end{proof}
+
+\section{Proof of \Cref{chap:mv-robustness:theorem:chromatic}}
+\label{ap:mv-robustness:sec:proof-chromatic}
+
+\theoremchromatic*
+\begin{proof}
+Let $G{=}(V, E)$ be the graph representing the dependencies between the random variables where 
+{\it (i)} the set of vertices is $V {=} \Spert$, {\it (ii)} the set of edges $E$ is defined such that \mbox{$(((\x, \y), \epsilon), ((\x', \y'), \epsilon')) \notin E \Leftrightarrow x \ne \x'$}.
+Then, applying Theorem~8~of~\citet{RalaivolaSzafranskiStempfel2010} with our notations gives
+\begin{align*}
+    \kl(\RiskS_{\Spert}(\Q)\|\RiskS_{\Dpert}(\Q)) \le \frac{\chi({G})}{mn} \Bigg[\KL(\Q\|\P) + \ln \frac{mn+\chi({G})}{\delta\chi({G})}
+     \Bigg],
+\end{align*}
+where $\chi(G)$ is the fractional chromatic number of $G$.
+From a property of \citet{ScheinermanUllman2011}, we have
+\begin{align*}
+    c(G) \le \chi(G) \le \Delta(G)+1,
+\end{align*}
+where $c(G)$ is the order of the largest clique in $G$ and $\Delta(G)$ is the maximum degree of a vertex in $G$.
+By construction of $G$, $c(G){=}n$ and $\Delta(G){=}n{-}1$. 
+Thus, $\chi(G){=}n$ and rearranging the terms proves  \Cref{chap:mv-robustness:eq:seeger-chromatic}.
+Finally, by applying \textsc{Pinsker}'s inequality (\ie, $|a{-}b|{\le} \sqrt{\tfrac{1}{2}\kl(a\|b)}$), we obtain \Cref{chap:mv-robustness:eq:mcallester-chromatic}.
+\end{proof}
+
+\section{Proof of \Cref{chap:mv-robustness:theorem:bound-average-max}}
+\label{ap:mv-robustness:sec:proof-bound-average-max}
+
+\theoremboundaveragemax*
+\begin{proof}
+\newcommand{\Loss}[1]{L_{#1}}
+Let $\Loss{\h{,}(\x{,}\y){,}\epsilon}{=}\frac{1}{2}\big[1{-}\y\h(\x+\epsilon)\big]$ for the sake of readability.
+Given $\h\in\H$, the losses $\max_{\epsilon\in\Epert_1}\!\Loss{\h{,} (\x_1{,}\y_1){,} \epsilon}$, $\ldots$ $\max_{\epsilon\in\Epert_1}\!\Loss{\h{,} (\x_m{,}\y_m){,} \epsilon}$ are \iid.
+Hence, we can apply Theorem 20 of \citet{GermainLacasseLavioletteMarchandRoy2015} and \textsc{Pinsker}'s inequality, \ie,\ the inequality $|q{-}p|\! \le\! \sqrt{\!\frac{1}{2}\kl(q\|p)}$ (\Cref{ap:pac-bayes:theorem:pinsker}) to obtain
+\begin{align*}
+    \EE_{\h\sim\Q}\EE_{(\x,\y),\Epert) \sim\Dpert^{n\!}} \max_{\epsilon\in\Epert}\ \Loss{\h{,}(\x{,}\y){,}\epsilon}
+  \le \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\max_{\epsilon\in\Epert_i}\Loss{\h{,}(\x_i{,}\y_i){,}\epsilon} +
+  \sqrt{\frac{\KL(\Q\|\P)+\ln\tfrac{2\sqrt{\m}}{\delta}}{2\m}}.
+\end{align*}
+Then, we lower-bound the left-hand side of the inequality with $\RiskMS_{\Dpert^{n}}(\Q)$, we have
+\begin{align*}
+   \RiskMS_{\Dpert^{n}}(\Q) \le \EE_{\h\sim\Q} \EE_{( (\x,\y),\Epert)\sim\Dpert^{n\!}}\ \max_{\epsilon\in\Epert}\Loss{\h, (\x,\y),\epsilon}.
+\end{align*}
+Finally, from the definition of $\theta_i^h$, and from Lemma~4 of \citet{OhnishiHonorio2021}, we have
+\begin{align*}
+    \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\max_{\epsilon\in\Epert_i}\Loss{\h{,}(\x_i{,}\y_i){,}\epsilon}
+    &=  \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\EE_{\epsilon\sim\theta_i^{\h}}\Loss{\h{,}(\x_i{,}\y_i){,}\epsilon}\\
+    &\le \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\TV(\theta_i^\h\|\Theta_i) + \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\EE_{\epsilon\sim\Theta_i}\Loss{\h{,}(\x_i{,}\y_i){,}\epsilon}\\
+    &= \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\TV(\theta_i^\h\|\Theta_i) + \frac{1}{\m}\sum_{i=1}^{\m}\EE_{\epsilon\sim\Theta_i}\EE_{\h\sim\Q}\Loss{\h{,}(\x_i{,}\y_i){,}\epsilon}\\
+    &\le \EE_{\h\sim\Q}\frac{1}{\m}\sum_{i=1}^{\m}\TV(\theta_i^\h\|\Theta_i) + \RiskMS_{\Spert}(\Q).
+\end{align*}
+\end{proof}
+
+\section{Proof of \Cref{chap:mv-robustness:corollary:seeger-chromatic-T,chap:mv-robustness:corollary:max-mcallester-T}}
+\label{ap:mv-robustness:sec:proof-bound}
+
+We start to prove \Cref{chap:mv-robustness:corollary:seeger-chromatic-T}.
+
+\corollaryseegerchromaticT*
+\begin{proof}
+
+Let $\Dpert_1,\dots, \Dpert_\iter$ be $\iter$ distributions defined as $\Dpert_1= \D(\x,\y)\DX^1(\epsilon),$ $\dots,$ $\Dpert_\iter=\D(\x,\y)\DX^\iter(\epsilon)$ on $(\X{\times}\Y){\times}\Xpert$ where each distribution $\DX^\t$ depends on the example $(\x,\y)$ and possibly on the fixed prior $\Pt$.
+Then, for all distributions $\Dpert_\t$, we can derive a bound on the risk $\RiskS_{\Dpert_\t}(\Q)$ which holds with probability at least $1-\frac{\delta}{\iter}$, we have
+\begin{align*}
+    \Pr_{\Spert_t\sim(\Dpert_t^n)^\m}\!\!&\LB\forall\Q,\  \kl(\RiskS_{\Spert_\t}(\Q)\|\RiskS_{\Dpert_\t}(\Q)) \!\le\! \frac{1}{\m}\!\LB\KL(\Q\|\Pt){+}\ln\frac{\iter(\m{+}1)}{\delta} \RB \RB {\ge} 1{-}\tfrac{\delta}{\iter}.
+\end{align*}
+Then, from a union bound argument, we have 
+\begin{align*}
+    \Pr_{\Spert_1\sim(\Dpert_1^n)^\m,\dots, \Spert_T\sim(\Dpert_T^n)^\m}&\Bigg[\forall\Q,\  \kl(\RiskS_{\Spert_1}(\Q)\|\RiskS_{\Dpert_1}(\Q)) \!\le\! \frac{1}{\m}\!\LB\KL(\Q\|\P_t){+}\ln\frac{\iter(\m{+}1)}{\delta} \RB,\\
+    &\hspace{-2cm}\dots, \text{ and } \kl(\RiskS_{\Spert_T}(\Q)\|\RiskS_{\Dpert_T}(\Q)) \!\le\! \frac{1}{\m}\!\LB\KL(\Q\|\P_T){+}\ln\frac{\iter(\m{+}1)}{\delta} \RB
+    \Bigg]{\ge}1{-}\delta.  
+\end{align*}
+Hence, we have 
+\begin{align*}
+    \kl\LP\RiskS_{\Spert}(\Q) \| \RiskS_{\Dpert}(\Q)\RP \le \frac{1}{\m}\!\LB\KL(\Q\|\P){+}\ln\frac{\iter(\m{+}1)}{\delta}\RB,
+\end{align*}
+where $\DX$ can be dependent on the selected prior $\P$.
+From \Cref{chap:pac-bayes:def:invert-kl}, we can obtain the claimed result.
+\end{proof}
+
+We can prove \Cref{chap:mv-robustness:corollary:max-mcallester-T} similarly to \Cref{chap:mv-robustness:corollary:seeger-chromatic-T}.
+
+\corollarymaxmcallesterT*
+\begin{proof}
+From a union bound argument, we obtain the claimed result.
+\end{proof}
+
+\section{About the (Differentiable) Decision Trees}
+\label{ap:mv-robustness:section:tree}
+In this section, we introduce the differentiable decision trees, \ie, the voters of our majority vote.
+Note that we adapt the model of \citet{KontschiederFiterauCriminisiBulo2016} in order to fit with our framework: a voter must output a real between $-1$ and $+1$.
+An example of such a tree is represented in \Cref{ap:mv-robustness:fig:tree}.
+
+\begin{figure}[h!]
+\begin{center}
+\includestandalone[width=0.5\textwidth]{chapter_3/figures/tree}
+\end{center}
+\caption{Representation of a (differentiable) decision tree of depth $l=2$; The root is the node $0$ and the leafs are $4$; $5$; $6$ and $7$. The probability $p_i(\x)$ (respectively $1{-}p_i(\x)$) to go left (respectively right) at the node $i$ is represented by $p_i$ (we omitted the dependence on $\x$ for simplicity). Similarly, the predicted label (a ``score'' between $-1$ and $+1$) at the leaf $i$ is represented by $s_i$.}
+\label{ap:mv-robustness:fig:tree}
+\end{figure}
+
+This differentiable decision tree is stochastic by nature: at each node $i$ of the tree, we continue recursively to the left sub-tree with a probability of $p_i(\x)$ and to the right sub-tree with a probability of $1{-}p_i(\x)$; When we attain a leaf $j$, the tree predicts the label $s_j$.
+Precisely, the probability $p_i(\x)$ is constructed by {\it (i)} selecting randomly 50\% of the input features $\x$ and applying a random mask $M_i\in\R^d$ on $\x$ (where the $k$-th entry of the mask is $1$ if the $k$-th feature is selected and $0$ otherwise), by {\it (ii)} multiplying this quantity by a learned weight vector $v_i\in\R^d$, and by {\it (iii)} applying a sigmoid function to output a probability. 
+Indeed, we have
+\begin{align*}
+p_i(\x) = \sigma\Big(\langle v_i, M_i{\odot}x\rangle\Big),
+\end{align*}
+where $\sigma(a)=\LB1+e^{-a}\RB^{-1}$ is the sigmoid function; $\langle a, b \rangle$ is the dot product between the vector $a$ and $b$ and $a \odot b$ is the elementwise product between the vector $a$ and $b$.
+Moreover, $s_i$ is obtained by learning a parameter $u_i\in\R$ and applying a $\tanh$ function, \ie, we have 
+\begin{align*}
+     s_i = \tanh\!\Big( u_i\Big).
+\end{align*}
+Finally, instead of having a stochastic voter, $h$ will output the expected label predicted by the tree (see \citet{KontschiederFiterauCriminisiBulo2016} for more details). 
+It can be computed by $\h(\x) = f(\x, 0, 0)$ with
+\begin{align*}
+f(\x, i, l') =\left\{\begin{array}{cc}
+    s_i  &  \text{if } l'=l\\
+    p_i(\x)f(\x, 2i{+}1, l'{+}1)+ (1-p_i(\x))f(\x, 2i{+}2, l'{+}1) &  \text{otherwise}
+\end{array}\right..
+\end{align*}
+
+\section{Additional Experimental Results}
+\label{ap:mv-robustness:sec:additional-results}
+In this section, we present the detailed results for the 6 tasks (3 on MNIST and 3 on Fashion MNIST) on which we perform experiments that show the test risks and the bounds for the different scenarios of (Defense, Attack).
+We train all the models using the same parameters as described in \Cref{chap:mv-robustness:sec:expe-desc}.
+\Cref{ap:mv-robustness:tab:mnist-l2-details} and \Cref{ap:mv-robustness:tab:fashion-l2-details} complement \Cref{chap:mv-robustness:tab:mnist-1-7-details} to present the results for all the tasks when using the $\ell_2$-norm with $b=1$ (the maximum noise allowed by the norm).
+Then, we run again the same experiment but we use the $\ell_\infty$-norm with $b=0.1$ and exhibit the results in \Cref{ap:mv-robustness:tab:mnist-infty-details} and \Cref{ap:mv-robustness:tab:fashion-infty-details}.
+For the experiments on the 5 other tasks using the $\ell_2$-norm, we have a similar behavior than MNIST:1vs7.
+Indeed, using the attacks \PGDU~and \IFGSMU~as defense mechanism allows to obtain better risks and also tighter bounds compared to the bounds obtained with a defense based on \U (which is a naive defense).
+For the experiments on the 6 tasks using the $\ell_\infty$-norm, the trend is the same as with the $\ell_2$-norm, \ie, the appropriate defense leads to better risks and bounds.
+
+We also run experiments that do not rely on the PAC-Bayesian framework.
+In other words, we train the models following only Step 1 of our adversarial training procedure (\ie, \Cref{chap:mv-robustness:algo-step}) using classical attacks (\PGD~or \IFGSM): we refer to this experiment as a baseline.
+In our cases, it means learning a majority vote $\MVPp$ that follows a distribution $\Pp$.
+As a reminder, the studied scenarios for the baseline are all the pairs $(\text{Defense}, \text{Attack})$ belonging to the set $\{\text{---},\text{\U}, \text{\PGD}, \text{\IFGSM} \}{\times}\{\text{---}, \text{\PGD}, \text{\IFGSM}\}$.
+We report the results in \Cref{ap:mv-robustness:tab:l2-baseline} and \Cref{ap:mv-robustness:tab:infty-baseline}.
+With this experiment, we are now able to compare our defense based on \PGDU or \IFGSMU and a classical defense based on \PGD and \IFGSM.
+Hence, considering the test risks $\RiskA_{\dT}(\MVQ)$ (columns ``Attack without {\sc u}'' of Tables~\ref{chap:mv-robustness:tab:mnist-1-7-details} to~\ref{ap:mv-robustness:tab:fashion-infty-details}) and $\RiskA_{\dT}(\MVPp)$ (in Tables~\ref{ap:mv-robustness:tab:l2-baseline} and~\ref{ap:mv-robustness:tab:infty-baseline}) , we observe similar results between the baseline and our framework.
+
+\input{chapter_3/tables/mnist_l2}
+\input{chapter_3/tables/fashion_l2}
+\input{chapter_3/tables/mnist_linf}
+\input{chapter_3/tables/fashion_linf}
+\input{chapter_3/tables/baseline_l2}
+\input{chapter_3/tables/baseline_linf}
+
+\end{noaddcontents}

@@ -1,0 +1,22 @@
+\documentclass{standalone}
+\input{header_standalone}
+
+\begin{document}    
+  \begin{tikzpicture}[thick,scale=1.0, every node/.style={scale=1.0}]
+
+    \draw[] (0,0) circle (0.3cm) node(d1) {$p_0$};
+    \draw[] (-2,-2) circle (0.3cm) node(d2) {$p_1$};
+    \draw[] (2,-2) circle (0.3cm) node(d3) {$p_2$};
+    \draw[] (-3,-4) circle (0.3cm) node(d4) {$s_3$};
+    \draw[] (-1,-4) circle (0.3cm) node(d5) {$s_4$};
+    \draw[] (1,-4) circle (0.3cm) node(d7) {$s_5$};
+    \draw[] (3,-4) circle (0.3cm) node(d6) {$s_6$};
+
+    \draw[line width=0.1cm] (d1) -- (d2);
+    \draw[line width=0.1cm] (d1) -- (d3);
+    \draw[line width=0.1cm] (d2) -- (d4);
+    \draw[line width=0.1cm] (d2) -- (d5);
+    \draw[line width=0.1cm] (d3) -- (d6);
+    \draw[line width=0.1cm] (d3) -- (d7);
+ \end{tikzpicture}
+\end{document}
